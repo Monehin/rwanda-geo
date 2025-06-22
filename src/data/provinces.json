@@ -2,8 +2,8 @@
   {
     "id": 1,
     "code": "RW-UMU",
-    "name": "Umujyi wa Kigali",
-    "slug": "umujyi-wa-kigali",
+    "name": "Kigali City",
+    "slug": "kigali-city",
     "center": {
       "lat": 0,
       "lng": 0
@@ -13,8 +13,8 @@
   {
     "id": 2,
     "code": "RW-AMA",
-    "name": "Amajyepfo",
-    "slug": "amajyepfo",
+    "name": "Southern Province",
+    "slug": "southern-province",
     "center": {
       "lat": 0,
       "lng": 0
@@ -24,8 +24,8 @@
   {
     "id": 3,
     "code": "RW-IBU",
-    "name": "Iburengerazuba",
-    "slug": "iburengerazuba",
+    "name": "Western Province",
+    "slug": "western-province",
     "center": {
       "lat": 0,
       "lng": 0
@@ -35,8 +35,8 @@
   {
     "id": 4,
     "code": "RW-AMA-4",
-    "name": "Amajyaruguru",
-    "slug": "amajyaruguru",
+    "name": "Northern Province",
+    "slug": "northern-province",
     "center": {
       "lat": 0,
       "lng": 0
@@ -46,8 +46,8 @@
   {
     "id": 5,
     "code": "RW-IBU-5",
-    "name": "Iburasirazuba",
-    "slug": "iburasirazuba",
+    "name": "Eastern Province",
+    "slug": "eastern-province",
     "center": {
       "lat": 0,
       "lng": 0

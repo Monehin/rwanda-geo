@@ -51,11 +51,11 @@ const provinces = getAllProvinces();
 **Output:**
 ```json
 [
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "slug": "umujyi-wa-kigali" },
-  { "code": "RW-AMA", "name": "Amajyepfo", "slug": "amajyepfo" },
-  { "code": "RW-IBU", "name": "Iburengerazuba", "slug": "iburengerazuba" },
-  { "code": "RW-AMA-4", "name": "Amajyaruguru", "slug": "amajyaruguru" },
-  { "code": "RW-IBU-5", "name": "Iburasirazuba", "slug": "iburasirazuba" }
+  { "code": "RW-UMU", "name": "Kigali City", "slug": "kigali-city" },
+  { "code": "RW-AMA", "name": "Southern Province", "slug": "southern-province" },
+  { "code": "RW-IBU", "name": "Western Province", "slug": "western-province" },
+  { "code": "RW-AMA-4", "name": "Northern Province", "slug": "northern-province" },
+  { "code": "RW-IBU-5", "name": "Eastern Province", "slug": "eastern-province" }
 ]
 ```
 
@@ -90,7 +90,7 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 
 | Level | Count | Example Code | Example Name |
 |-------|-------|--------------|--------------|
-| **Provinces** | 5 | `RW-UMU` | Umujyi wa Kigali |
+| **Provinces** | 5 | `RW-UMU` | Kigali City |
 | **Districts** | 30 | `RW-UMU-GAS` | Gasabo |
 | **Sectors** | 416 | `RW-UMU-GAS-BUM` | Bumbogo |
 | **Cells** | 2,148 | `RW-UMU-GAS-BUM-BUM` | Bumbogo |
@@ -511,4 +511,4 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for Rwanda's digital transformation** 
+**Made with ❤️ for Rwanda's digital transformation**
