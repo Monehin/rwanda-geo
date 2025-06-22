@@ -1,6 +1,6 @@
 # rwanda-geo
 
-> Reliable, typed, and lightweight dataset of Rwanda's full administrative divisions — from provinces to villages — with geospatial support for mapping and data analysis.
+> Reliable, typed, and lightweight dataset of Rwanda's full administrative divisions - from provinces to villages - with geospatial support for mapping and data analysis.
 
 ## Features
 - **Complete Administrative Hierarchy**: All 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages
