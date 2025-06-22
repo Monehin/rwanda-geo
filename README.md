@@ -471,7 +471,6 @@ npm test
 rwanda-geo/
 ├── src/
 │   ├── data/           # JSON data files (gzipped for production)
-│   ├── boundaries/     # GeoJSON boundaries
 │   ├── types.ts        # TypeScript type definitions
 │   ├── helpers.ts      # Core helper functions
 │   └── index.ts        # Main entry point
