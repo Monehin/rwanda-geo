@@ -102,100 +102,80 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 
 ### Core Data Functions
 
-#### `getAllProvinces(): Province[]`
-Returns all provinces in Rwanda.
-
-#### `getAllDistricts(): District[]`
-Returns all districts in Rwanda.
-
-#### `getAllSectors(): Sector[]`
-Returns all sectors in Rwanda.
-
-#### `getAllCells(): Cell[]`
-Returns all cells in Rwanda.
-
-#### `getAllVillages(): Village[]`
-Returns all villages in Rwanda.
+| Function | Description | Parameters | Returns | Example |
+|----------|-------------|------------|---------|---------|
+| `getAllProvinces()` | Returns all provinces in Rwanda | None | `Province[]` | `getAllProvinces()` |
+| `getAllDistricts()` | Returns all districts in Rwanda | None | `District[]` | `getAllDistricts()` |
+| `getAllSectors()` | Returns all sectors in Rwanda | None | `Sector[]` | `getAllSectors()` |
+| `getAllCells()` | Returns all cells in Rwanda | None | `Cell[]` | `getAllCells()` |
+| `getAllVillages()` | Returns all villages in Rwanda | None | `Village[]` | `getAllVillages()` |
 
 ### Hierarchical Navigation
 
-#### `getDistrictsByProvince(provinceCode: string): District[]`
-Returns all districts within a specific province.
-
-#### `getSectorsByDistrict(districtCode: string): Sector[]`
-Returns all sectors within a specific district.
-
-#### `getCellsBySector(sectorCode: string): Cell[]`
-Returns all cells within a specific sector.
-
-#### `getVillagesByCell(cellCode: string): Village[]`
-Returns all villages within a specific cell.
-
-#### `getByCode(code: string): AdministrativeUnit | undefined`
-Returns a specific administrative unit by its unique code.
-
-#### `getHierarchy(code: string): AdministrativeUnit[]`
-Returns the complete hierarchy chain from province to the specified unit.
-
-#### `getFullHierarchy(code: string): AdministrativeUnit[]`
-Returns the complete hierarchy with all levels from root to the specified unit.
-
-#### `getDirectChildren(parentCode: string): AdministrativeUnit[]`
-Returns direct children of a parent unit.
-
-#### `getSiblings(code: string): AdministrativeUnit[]`
-Returns sibling units (same parent) of the specified unit.
-
-#### `getAllDescendants(parentCode: string): AdministrativeUnit[]`
-Returns all descendants (children, grandchildren, etc.) of a parent unit.
+| Function | Description | Parameters | Returns | Example |
+|----------|-------------|------------|---------|---------|
+| `getDistrictsByProvince(provinceCode)` | Returns districts within a province | `provinceCode: string` | `District[]` | `getDistrictsByProvince('RW-UMU')` |
+| `getSectorsByDistrict(districtCode)` | Returns sectors within a district | `districtCode: string` | `Sector[]` | `getSectorsByDistrict('RW-UMU-GAS')` |
+| `getCellsBySector(sectorCode)` | Returns cells within a sector | `sectorCode: string` | `Cell[]` | `getCellsBySector('RW-UMU-GAS-BUM')` |
+| `getVillagesByCell(cellCode)` | Returns villages within a cell | `cellCode: string` | `Village[]` | `getVillagesByCell('RW-UMU-GAS-BUM-BUM')` |
+| `getByCode(code)` | Returns unit by unique code | `code: string` | `AdministrativeUnit \| undefined` | `getByCode('RW-UMU-GAS')` |
+| `getHierarchy(code)` | Returns hierarchy chain from province to unit | `code: string` | `AdministrativeUnit[]` | `getHierarchy('RW-UMU-GAS-BUM')` |
+| `getFullHierarchy(code)` | Returns complete hierarchy with all levels | `code: string` | `AdministrativeUnit[]` | `getFullHierarchy('RW-UMU-GAS-BUM')` |
+| `getDirectChildren(parentCode)` | Returns direct children of parent unit | `parentCode: string` | `AdministrativeUnit[]` | `getDirectChildren('RW-UMU')` |
+| `getSiblings(code)` | Returns sibling units (same parent) | `code: string` | `AdministrativeUnit[]` | `getSiblings('RW-UMU-GAS')` |
+| `getAllDescendants(parentCode)` | Returns all descendants of parent unit | `parentCode: string` | `AdministrativeUnit[]` | `getAllDescendants('RW-UMU')` |
 
 ### Search and Discovery
 
-#### `searchByName(name: string): AdministrativeUnit[]`
-Case-insensitive search by unit name.
-
-#### `searchBySlug(slug: string): AdministrativeUnit[]`
-Case-insensitive search by unit slug.
-
-#### `fuzzySearchByName(query: string, threshold?: number, limit?: number): Array<{ unit: AdministrativeUnit; score: number }>`
-Fuzzy search with Levenshtein distance scoring.
-
-#### `searchByPartialCode(partialCode: string, limit?: number): AdministrativeUnit[]`
-Search by partial code matching.
-
-#### `getSuggestions(query: string, limit?: number): Array<{ unit: AdministrativeUnit; type: 'exact' | 'fuzzy' | 'partial'; matchField: 'name' | 'code' | 'slug' }>`
-Get search suggestions with match type and field information.
+| Function | Description | Parameters | Returns | Example |
+|----------|-------------|------------|---------|---------|
+| `searchByName(name)` | Case-insensitive search by unit name | `name: string` | `AdministrativeUnit[]` | `searchByName('Gasabo')` |
+| `searchBySlug(slug)` | Case-insensitive search by unit slug | `slug: string` | `AdministrativeUnit[]` | `searchBySlug('gasabo')` |
+| `fuzzySearchByName(query, threshold?, limit?)` | Fuzzy search with Levenshtein scoring | `query: string, threshold?: number, limit?: number` | `Array<{unit: AdministrativeUnit, score: number}>` | `fuzzySearchByName('kigali', 0.8, 5)` |
+| `searchByPartialCode(partialCode, limit?)` | Search by partial code matching | `partialCode: string, limit?: number` | `AdministrativeUnit[]` | `searchByPartialCode('RW-UMU', 10)` |
+| `getSuggestions(query, limit?)` | Get search suggestions with match info | `query: string, limit?: number` | `Array<{unit: AdministrativeUnit, type: 'exact' \| 'fuzzy' \| 'partial', matchField: 'name' \| 'code' \| 'slug'}>` | `getSuggestions('gas', 10)` |
 
 ### Utility Functions
 
-#### `getByLevel(level: AdminLevel): AdministrativeUnit[]`
-Returns all units at a specific administrative level.
-
-#### `getCounts(): { provinces: number; districts: number; sectors: number; cells: number; villages: number }`
-Returns counts of units at each administrative level.
-
-#### `getSummary(): { provinces: number; districts: number; sectors: number; cells: number; villages: number; total: number }`
-Returns comprehensive summary with total count.
-
-#### `isValidCode(code: string): boolean`
-Validates if a code follows the correct format.
-
-#### `getCodeLevel(code: string): AdminLevel | undefined`
-Determines the administrative level from a code.
+| Function | Description | Parameters | Returns | Example |
+|----------|-------------|------------|---------|---------|
+| `getByLevel(level)` | Returns all units at specific level | `level: AdminLevel` | `AdministrativeUnit[]` | `getByLevel('district')` |
+| `getCounts()` | Returns counts of units at each level | None | `{provinces: number, districts: number, sectors: number, cells: number, villages: number}` | `getCounts()` |
+| `getSummary()` | Returns comprehensive summary with total | None | `{provinces: number, districts: number, sectors: number, cells: number, villages: number, total: number}` | `getSummary()` |
+| `isValidCode(code)` | Validates if code follows correct format | `code: string` | `boolean` | `isValidCode('RW-UMU-GAS')` |
+| `getCodeLevel(code)` | Determines level from code | `code: string` | `AdminLevel \| undefined` | `getCodeLevel('RW-UMU-GAS')` |
 
 ### Validation Functions
 
-#### `validateCodeFormat(code: string): { isValid: boolean; error?: string; level?: string; format?: string }`
-Validates code format and returns level information.
+| Function | Description | Parameters | Returns | Example |
+|----------|-------------|------------|---------|---------|
+| `validateCodeFormat(code)` | Validates code format and returns level info | `code: string` | `{isValid: boolean, error?: string, level?: string, format?: string}` | `validateCodeFormat('RW-UMU-GAS')` |
+| `validateParentChildRelationship(parentCode, childCode)` | Validates parent-child relationship integrity | `parentCode: string, childCode: string` | `{isValid: boolean, error?: string, parentLevel?: string, childLevel?: string}` | `validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS')` |
+| `validateHierarchyIntegrity()` | Comprehensive hierarchy validation | None | `{isValid: boolean, issues: Array<{type: string, message: string, code?: string}>, summary: {totalUnits: number, orphanedUnits: number, invalidParents: number, circularReferences: number, missingUnits: number}}` | `validateHierarchyIntegrity()` |
+| `validateUnitProperties(unit)` | Validates individual unit properties | `unit: AdministrativeUnit` | `{isValid: boolean, issues: string[]}` | `validateUnitProperties(province)` |
 
-#### `validateParentChildRelationship(parentCode: string, childCode: string): { isValid: boolean; error?: string; parentLevel?: string; childLevel?: string }`
-Validates parent-child relationship integrity.
+### Parameter Types
 
-#### `validateHierarchyIntegrity(): { isValid: boolean; issues: Array<{ type: string; message: string; code?: string }>; summary: { totalUnits: number; orphanedUnits: number; invalidParents: number; circularReferences: number; missingUnits: number } }`
-Comprehensive hierarchy validation.
+| Parameter | Type | Description | Example |
+|-----------|------|-------------|---------|
+| `code` | `string` | Unique hierarchical code | `'RW-UMU-GAS'` |
+| `name` | `string` | Administrative unit name | `'Gasabo'` |
+| `slug` | `string` | URL-friendly identifier | `'gasabo'` |
+| `threshold` | `number` | Fuzzy search threshold (0-1) | `0.8` |
+| `limit` | `number` | Maximum results to return | `10` |
+| `level` | `AdminLevel` | Administrative level | `'district'` |
 
-#### `validateUnitProperties(unit: AdministrativeUnit): { isValid: boolean; issues: string[] }`
-Validates individual unit properties.
+### Return Types
+
+| Type | Description | Properties |
+|------|-------------|------------|
+| `AdministrativeUnit` | Base unit interface | `{code: string, name: string, slug: string, parentCode?: string, center?: {lat: number, lng: number}}` |
+| `Province` | Province unit | Extends `AdministrativeUnit` |
+| `District` | District unit | Extends `AdministrativeUnit` |
+| `Sector` | Sector unit | Extends `AdministrativeUnit` |
+| `Cell` | Cell unit | Extends `AdministrativeUnit` |
+| `Village` | Village unit | Extends `AdministrativeUnit` |
+| `AdminLevel` | Administrative level enum | `'province' \| 'district' \| 'sector' \| 'cell' \| 'village'` |
 
 ## 📋 Data Structure
 
