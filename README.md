@@ -98,84 +98,190 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 
 **Total: 17,436 administrative units**
 
-## 🔧 API Reference
+## �� API Reference
 
-### Core Data Functions
+### 📊 Core Data Functions
 
-| Function | Description | Parameters | Returns | Example |
-|----------|-------------|------------|---------|---------|
-| `getAllProvinces()` | Returns all provinces in Rwanda | None | `Province[]` | `getAllProvinces()` |
-| `getAllDistricts()` | Returns all districts in Rwanda | None | `District[]` | `getAllDistricts()` |
-| `getAllSectors()` | Returns all sectors in Rwanda | None | `Sector[]` | `getAllSectors()` |
-| `getAllCells()` | Returns all cells in Rwanda | None | `Cell[]` | `getAllCells()` |
-| `getAllVillages()` | Returns all villages in Rwanda | None | `Village[]` | `getAllVillages()` |
+<details>
+<summary><strong>🔄 Data Retrieval Functions</strong></summary>
 
-### Hierarchical Navigation
+```ts
+// Get all administrative units by level
+getAllProvinces(): Province[]
+getAllDistricts(): District[]
+getAllSectors(): Sector[]
+getAllCells(): Cell[]
+getAllVillages(): Village[]
+```
 
-| Function | Description | Parameters | Returns | Example |
-|----------|-------------|------------|---------|---------|
-| `getDistrictsByProvince(provinceCode)` | Returns districts within a province | `provinceCode: string` | `District[]` | `getDistrictsByProvince('RW-UMU')` |
-| `getSectorsByDistrict(districtCode)` | Returns sectors within a district | `districtCode: string` | `Sector[]` | `getSectorsByDistrict('RW-UMU-GAS')` |
-| `getCellsBySector(sectorCode)` | Returns cells within a sector | `sectorCode: string` | `Cell[]` | `getCellsBySector('RW-UMU-GAS-BUM')` |
-| `getVillagesByCell(cellCode)` | Returns villages within a cell | `cellCode: string` | `Village[]` | `getVillagesByCell('RW-UMU-GAS-BUM-BUM')` |
-| `getByCode(code)` | Returns unit by unique code | `code: string` | `AdministrativeUnit \| undefined` | `getByCode('RW-UMU-GAS')` |
-| `getHierarchy(code)` | Returns hierarchy chain from province to unit | `code: string` | `AdministrativeUnit[]` | `getHierarchy('RW-UMU-GAS-BUM')` |
-| `getFullHierarchy(code)` | Returns complete hierarchy with all levels | `code: string` | `AdministrativeUnit[]` | `getFullHierarchy('RW-UMU-GAS-BUM')` |
-| `getDirectChildren(parentCode)` | Returns direct children of parent unit | `parentCode: string` | `AdministrativeUnit[]` | `getDirectChildren('RW-UMU')` |
-| `getSiblings(code)` | Returns sibling units (same parent) | `code: string` | `AdministrativeUnit[]` | `getSiblings('RW-UMU-GAS')` |
-| `getAllDescendants(parentCode)` | Returns all descendants of parent unit | `parentCode: string` | `AdministrativeUnit[]` | `getAllDescendants('RW-UMU')` |
+**Examples:**
+```ts
+import { getAllProvinces, getAllDistricts } from 'rwanda-geo';
 
-### Search and Discovery
+const provinces = getAllProvinces();
+// Returns: [{ code: "RW-UMU", name: "Kigali City", slug: "kigali-city" }, ...]
 
-| Function | Description | Parameters | Returns | Example |
-|----------|-------------|------------|---------|---------|
-| `searchByName(name)` | Case-insensitive search by unit name | `name: string` | `AdministrativeUnit[]` | `searchByName('Gasabo')` |
-| `searchBySlug(slug)` | Case-insensitive search by unit slug | `slug: string` | `AdministrativeUnit[]` | `searchBySlug('gasabo')` |
-| `fuzzySearchByName(query, threshold?, limit?)` | Fuzzy search with Levenshtein scoring | `query: string, threshold?: number, limit?: number` | `Array<{unit: AdministrativeUnit, score: number}>` | `fuzzySearchByName('kigali', 0.8, 5)` |
-| `searchByPartialCode(partialCode, limit?)` | Search by partial code matching | `partialCode: string, limit?: number` | `AdministrativeUnit[]` | `searchByPartialCode('RW-UMU', 10)` |
-| `getSuggestions(query, limit?)` | Get search suggestions with match info | `query: string, limit?: number` | `Array<{unit: AdministrativeUnit, type: 'exact' \| 'fuzzy' \| 'partial', matchField: 'name' \| 'code' \| 'slug'}>` | `getSuggestions('gas', 10)` |
+const districts = getAllDistricts();
+// Returns: [{ code: "RW-UMU-GAS", name: "Gasabo", slug: "gasabo" }, ...]
+```
+</details>
 
-### Utility Functions
+### 🗺️ Hierarchical Navigation
 
-| Function | Description | Parameters | Returns | Example |
-|----------|-------------|------------|---------|---------|
-| `getByLevel(level)` | Returns all units at specific level | `level: AdminLevel` | `AdministrativeUnit[]` | `getByLevel('district')` |
-| `getCounts()` | Returns counts of units at each level | None | `{provinces: number, districts: number, sectors: number, cells: number, villages: number}` | `getCounts()` |
-| `getSummary()` | Returns comprehensive summary with total | None | `{provinces: number, districts: number, sectors: number, cells: number, villages: number, total: number}` | `getSummary()` |
-| `isValidCode(code)` | Validates if code follows correct format | `code: string` | `boolean` | `isValidCode('RW-UMU-GAS')` |
-| `getCodeLevel(code)` | Determines level from code | `code: string` | `AdminLevel \| undefined` | `getCodeLevel('RW-UMU-GAS')` |
+<details>
+<summary><strong>🔗 Parent-Child Relationships</strong></summary>
 
-### Validation Functions
+```ts
+// Navigate the administrative hierarchy
+getDistrictsByProvince(provinceCode: string): District[]
+getSectorsByDistrict(districtCode: string): Sector[]
+getCellsBySector(sectorCode: string): Cell[]
+getVillagesByCell(cellCode: string): Village[]
+```
 
-| Function | Description | Parameters | Returns | Example |
-|----------|-------------|------------|---------|---------|
-| `validateCodeFormat(code)` | Validates code format and returns level info | `code: string` | `{isValid: boolean, error?: string, level?: string, format?: string}` | `validateCodeFormat('RW-UMU-GAS')` |
-| `validateParentChildRelationship(parentCode, childCode)` | Validates parent-child relationship integrity | `parentCode: string, childCode: string` | `{isValid: boolean, error?: string, parentLevel?: string, childLevel?: string}` | `validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS')` |
-| `validateHierarchyIntegrity()` | Comprehensive hierarchy validation | None | `{isValid: boolean, issues: Array<{type: string, message: string, code?: string}>, summary: {totalUnits: number, orphanedUnits: number, invalidParents: number, circularReferences: number, missingUnits: number}}` | `validateHierarchyIntegrity()` |
-| `validateUnitProperties(unit)` | Validates individual unit properties | `unit: AdministrativeUnit` | `{isValid: boolean, issues: string[]}` | `validateUnitProperties(province)` |
+**Examples:**
+```ts
+import { getDistrictsByProvince, getSectorsByDistrict } from 'rwanda-geo';
 
-### Parameter Types
+const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+// Returns all districts in Kigali City
 
-| Parameter | Type | Description | Example |
-|-----------|------|-------------|---------|
-| `code` | `string` | Unique hierarchical code | `'RW-UMU-GAS'` |
-| `name` | `string` | Administrative unit name | `'Gasabo'` |
-| `slug` | `string` | URL-friendly identifier | `'gasabo'` |
-| `threshold` | `number` | Fuzzy search threshold (0-1) | `0.8` |
-| `limit` | `number` | Maximum results to return | `10` |
-| `level` | `AdminLevel` | Administrative level | `'district'` |
+const gasaboSectors = getSectorsByDistrict('RW-UMU-GAS');
+// Returns all sectors in Gasabo district
+```
+</details>
 
-### Return Types
+<details>
+<summary><strong>🎯 Direct Access & Hierarchy</strong></summary>
 
-| Type | Description | Properties |
-|------|-------------|------------|
-| `AdministrativeUnit` | Base unit interface | `{code: string, name: string, slug: string, parentCode?: string, center?: {lat: number, lng: number}}` |
-| `Province` | Province unit | Extends `AdministrativeUnit` |
-| `District` | District unit | Extends `AdministrativeUnit` |
-| `Sector` | Sector unit | Extends `AdministrativeUnit` |
-| `Cell` | Cell unit | Extends `AdministrativeUnit` |
-| `Village` | Village unit | Extends `AdministrativeUnit` |
-| `AdminLevel` | Administrative level enum | `'province' \| 'district' \| 'sector' \| 'cell' \| 'village'` |
+```ts
+// Direct access and hierarchy traversal
+getByCode(code: string): AdministrativeUnit | undefined
+getHierarchy(code: string): AdministrativeUnit[]
+getFullHierarchy(code: string): AdministrativeUnit[]
+getDirectChildren(parentCode: string): AdministrativeUnit[]
+getSiblings(code: string): AdministrativeUnit[]
+getAllDescendants(parentCode: string): AdministrativeUnit[]
+```
+
+**Examples:**
+```ts
+import { getByCode, getHierarchy, getSiblings } from 'rwanda-geo';
+
+const gasabo = getByCode('RW-UMU-GAS');
+// Returns: { code: "RW-UMU-GAS", name: "Gasabo", slug: "gasabo", ... }
+
+const hierarchy = getHierarchy('RW-UMU-GAS-BUM');
+// Returns: [Province, District, Sector] chain
+
+const siblings = getSiblings('RW-UMU-GAS');
+// Returns all districts in Kigali City (same level as Gasabo)
+```
+</details>
+
+### 🔍 Search & Discovery
+
+<details>
+<summary><strong>🔎 Search Functions</strong></summary>
+
+```ts
+// Basic search operations
+searchByName(name: string): AdministrativeUnit[]
+searchBySlug(slug: string): AdministrativeUnit[]
+fuzzySearchByName(query: string, threshold?: number, limit?: number): Array<{unit: AdministrativeUnit, score: number}>
+searchByPartialCode(partialCode: string, limit?: number): AdministrativeUnit[]
+getSuggestions(query: string, limit?: number): Array<{unit: AdministrativeUnit, type: 'exact' | 'fuzzy' | 'partial', matchField: 'name' | 'code' | 'slug'}>
+```
+
+**Examples:**
+```ts
+import { searchByName, fuzzySearchByName, getSuggestions } from 'rwanda-geo';
+
+const exactMatches = searchByName('Gasabo');
+// Returns: [{ code: "RW-UMU-GAS", name: "Gasabo", ... }]
+
+const fuzzyResults = fuzzySearchByName('kigali', 0.8, 5);
+// Returns: [{ unit: {...}, score: 0.95 }, ...]
+
+const suggestions = getSuggestions('gas', 10);
+// Returns: [{ unit: {...}, type: 'exact', matchField: 'name' }, ...]
+```
+</details>
+
+### ⚙️ Utility Functions
+
+<details>
+<summary><strong>🛠️ Helper Functions</strong></summary>
+
+```ts
+// Utility and helper functions
+getByLevel(level: AdminLevel): AdministrativeUnit[]
+getCounts(): { provinces: number; districts: number; sectors: number; cells: number; villages: number }
+getSummary(): { provinces: number; districts: number; sectors: number; cells: number; villages: number; total: number }
+isValidCode(code: string): boolean
+getCodeLevel(code: string): AdminLevel | undefined
+```
+
+**Examples:**
+```ts
+import { getCounts, getSummary, isValidCode } from 'rwanda-geo';
+
+const counts = getCounts();
+// Returns: { provinces: 5, districts: 30, sectors: 416, cells: 2148, villages: 14837 }
+
+const summary = getSummary();
+// Returns: { provinces: 5, districts: 30, sectors: 416, cells: 2148, villages: 14837, total: 17436 }
+
+const isValid = isValidCode('RW-UMU-GAS');
+// Returns: true
+```
+</details>
+
+### ✅ Validation Functions
+
+<details>
+<summary><strong>🔍 Data Validation</strong></summary>
+
+```ts
+// Comprehensive validation functions
+validateCodeFormat(code: string): { isValid: boolean; error?: string; level?: string; format?: string }
+validateParentChildRelationship(parentCode: string, childCode: string): { isValid: boolean; error?: string; parentLevel?: string; childLevel?: string }
+validateHierarchyIntegrity(): { isValid: boolean; issues: Array<{type: string, message: string, code?: string}>; summary: { totalUnits: number; orphanedUnits: number; invalidParents: number; circularReferences: number; missingUnits: number } }
+validateUnitProperties(unit: AdministrativeUnit): { isValid: boolean; issues: string[] }
+```
+
+**Examples:**
+```ts
+import { validateCodeFormat, validateParentChildRelationship } from 'rwanda-geo';
+
+const formatCheck = validateCodeFormat('RW-UMU-GAS');
+// Returns: { isValid: true, level: 'district', format: 'RW-XX-YY' }
+
+const relationshipCheck = validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS');
+// Returns: { isValid: true, parentLevel: 'province', childLevel: 'district' }
+```
+</details>
+
+---
+
+### 📋 Quick Reference
+
+#### **Parameter Types**
+| Type | Description | Example |
+|------|-------------|---------|
+| `string` | Administrative code or name | `'RW-UMU-GAS'`, `'Gasabo'` |
+| `number` | Threshold (0-1) or limit | `0.8`, `10` |
+| `AdminLevel` | Administrative level | `'district'` |
+
+#### **Return Types**
+| Type | Description |
+|------|-------------|
+| `AdministrativeUnit` | Base unit with `{code, name, slug, parentCode?, center?}` |
+| `Province[]` | Array of province units |
+| `District[]` | Array of district units |
+| `Sector[]` | Array of sector units |
+| `Cell[]` | Array of cell units |
+| `Village[]` | Array of village units |
 
 ## 📋 Data Structure
 
