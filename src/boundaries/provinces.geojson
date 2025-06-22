@@ -1,0 +1,100 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-KG",
+        "name": "Kigali City",
+        "slug": "kigali-city",
+        "level": "province"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, -1.9],
+          [30.1, -1.9],
+          [30.1, -2.0],
+          [30.0, -2.0],
+          [30.0, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-SO",
+        "name": "Southern Province",
+        "slug": "southern-province",
+        "level": "province"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.5, -2.5],
+          [29.7, -2.5],
+          [29.7, -2.6],
+          [29.5, -2.6],
+          [29.5, -2.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-NO",
+        "name": "Northern Province",
+        "slug": "northern-province",
+        "level": "province"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.8, -1.6],
+          [30.0, -1.6],
+          [30.0, -1.7],
+          [29.8, -1.7],
+          [29.8, -1.6]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-ES",
+        "name": "Eastern Province",
+        "slug": "eastern-province",
+        "level": "province"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, -1.9],
+          [30.2, -1.9],
+          [30.2, -2.0],
+          [30.0, -2.0],
+          [30.0, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-WE",
+        "name": "Western Province",
+        "slug": "western-province",
+        "level": "province"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.5, -2.5],
+          [29.7, -2.5],
+          [29.7, -2.6],
+          [29.5, -2.6],
+          [29.5, -2.5]
+        ]]
+      }
+    }
+  ]
+} 

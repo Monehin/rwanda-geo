@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "code": "RW-UMU",
+    "name": "Umujyi wa Kigali",
+    "slug": "umujyi-wa-kigali",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "1"
+  },
+  {
+    "id": 2,
+    "code": "RW-AMA",
+    "name": "Amajyepfo",
+    "slug": "amajyepfo",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "2"
+  },
+  {
+    "id": 3,
+    "code": "RW-IBU",
+    "name": "Iburengerazuba",
+    "slug": "iburengerazuba",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "3"
+  },
+  {
+    "id": 4,
+    "code": "RW-AMA-4",
+    "name": "Amajyaruguru",
+    "slug": "amajyaruguru",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "4"
+  },
+  {
+    "id": 5,
+    "code": "RW-IBU-5",
+    "name": "Iburasirazuba",
+    "slug": "iburasirazuba",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "5"
+  }
+]

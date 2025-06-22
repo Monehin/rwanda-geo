@@ -1,0 +1,4994 @@
+[
+  {
+    "id": 1,
+    "code": "RW-UMU-NYA-GIT",
+    "name": "Gitega",
+    "slug": "gitega",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "001"
+  },
+  {
+    "id": 2,
+    "code": "RW-UMU-NYA-KAN",
+    "name": "Kanyinya",
+    "slug": "kanyinya",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "002"
+  },
+  {
+    "id": 3,
+    "code": "RW-UMU-NYA-KIG",
+    "name": "Kigali",
+    "slug": "kigali",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "003"
+  },
+  {
+    "id": 4,
+    "code": "RW-UMU-NYA-KIM",
+    "name": "Kimisagara",
+    "slug": "kimisagara",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "004"
+  },
+  {
+    "id": 5,
+    "code": "RW-UMU-NYA-MAG",
+    "name": "Mageragere",
+    "slug": "mageragere",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "005"
+  },
+  {
+    "id": 6,
+    "code": "RW-UMU-NYA-MUH",
+    "name": "Muhima",
+    "slug": "muhima",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "006"
+  },
+  {
+    "id": 7,
+    "code": "RW-UMU-NYA-NYA",
+    "name": "Nyakabanda",
+    "slug": "nyakabanda",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "007"
+  },
+  {
+    "id": 8,
+    "code": "RW-UMU-NYA-NAY",
+    "name": "Nyamirambo",
+    "slug": "nyamirambo",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "008"
+  },
+  {
+    "id": 9,
+    "code": "RW-UMU-NYA-NAY-009",
+    "name": "Nyarugenge",
+    "slug": "nyarugenge-1",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "009"
+  },
+  {
+    "id": 10,
+    "code": "RW-UMU-NYA-RWE",
+    "name": "Rwezamenyo",
+    "slug": "rwezamenyo",
+    "parentCode": "RW-UMU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "010"
+  },
+  {
+    "id": 11,
+    "code": "RW-UMU-GAS-BUM",
+    "name": "Bumbogo",
+    "slug": "bumbogo",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "011"
+  },
+  {
+    "id": 12,
+    "code": "RW-UMU-GAS-GAT",
+    "name": "Gatsata",
+    "slug": "gatsata",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "012"
+  },
+  {
+    "id": 13,
+    "code": "RW-UMU-GAS-GIK",
+    "name": "Gikomero",
+    "slug": "gikomero",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "013"
+  },
+  {
+    "id": 14,
+    "code": "RW-UMU-GAS-GIS",
+    "name": "Gisozi",
+    "slug": "gisozi",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "014"
+  },
+  {
+    "id": 15,
+    "code": "RW-UMU-GAS-JAB",
+    "name": "Jabana",
+    "slug": "jabana",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "015"
+  },
+  {
+    "id": 16,
+    "code": "RW-UMU-GAS-JAL",
+    "name": "Jali",
+    "slug": "jali",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "016"
+  },
+  {
+    "id": 17,
+    "code": "RW-UMU-GAS-KAC",
+    "name": "Kacyiru",
+    "slug": "kacyiru",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "017"
+  },
+  {
+    "id": 18,
+    "code": "RW-UMU-GAS-KMI",
+    "name": "Kimihurura",
+    "slug": "kimihurura",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "018"
+  },
+  {
+    "id": 19,
+    "code": "RW-UMU-GAS-KMI-019",
+    "name": "Kimironko",
+    "slug": "kimironko",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "019"
+  },
+  {
+    "id": 20,
+    "code": "RW-UMU-GAS-KIN",
+    "name": "Kinyinya",
+    "slug": "kinyinya",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "020"
+  },
+  {
+    "id": 21,
+    "code": "RW-UMU-GAS-NDE",
+    "name": "Ndera",
+    "slug": "ndera",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "021"
+  },
+  {
+    "id": 22,
+    "code": "RW-UMU-GAS-NDU",
+    "name": "Nduba",
+    "slug": "nduba",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "022"
+  },
+  {
+    "id": 23,
+    "code": "RW-UMU-GAS-REM",
+    "name": "Remera",
+    "slug": "remera",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "023"
+  },
+  {
+    "id": 24,
+    "code": "RW-UMU-GAS-RUS",
+    "name": "Rusororo",
+    "slug": "rusororo",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "024"
+  },
+  {
+    "id": 25,
+    "code": "RW-UMU-GAS-RUT",
+    "name": "Rutunga",
+    "slug": "rutunga",
+    "parentCode": "RW-UMU-GAS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "025"
+  },
+  {
+    "id": 26,
+    "code": "RW-UMU-KIC-GAH",
+    "name": "Gahanga",
+    "slug": "gahanga",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "026"
+  },
+  {
+    "id": 27,
+    "code": "RW-UMU-KIC-GTA",
+    "name": "Gatenga",
+    "slug": "gatenga",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "027"
+  },
+  {
+    "id": 28,
+    "code": "RW-UMU-KIC-GKI",
+    "name": "Gikondo",
+    "slug": "gikondo",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "028"
+  },
+  {
+    "id": 29,
+    "code": "RW-UMU-KIC-KAG",
+    "name": "Kagarama",
+    "slug": "kagarama",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "029"
+  },
+  {
+    "id": 30,
+    "code": "RW-UMU-KIC-KNA",
+    "name": "Kanombe",
+    "slug": "kanombe",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "030"
+  },
+  {
+    "id": 31,
+    "code": "RW-UMU-KIC-KIC",
+    "name": "Kicukiro",
+    "slug": "kicukiro-1",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "031"
+  },
+  {
+    "id": 32,
+    "code": "RW-UMU-KIC-KGI",
+    "name": "Kigarama",
+    "slug": "kigarama",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "032"
+  },
+  {
+    "id": 33,
+    "code": "RW-UMU-KIC-MAS",
+    "name": "Masaka",
+    "slug": "masaka",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "033"
+  },
+  {
+    "id": 34,
+    "code": "RW-UMU-KIC-NIB",
+    "name": "Niboye",
+    "slug": "niboye",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "034"
+  },
+  {
+    "id": 35,
+    "code": "RW-UMU-KIC-NAY",
+    "name": "Nyarugunga",
+    "slug": "nyarugunga",
+    "parentCode": "RW-UMU-KIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "035"
+  },
+  {
+    "id": 36,
+    "code": "RW-AMA-NYA-BUS",
+    "name": "Busasamana",
+    "slug": "busasamana",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "036"
+  },
+  {
+    "id": 37,
+    "code": "RW-AMA-NYA-BSU",
+    "name": "Busoro",
+    "slug": "busoro",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "037"
+  },
+  {
+    "id": 38,
+    "code": "RW-AMA-NYA-CYA",
+    "name": "Cyabakamyi",
+    "slug": "cyabakamyi",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "038"
+  },
+  {
+    "id": 39,
+    "code": "RW-AMA-NYA-KIB",
+    "name": "Kibilizi",
+    "slug": "kibilizi",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "039"
+  },
+  {
+    "id": 40,
+    "code": "RW-AMA-NYA-KGI",
+    "name": "Kigoma",
+    "slug": "kigoma",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "040"
+  },
+  {
+    "id": 41,
+    "code": "RW-AMA-NYA-MUK",
+    "name": "Mukingo",
+    "slug": "mukingo",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "041"
+  },
+  {
+    "id": 42,
+    "code": "RW-AMA-NYA-MUY",
+    "name": "Muyira",
+    "slug": "muyira",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "042"
+  },
+  {
+    "id": 43,
+    "code": "RW-AMA-NYA-NTY",
+    "name": "Ntyazo",
+    "slug": "ntyazo",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "043"
+  },
+  {
+    "id": 44,
+    "code": "RW-AMA-NYA-NAY",
+    "name": "Nyagisozi",
+    "slug": "nyagisozi",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "044"
+  },
+  {
+    "id": 45,
+    "code": "RW-AMA-NYA-RWA",
+    "name": "Rwabicuma",
+    "slug": "rwabicuma",
+    "parentCode": "RW-AMA-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "045"
+  },
+  {
+    "id": 46,
+    "code": "RW-AMA-GIS-GKI",
+    "name": "Gikonko",
+    "slug": "gikonko",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "046"
+  },
+  {
+    "id": 47,
+    "code": "RW-AMA-GIS-GSI",
+    "name": "Gishubi",
+    "slug": "gishubi",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "047"
+  },
+  {
+    "id": 48,
+    "code": "RW-AMA-GIS-KNA",
+    "name": "Kansi",
+    "slug": "kansi",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "048"
+  },
+  {
+    "id": 49,
+    "code": "RW-AMA-GIS-KBI",
+    "name": "Kibirizi",
+    "slug": "kibirizi",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "049"
+  },
+  {
+    "id": 50,
+    "code": "RW-AMA-GIS-KGI",
+    "name": "Kigembe",
+    "slug": "kigembe",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "050"
+  },
+  {
+    "id": 51,
+    "code": "RW-AMA-GIS-MAM",
+    "name": "Mamba",
+    "slug": "mamba",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "051"
+  },
+  {
+    "id": 52,
+    "code": "RW-AMA-GIS-MUG",
+    "name": "Muganza",
+    "slug": "muganza",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "052"
+  },
+  {
+    "id": 53,
+    "code": "RW-AMA-GIS-MGU",
+    "name": "Mugombwa",
+    "slug": "mugombwa",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "053"
+  },
+  {
+    "id": 54,
+    "code": "RW-AMA-GIS-MKU",
+    "name": "Mukindo",
+    "slug": "mukindo",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "054"
+  },
+  {
+    "id": 55,
+    "code": "RW-AMA-GIS-MUS",
+    "name": "Musha",
+    "slug": "musha",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "055"
+  },
+  {
+    "id": 56,
+    "code": "RW-AMA-GIS-NDO",
+    "name": "Ndora",
+    "slug": "ndora",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "056"
+  },
+  {
+    "id": 57,
+    "code": "RW-AMA-GIS-NAY",
+    "name": "Nyanza",
+    "slug": "nyanza-1",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "057"
+  },
+  {
+    "id": 58,
+    "code": "RW-AMA-GIS-SAV",
+    "name": "Save",
+    "slug": "save",
+    "parentCode": "RW-AMA-GIS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "058"
+  },
+  {
+    "id": 59,
+    "code": "RW-AMA-NYA-06-BSU",
+    "name": "Busanze",
+    "slug": "busanze",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "059"
+  },
+  {
+    "id": 60,
+    "code": "RW-AMA-NYA-06-CAY",
+    "name": "Cyahinda",
+    "slug": "cyahinda",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "060"
+  },
+  {
+    "id": 61,
+    "code": "RW-AMA-NYA-06-KBI",
+    "name": "Kibeho",
+    "slug": "kibeho",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "061"
+  },
+  {
+    "id": 62,
+    "code": "RW-AMA-NYA-06-KIV",
+    "name": "Kivu",
+    "slug": "kivu",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "062"
+  },
+  {
+    "id": 63,
+    "code": "RW-AMA-NYA-06-MAT",
+    "name": "Mata",
+    "slug": "mata",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "063"
+  },
+  {
+    "id": 64,
+    "code": "RW-AMA-NYA-06-MGU",
+    "name": "Muganza",
+    "slug": "muganza-1",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "064"
+  },
+  {
+    "id": 65,
+    "code": "RW-AMA-NYA-06-MUN",
+    "name": "Munini",
+    "slug": "munini",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "065"
+  },
+  {
+    "id": 66,
+    "code": "RW-AMA-NYA-06-NGE",
+    "name": "Ngera",
+    "slug": "ngera",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "066"
+  },
+  {
+    "id": 67,
+    "code": "RW-AMA-NYA-06-NGO",
+    "name": "Ngoma",
+    "slug": "ngoma-1",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "067"
+  },
+  {
+    "id": 68,
+    "code": "RW-AMA-NYA-06-NAY",
+    "name": "Nyabimata",
+    "slug": "nyabimata",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "068"
+  },
+  {
+    "id": 69,
+    "code": "RW-AMA-NYA-06-NAY-069",
+    "name": "Nyagisozi",
+    "slug": "nyagisozi-1",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "069"
+  },
+  {
+    "id": 70,
+    "code": "RW-AMA-NYA-06-RUH",
+    "name": "Ruheru",
+    "slug": "ruheru",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "070"
+  },
+  {
+    "id": 71,
+    "code": "RW-AMA-NYA-06-RUR",
+    "name": "Ruramba",
+    "slug": "ruramba",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "071"
+  },
+  {
+    "id": 72,
+    "code": "RW-AMA-NYA-06-RSU",
+    "name": "Rusenge",
+    "slug": "rusenge",
+    "parentCode": "RW-AMA-NYA-06",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "072"
+  },
+  {
+    "id": 73,
+    "code": "RW-AMA-HUY-GSI",
+    "name": "Gishamvu",
+    "slug": "gishamvu",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "073"
+  },
+  {
+    "id": 74,
+    "code": "RW-AMA-HUY-HUY",
+    "name": "Huye",
+    "slug": "huye-1",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "074"
+  },
+  {
+    "id": 75,
+    "code": "RW-AMA-HUY-KAR",
+    "name": "Karama",
+    "slug": "karama",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "075"
+  },
+  {
+    "id": 76,
+    "code": "RW-AMA-HUY-KGI",
+    "name": "Kigoma",
+    "slug": "kigoma-1",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "076"
+  },
+  {
+    "id": 77,
+    "code": "RW-AMA-HUY-KNI",
+    "name": "Kinazi",
+    "slug": "kinazi",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "077"
+  },
+  {
+    "id": 78,
+    "code": "RW-AMA-HUY-MAR",
+    "name": "Maraba",
+    "slug": "maraba",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "078"
+  },
+  {
+    "id": 79,
+    "code": "RW-AMA-HUY-MBA",
+    "name": "Mbazi",
+    "slug": "mbazi",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "079"
+  },
+  {
+    "id": 80,
+    "code": "RW-AMA-HUY-MKU",
+    "name": "Mukura",
+    "slug": "mukura",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "080"
+  },
+  {
+    "id": 81,
+    "code": "RW-AMA-HUY-NOG",
+    "name": "Ngoma",
+    "slug": "ngoma-2",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "081"
+  },
+  {
+    "id": 82,
+    "code": "RW-AMA-HUY-RHU",
+    "name": "Ruhashya",
+    "slug": "ruhashya",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "082"
+  },
+  {
+    "id": 83,
+    "code": "RW-AMA-HUY-RSU",
+    "name": "Rusatira",
+    "slug": "rusatira",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "083"
+  },
+  {
+    "id": 84,
+    "code": "RW-AMA-HUY-RAW",
+    "name": "Rwaniro",
+    "slug": "rwaniro",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "084"
+  },
+  {
+    "id": 85,
+    "code": "RW-AMA-HUY-SIM",
+    "name": "Simbi",
+    "slug": "simbi",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "085"
+  },
+  {
+    "id": 86,
+    "code": "RW-AMA-HUY-TUM",
+    "name": "Tumba",
+    "slug": "tumba",
+    "parentCode": "RW-AMA-HUY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "086"
+  },
+  {
+    "id": 87,
+    "code": "RW-AMA-NYA-08-BUR",
+    "name": "Buruhukiro",
+    "slug": "buruhukiro",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "087"
+  },
+  {
+    "id": 88,
+    "code": "RW-AMA-NYA-08-CAY",
+    "name": "Cyanika",
+    "slug": "cyanika",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "088"
+  },
+  {
+    "id": 89,
+    "code": "RW-AMA-NYA-08-GAS",
+    "name": "Gasaka",
+    "slug": "gasaka",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "089"
+  },
+  {
+    "id": 90,
+    "code": "RW-AMA-NYA-08-GTA",
+    "name": "Gatare",
+    "slug": "gatare",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "090"
+  },
+  {
+    "id": 91,
+    "code": "RW-AMA-NYA-08-KAD",
+    "name": "Kaduha",
+    "slug": "kaduha",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "091"
+  },
+  {
+    "id": 92,
+    "code": "RW-AMA-NYA-08-KAM",
+    "name": "Kamegeri",
+    "slug": "kamegeri",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "092"
+  },
+  {
+    "id": 93,
+    "code": "RW-AMA-NYA-08-KBI",
+    "name": "Kibirizi",
+    "slug": "kibirizi-1",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "093"
+  },
+  {
+    "id": 94,
+    "code": "RW-AMA-NYA-08-KBI-094",
+    "name": "Kibumbwe",
+    "slug": "kibumbwe",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "094"
+  },
+  {
+    "id": 95,
+    "code": "RW-AMA-NYA-08-KIT",
+    "name": "Kitabi",
+    "slug": "kitabi",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "095"
+  },
+  {
+    "id": 96,
+    "code": "RW-AMA-NYA-08-MAB",
+    "name": "Mbazi",
+    "slug": "mbazi-1",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "096"
+  },
+  {
+    "id": 97,
+    "code": "RW-AMA-NYA-08-MGU",
+    "name": "Mugano",
+    "slug": "mugano",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "097"
+  },
+  {
+    "id": 98,
+    "code": "RW-AMA-NYA-08-MSU",
+    "name": "Musange",
+    "slug": "musange",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "098"
+  },
+  {
+    "id": 99,
+    "code": "RW-AMA-NYA-08-MSU-099",
+    "name": "Musebeya",
+    "slug": "musebeya",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "099"
+  },
+  {
+    "id": 100,
+    "code": "RW-AMA-NYA-08-MSU-100",
+    "name": "Mushubi",
+    "slug": "mushubi",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "100"
+  },
+  {
+    "id": 101,
+    "code": "RW-AMA-NYA-08-NKO",
+    "name": "Nkomane",
+    "slug": "nkomane",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "101"
+  },
+  {
+    "id": 102,
+    "code": "RW-AMA-NYA-08-TAR",
+    "name": "Tare",
+    "slug": "tare",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "102"
+  },
+  {
+    "id": 103,
+    "code": "RW-AMA-NYA-08-UWI",
+    "name": "Uwinkingi",
+    "slug": "uwinkingi",
+    "parentCode": "RW-AMA-NYA-08",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "103"
+  },
+  {
+    "id": 104,
+    "code": "RW-AMA-RUH-BWE",
+    "name": "Bweramana",
+    "slug": "bweramana",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "104"
+  },
+  {
+    "id": 105,
+    "code": "RW-AMA-RUH-BYI",
+    "name": "Byimana",
+    "slug": "byimana",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "105"
+  },
+  {
+    "id": 106,
+    "code": "RW-AMA-RUH-KAB",
+    "name": "Kabagali",
+    "slug": "kabagali",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "106"
+  },
+  {
+    "id": 107,
+    "code": "RW-AMA-RUH-KNI",
+    "name": "Kinazi",
+    "slug": "kinazi-1",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "107"
+  },
+  {
+    "id": 108,
+    "code": "RW-AMA-RUH-KNI-108",
+    "name": "Kinihira",
+    "slug": "kinihira",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "108"
+  },
+  {
+    "id": 109,
+    "code": "RW-AMA-RUH-MBU",
+    "name": "Mbuye",
+    "slug": "mbuye",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "109"
+  },
+  {
+    "id": 110,
+    "code": "RW-AMA-RUH-MWE",
+    "name": "Mwendo",
+    "slug": "mwendo",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "110"
+  },
+  {
+    "id": 111,
+    "code": "RW-AMA-RUH-NTO",
+    "name": "Ntongwe",
+    "slug": "ntongwe",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "111"
+  },
+  {
+    "id": 112,
+    "code": "RW-AMA-RUH-RHU",
+    "name": "Ruhango",
+    "slug": "ruhango-1",
+    "parentCode": "RW-AMA-RUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "112"
+  },
+  {
+    "id": 113,
+    "code": "RW-AMA-MUH-CYE",
+    "name": "Cyeza",
+    "slug": "cyeza",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "113"
+  },
+  {
+    "id": 114,
+    "code": "RW-AMA-MUH-KBA",
+    "name": "Kabacuzi",
+    "slug": "kabacuzi",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "114"
+  },
+  {
+    "id": 115,
+    "code": "RW-AMA-MUH-KBI",
+    "name": "Kibangu",
+    "slug": "kibangu",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "115"
+  },
+  {
+    "id": 116,
+    "code": "RW-AMA-MUH-KIY",
+    "name": "Kiyumba",
+    "slug": "kiyumba",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "116"
+  },
+  {
+    "id": 117,
+    "code": "RW-AMA-MUH-MHU",
+    "name": "Muhanga",
+    "slug": "muhanga-1",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "117"
+  },
+  {
+    "id": 118,
+    "code": "RW-AMA-MUH-MSU",
+    "name": "Mushishiro",
+    "slug": "mushishiro",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "118"
+  },
+  {
+    "id": 119,
+    "code": "RW-AMA-MUH-NAY",
+    "name": "Nyabinoni",
+    "slug": "nyabinoni",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "119"
+  },
+  {
+    "id": 120,
+    "code": "RW-AMA-MUH-NAY-120",
+    "name": "Nyamabuye",
+    "slug": "nyamabuye",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "120"
+  },
+  {
+    "id": 121,
+    "code": "RW-AMA-MUH-NAY-121",
+    "name": "Nyarusange",
+    "slug": "nyarusange",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "121"
+  },
+  {
+    "id": 122,
+    "code": "RW-AMA-MUH-RON",
+    "name": "Rongi",
+    "slug": "rongi",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "122"
+  },
+  {
+    "id": 123,
+    "code": "RW-AMA-MUH-RUG",
+    "name": "Rugendabari",
+    "slug": "rugendabari",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "123"
+  },
+  {
+    "id": 124,
+    "code": "RW-AMA-MUH-SHY",
+    "name": "Shyogwe",
+    "slug": "shyogwe",
+    "parentCode": "RW-AMA-MUH",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "124"
+  },
+  {
+    "id": 125,
+    "code": "RW-AMA-KAM-GAC",
+    "name": "Gacurabwenge",
+    "slug": "gacurabwenge",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "125"
+  },
+  {
+    "id": 126,
+    "code": "RW-AMA-KAM-KRA",
+    "name": "Karama",
+    "slug": "karama-1",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "126"
+  },
+  {
+    "id": 127,
+    "code": "RW-AMA-KAM-KAY",
+    "name": "Kayenzi",
+    "slug": "kayenzi",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "127"
+  },
+  {
+    "id": 128,
+    "code": "RW-AMA-KAM-KYA",
+    "name": "Kayumbu",
+    "slug": "kayumbu",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "128"
+  },
+  {
+    "id": 129,
+    "code": "RW-AMA-KAM-MGU",
+    "name": "Mugina",
+    "slug": "mugina",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "129"
+  },
+  {
+    "id": 130,
+    "code": "RW-AMA-KAM-MSU",
+    "name": "Musambira",
+    "slug": "musambira",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "130"
+  },
+  {
+    "id": 131,
+    "code": "RW-AMA-KAM-NGA",
+    "name": "Ngamba",
+    "slug": "ngamba",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "131"
+  },
+  {
+    "id": 132,
+    "code": "RW-AMA-KAM-NAY",
+    "name": "Nyamiyaga",
+    "slug": "nyamiyaga",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "132"
+  },
+  {
+    "id": 133,
+    "code": "RW-AMA-KAM-NAY-133",
+    "name": "Nyarubaka",
+    "slug": "nyarubaka",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "133"
+  },
+  {
+    "id": 134,
+    "code": "RW-AMA-KAM-RGU",
+    "name": "Rugarika",
+    "slug": "rugarika",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "134"
+  },
+  {
+    "id": 135,
+    "code": "RW-AMA-KAM-RUK",
+    "name": "Rukoma",
+    "slug": "rukoma",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "135"
+  },
+  {
+    "id": 136,
+    "code": "RW-AMA-KAM-RUN",
+    "name": "Runda",
+    "slug": "runda",
+    "parentCode": "RW-AMA-KAM",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "136"
+  },
+  {
+    "id": 137,
+    "code": "RW-IBU-KAR-BWI",
+    "name": "Bwishyura",
+    "slug": "bwishyura",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "137"
+  },
+  {
+    "id": 138,
+    "code": "RW-IBU-KAR-GSA",
+    "name": "Gashari",
+    "slug": "gashari",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "138"
+  },
+  {
+    "id": 139,
+    "code": "RW-IBU-KAR-GSI",
+    "name": "Gishyita",
+    "slug": "gishyita",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "139"
+  },
+  {
+    "id": 140,
+    "code": "RW-IBU-KAR-GTI",
+    "name": "Gitesi",
+    "slug": "gitesi",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "140"
+  },
+  {
+    "id": 141,
+    "code": "RW-IBU-KAR-MUB",
+    "name": "Mubuga",
+    "slug": "mubuga",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "141"
+  },
+  {
+    "id": 142,
+    "code": "RW-IBU-KAR-MUR",
+    "name": "Murambi",
+    "slug": "murambi",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "142"
+  },
+  {
+    "id": 143,
+    "code": "RW-IBU-KAR-MRU",
+    "name": "Murundi",
+    "slug": "murundi",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "143"
+  },
+  {
+    "id": 144,
+    "code": "RW-IBU-KAR-MUT",
+    "name": "Mutuntu",
+    "slug": "mutuntu",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "144"
+  },
+  {
+    "id": 145,
+    "code": "RW-IBU-KAR-RUB",
+    "name": "Rubengera",
+    "slug": "rubengera",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "145"
+  },
+  {
+    "id": 146,
+    "code": "RW-IBU-KAR-RGU",
+    "name": "Rugabano",
+    "slug": "rugabano",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "146"
+  },
+  {
+    "id": 147,
+    "code": "RW-IBU-KAR-RGU-147",
+    "name": "Ruganda",
+    "slug": "ruganda",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "147"
+  },
+  {
+    "id": 148,
+    "code": "RW-IBU-KAR-RAW",
+    "name": "Rwankuba",
+    "slug": "rwankuba",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "148"
+  },
+  {
+    "id": 149,
+    "code": "RW-IBU-KAR-TWU",
+    "name": "Twumba",
+    "slug": "twumba",
+    "parentCode": "RW-IBU-KAR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "149"
+  },
+  {
+    "id": 150,
+    "code": "RW-IBU-RUT-BON",
+    "name": "Boneza",
+    "slug": "boneza",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "150"
+  },
+  {
+    "id": 151,
+    "code": "RW-IBU-RUT-GIH",
+    "name": "Gihango",
+    "slug": "gihango",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "151"
+  },
+  {
+    "id": 152,
+    "code": "RW-IBU-RUT-KGI",
+    "name": "Kigeyo",
+    "slug": "kigeyo",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "152"
+  },
+  {
+    "id": 153,
+    "code": "RW-IBU-RUT-KVI",
+    "name": "Kivumu",
+    "slug": "kivumu",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "153"
+  },
+  {
+    "id": 154,
+    "code": "RW-IBU-RUT-MAN",
+    "name": "Manihira",
+    "slug": "manihira",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "154"
+  },
+  {
+    "id": 155,
+    "code": "RW-IBU-RUT-MKU",
+    "name": "Mukura",
+    "slug": "mukura-1",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "155"
+  },
+  {
+    "id": 156,
+    "code": "RW-IBU-RUT-MRU",
+    "name": "Murunda",
+    "slug": "murunda",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "156"
+  },
+  {
+    "id": 157,
+    "code": "RW-IBU-RUT-MSU",
+    "name": "Musasa",
+    "slug": "musasa",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "157"
+  },
+  {
+    "id": 158,
+    "code": "RW-IBU-RUT-MSU-158",
+    "name": "Mushonyi",
+    "slug": "mushonyi",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "158"
+  },
+  {
+    "id": 159,
+    "code": "RW-IBU-RUT-MSU-159",
+    "name": "Mushubati",
+    "slug": "mushubati",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "159"
+  },
+  {
+    "id": 160,
+    "code": "RW-IBU-RUT-NAY",
+    "name": "Nyabirasi",
+    "slug": "nyabirasi",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "160"
+  },
+  {
+    "id": 161,
+    "code": "RW-IBU-RUT-RHU",
+    "name": "Ruhango",
+    "slug": "ruhango-2",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "161"
+  },
+  {
+    "id": 162,
+    "code": "RW-IBU-RUT-RSU",
+    "name": "Rusebeya",
+    "slug": "rusebeya",
+    "parentCode": "RW-IBU-RUT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "162"
+  },
+  {
+    "id": 163,
+    "code": "RW-IBU-RUB-BUG",
+    "name": "Bugeshi",
+    "slug": "bugeshi",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "163"
+  },
+  {
+    "id": 164,
+    "code": "RW-IBU-RUB-BSU",
+    "name": "Busasamana",
+    "slug": "busasamana-1",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "164"
+  },
+  {
+    "id": 165,
+    "code": "RW-IBU-RUB-CAY",
+    "name": "Cyanzarwe",
+    "slug": "cyanzarwe",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "165"
+  },
+  {
+    "id": 166,
+    "code": "RW-IBU-RUB-GSI",
+    "name": "Gisenyi",
+    "slug": "gisenyi",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "166"
+  },
+  {
+    "id": 167,
+    "code": "RW-IBU-RUB-KNA",
+    "name": "Kanama",
+    "slug": "kanama",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "167"
+  },
+  {
+    "id": 168,
+    "code": "RW-IBU-RUB-KNA-168",
+    "name": "Kanzenze",
+    "slug": "kanzenze",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "168"
+  },
+  {
+    "id": 169,
+    "code": "RW-IBU-RUB-MUD",
+    "name": "Mudende",
+    "slug": "mudende",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "169"
+  },
+  {
+    "id": 170,
+    "code": "RW-IBU-RUB-NAY",
+    "name": "Nyakiriba",
+    "slug": "nyakiriba",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "170"
+  },
+  {
+    "id": 171,
+    "code": "RW-IBU-RUB-NAY-171",
+    "name": "Nyamyumba",
+    "slug": "nyamyumba",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "171"
+  },
+  {
+    "id": 172,
+    "code": "RW-IBU-RUB-NYU",
+    "name": "Nyundo",
+    "slug": "nyundo",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "172"
+  },
+  {
+    "id": 173,
+    "code": "RW-IBU-RUB-RBU",
+    "name": "Rubavu",
+    "slug": "rubavu-1",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "173"
+  },
+  {
+    "id": 174,
+    "code": "RW-IBU-RUB-RGU",
+    "name": "Rugerero",
+    "slug": "rugerero",
+    "parentCode": "RW-IBU-RUB",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "174"
+  },
+  {
+    "id": 175,
+    "code": "RW-IBU-NYA-BIG",
+    "name": "Bigogwe",
+    "slug": "bigogwe",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "175"
+  },
+  {
+    "id": 176,
+    "code": "RW-IBU-NYA-JEN",
+    "name": "Jenda",
+    "slug": "jenda",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "176"
+  },
+  {
+    "id": 177,
+    "code": "RW-IBU-NYA-JOM",
+    "name": "Jomba",
+    "slug": "jomba",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "177"
+  },
+  {
+    "id": 178,
+    "code": "RW-IBU-NYA-KBA",
+    "name": "Kabatwa",
+    "slug": "kabatwa",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "178"
+  },
+  {
+    "id": 179,
+    "code": "RW-IBU-NYA-KRA",
+    "name": "Karago",
+    "slug": "karago",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "179"
+  },
+  {
+    "id": 180,
+    "code": "RW-IBU-NYA-KNI",
+    "name": "Kintobo",
+    "slug": "kintobo",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "180"
+  },
+  {
+    "id": 181,
+    "code": "RW-IBU-NYA-MKU",
+    "name": "Mukamira",
+    "slug": "mukamira",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "181"
+  },
+  {
+    "id": 182,
+    "code": "RW-IBU-NYA-MRU",
+    "name": "Muringa",
+    "slug": "muringa",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "182"
+  },
+  {
+    "id": 183,
+    "code": "RW-IBU-NYA-RAM",
+    "name": "Rambura",
+    "slug": "rambura",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "183"
+  },
+  {
+    "id": 184,
+    "code": "RW-IBU-NYA-RGU",
+    "name": "Rugera",
+    "slug": "rugera",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "184"
+  },
+  {
+    "id": 185,
+    "code": "RW-IBU-NYA-RRU",
+    "name": "Rurembo",
+    "slug": "rurembo",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "185"
+  },
+  {
+    "id": 186,
+    "code": "RW-IBU-NYA-SYH",
+    "name": "Shyira",
+    "slug": "shyira",
+    "parentCode": "RW-IBU-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "186"
+  },
+  {
+    "id": 187,
+    "code": "RW-IBU-NGO-BIW",
+    "name": "BWIRA",
+    "slug": "bwira",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "187"
+  },
+  {
+    "id": 188,
+    "code": "RW-IBU-NGO-GTA",
+    "name": "GATUMBA",
+    "slug": "gatumba",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "188"
+  },
+  {
+    "id": 189,
+    "code": "RW-IBU-NGO-HIN",
+    "name": "HINDIRO",
+    "slug": "hindiro",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "189"
+  },
+  {
+    "id": 190,
+    "code": "RW-IBU-NGO-KBA",
+    "name": "KABAYA",
+    "slug": "kabaya",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "190"
+  },
+  {
+    "id": 191,
+    "code": "RW-IBU-NGO-KGA",
+    "name": "KAGEYO",
+    "slug": "kageyo",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "191"
+  },
+  {
+    "id": 192,
+    "code": "RW-IBU-NGO-KAV",
+    "name": "KAVUMU",
+    "slug": "kavumu",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "192"
+  },
+  {
+    "id": 193,
+    "code": "RW-IBU-NGO-MTA",
+    "name": "MATYAZO",
+    "slug": "matyazo",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "193"
+  },
+  {
+    "id": 194,
+    "code": "RW-IBU-NGO-MHU",
+    "name": "MUHANDA",
+    "slug": "muhanda",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "194"
+  },
+  {
+    "id": 195,
+    "code": "RW-IBU-NGO-MHU-195",
+    "name": "MUHORORO",
+    "slug": "muhororo",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "195"
+  },
+  {
+    "id": 196,
+    "code": "RW-IBU-NGO-NDA",
+    "name": "NDARO",
+    "slug": "ndaro",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "196"
+  },
+  {
+    "id": 197,
+    "code": "RW-IBU-NGO-NOG",
+    "name": "NGORORERO",
+    "slug": "ngororero-1",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "197"
+  },
+  {
+    "id": 198,
+    "code": "RW-IBU-NGO-NAY",
+    "name": "NYANGE",
+    "slug": "nyange",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "198"
+  },
+  {
+    "id": 199,
+    "code": "RW-IBU-NGO-SOV",
+    "name": "SOVU",
+    "slug": "sovu",
+    "parentCode": "RW-IBU-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "199"
+  },
+  {
+    "id": 200,
+    "code": "RW-IBU-RUS-BGU",
+    "name": "Bugarama",
+    "slug": "bugarama",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "200"
+  },
+  {
+    "id": 201,
+    "code": "RW-IBU-RUS-BUT",
+    "name": "Butare",
+    "slug": "butare",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "201"
+  },
+  {
+    "id": 202,
+    "code": "RW-IBU-RUS-BEW",
+    "name": "Bweyeye",
+    "slug": "bweyeye",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "202"
+  },
+  {
+    "id": 203,
+    "code": "RW-IBU-RUS-GSA",
+    "name": "Gashonga",
+    "slug": "gashonga",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "203"
+  },
+  {
+    "id": 204,
+    "code": "RW-IBU-RUS-GHI",
+    "name": "Giheke",
+    "slug": "giheke",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "204"
+  },
+  {
+    "id": 205,
+    "code": "RW-IBU-RUS-GHI-205",
+    "name": "Gihundwe",
+    "slug": "gihundwe",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "205"
+  },
+  {
+    "id": 206,
+    "code": "RW-IBU-RUS-GKI",
+    "name": "Gikundamvura",
+    "slug": "gikundamvura",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "206"
+  },
+  {
+    "id": 207,
+    "code": "RW-IBU-RUS-GTI",
+    "name": "Gitambi",
+    "slug": "gitambi",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "207"
+  },
+  {
+    "id": 208,
+    "code": "RW-IBU-RUS-KMA",
+    "name": "Kamembe",
+    "slug": "kamembe",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "208"
+  },
+  {
+    "id": 209,
+    "code": "RW-IBU-RUS-MGU",
+    "name": "Muganza",
+    "slug": "muganza-2",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "209"
+  },
+  {
+    "id": 210,
+    "code": "RW-IBU-RUS-MRU",
+    "name": "Mururu",
+    "slug": "mururu",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "210"
+  },
+  {
+    "id": 211,
+    "code": "RW-IBU-RUS-NKA",
+    "name": "Nkanka",
+    "slug": "nkanka",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "211"
+  },
+  {
+    "id": 212,
+    "code": "RW-IBU-RUS-NOK",
+    "name": "Nkombo",
+    "slug": "nkombo",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "212"
+  },
+  {
+    "id": 213,
+    "code": "RW-IBU-RUS-NKU",
+    "name": "Nkungu",
+    "slug": "nkungu",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "213"
+  },
+  {
+    "id": 214,
+    "code": "RW-IBU-RUS-NAY",
+    "name": "Nyakabuye",
+    "slug": "nyakabuye",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "214"
+  },
+  {
+    "id": 215,
+    "code": "RW-IBU-RUS-NAY-215",
+    "name": "Nyakarenzo",
+    "slug": "nyakarenzo",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "215"
+  },
+  {
+    "id": 216,
+    "code": "RW-IBU-RUS-NZA",
+    "name": "Nzahaha",
+    "slug": "nzahaha",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "216"
+  },
+  {
+    "id": 217,
+    "code": "RW-IBU-RUS-RWI",
+    "name": "Rwimbogo",
+    "slug": "rwimbogo",
+    "parentCode": "RW-IBU-RUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "217"
+  },
+  {
+    "id": 218,
+    "code": "RW-IBU-NYA-18-BSU",
+    "name": "Bushekeri",
+    "slug": "bushekeri",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "218"
+  },
+  {
+    "id": 219,
+    "code": "RW-IBU-NYA-18-BSU-219",
+    "name": "Bushenge",
+    "slug": "bushenge",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "219"
+  },
+  {
+    "id": 220,
+    "code": "RW-IBU-NYA-18-CAY",
+    "name": "Cyato",
+    "slug": "cyato",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "220"
+  },
+  {
+    "id": 221,
+    "code": "RW-IBU-NYA-18-GHI",
+    "name": "Gihombo",
+    "slug": "gihombo",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "221"
+  },
+  {
+    "id": 222,
+    "code": "RW-IBU-NYA-18-KGA",
+    "name": "Kagano",
+    "slug": "kagano",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "222"
+  },
+  {
+    "id": 223,
+    "code": "RW-IBU-NYA-18-KNA",
+    "name": "Kanjongo",
+    "slug": "kanjongo",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "223"
+  },
+  {
+    "id": 224,
+    "code": "RW-IBU-NYA-18-KRA",
+    "name": "Karambi",
+    "slug": "karambi",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "224"
+  },
+  {
+    "id": 225,
+    "code": "RW-IBU-NYA-18-KRA-225",
+    "name": "Karengera",
+    "slug": "karengera",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "225"
+  },
+  {
+    "id": 226,
+    "code": "RW-IBU-NYA-18-KIR",
+    "name": "Kirimbi",
+    "slug": "kirimbi",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "226"
+  },
+  {
+    "id": 227,
+    "code": "RW-IBU-NYA-18-MAC",
+    "name": "Macuba",
+    "slug": "macuba",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "227"
+  },
+  {
+    "id": 228,
+    "code": "RW-IBU-NYA-18-MAH",
+    "name": "Mahembe",
+    "slug": "mahembe",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "228"
+  },
+  {
+    "id": 229,
+    "code": "RW-IBU-NYA-18-NAY",
+    "name": "Nyabitekeri",
+    "slug": "nyabitekeri",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "229"
+  },
+  {
+    "id": 230,
+    "code": "RW-IBU-NYA-18-RAN",
+    "name": "Rangiro",
+    "slug": "rangiro",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "230"
+  },
+  {
+    "id": 231,
+    "code": "RW-IBU-NYA-18-RHU",
+    "name": "Ruharambuga",
+    "slug": "ruharambuga",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "231"
+  },
+  {
+    "id": 232,
+    "code": "RW-IBU-NYA-18-SHA",
+    "name": "Shangi",
+    "slug": "shangi",
+    "parentCode": "RW-IBU-NYA-18",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "232"
+  },
+  {
+    "id": 233,
+    "code": "RW-AMA-4-RUL-BAS",
+    "name": "BASE",
+    "slug": "base",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "233"
+  },
+  {
+    "id": 234,
+    "code": "RW-AMA-4-RUL-BRU",
+    "name": "BUREGA",
+    "slug": "burega",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "234"
+  },
+  {
+    "id": 235,
+    "code": "RW-AMA-4-RUL-BSU",
+    "name": "BUSHOKI",
+    "slug": "bushoki",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "235"
+  },
+  {
+    "id": 236,
+    "code": "RW-AMA-4-RUL-BUY",
+    "name": "BUYOGA",
+    "slug": "buyoga",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "236"
+  },
+  {
+    "id": 237,
+    "code": "RW-AMA-4-RUL-CYI",
+    "name": "CYINZUZI",
+    "slug": "cyinzuzi",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "237"
+  },
+  {
+    "id": 238,
+    "code": "RW-AMA-4-RUL-CYU",
+    "name": "CYUNGO",
+    "slug": "cyungo",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "238"
+  },
+  {
+    "id": 239,
+    "code": "RW-AMA-4-RUL-KNI",
+    "name": "KINIHIRA",
+    "slug": "kinihira-1",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "239"
+  },
+  {
+    "id": 240,
+    "code": "RW-AMA-4-RUL-KIS",
+    "name": "KISARO",
+    "slug": "kisaro",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "240"
+  },
+  {
+    "id": 241,
+    "code": "RW-AMA-4-RUL-MSA",
+    "name": "MASORO",
+    "slug": "masoro",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "241"
+  },
+  {
+    "id": 242,
+    "code": "RW-AMA-4-RUL-MBO",
+    "name": "MBOGO",
+    "slug": "mbogo",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "242"
+  },
+  {
+    "id": 243,
+    "code": "RW-AMA-4-RUL-MRU",
+    "name": "MURAMBI",
+    "slug": "murambi-1",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "243"
+  },
+  {
+    "id": 244,
+    "code": "RW-AMA-4-RUL-NOG",
+    "name": "NGOMA",
+    "slug": "ngoma-3",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "244"
+  },
+  {
+    "id": 245,
+    "code": "RW-AMA-4-RUL-NTA",
+    "name": "NTARABANA",
+    "slug": "ntarabana",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "245"
+  },
+  {
+    "id": 246,
+    "code": "RW-AMA-4-RUL-RKU",
+    "name": "RUKOZO",
+    "slug": "rukozo",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "246"
+  },
+  {
+    "id": 247,
+    "code": "RW-AMA-4-RUL-RSU",
+    "name": "RUSIGA",
+    "slug": "rusiga",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "247"
+  },
+  {
+    "id": 248,
+    "code": "RW-AMA-4-RUL-SYH",
+    "name": "SHYORONGI",
+    "slug": "shyorongi",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "248"
+  },
+  {
+    "id": 249,
+    "code": "RW-AMA-4-RUL-TMU",
+    "name": "TUMBA",
+    "slug": "tumba-1",
+    "parentCode": "RW-AMA-4-RUL",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "249"
+  },
+  {
+    "id": 250,
+    "code": "RW-AMA-4-GAK-BSU",
+    "name": "Busengo",
+    "slug": "busengo",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "250"
+  },
+  {
+    "id": 251,
+    "code": "RW-AMA-4-GAK-COK",
+    "name": "Coko",
+    "slug": "coko",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "251"
+  },
+  {
+    "id": 252,
+    "code": "RW-AMA-4-GAK-CAY",
+    "name": "Cyabingo",
+    "slug": "cyabingo",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "252"
+  },
+  {
+    "id": 253,
+    "code": "RW-AMA-4-GAK-GAK",
+    "name": "Gakenke",
+    "slug": "gakenke-1",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "253"
+  },
+  {
+    "id": 254,
+    "code": "RW-AMA-4-GAK-GSA",
+    "name": "Gashenyi",
+    "slug": "gashenyi",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "254"
+  },
+  {
+    "id": 255,
+    "code": "RW-AMA-4-GAK-JAN",
+    "name": "Janja",
+    "slug": "janja",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "255"
+  },
+  {
+    "id": 256,
+    "code": "RW-AMA-4-GAK-KMA",
+    "name": "Kamubuga",
+    "slug": "kamubuga",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "256"
+  },
+  {
+    "id": 257,
+    "code": "RW-AMA-4-GAK-KRA",
+    "name": "Karambo",
+    "slug": "karambo",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "257"
+  },
+  {
+    "id": 258,
+    "code": "RW-AMA-4-GAK-KVI",
+    "name": "Kivuruga",
+    "slug": "kivuruga",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "258"
+  },
+  {
+    "id": 259,
+    "code": "RW-AMA-4-GAK-MTA",
+    "name": "Mataba",
+    "slug": "mataba",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "259"
+  },
+  {
+    "id": 260,
+    "code": "RW-AMA-4-GAK-MIN",
+    "name": "Minazi",
+    "slug": "minazi",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "260"
+  },
+  {
+    "id": 261,
+    "code": "RW-AMA-4-GAK-MGU",
+    "name": "Mugunga",
+    "slug": "mugunga",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "261"
+  },
+  {
+    "id": 262,
+    "code": "RW-AMA-4-GAK-MHU",
+    "name": "Muhondo",
+    "slug": "muhondo",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "262"
+  },
+  {
+    "id": 263,
+    "code": "RW-AMA-4-GAK-MYU",
+    "name": "Muyongwe",
+    "slug": "muyongwe",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "263"
+  },
+  {
+    "id": 264,
+    "code": "RW-AMA-4-GAK-MUZ",
+    "name": "Muzo",
+    "slug": "muzo",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "264"
+  },
+  {
+    "id": 265,
+    "code": "RW-AMA-4-GAK-NEM",
+    "name": "Nemba",
+    "slug": "nemba",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "265"
+  },
+  {
+    "id": 266,
+    "code": "RW-AMA-4-GAK-RUL",
+    "name": "Ruli",
+    "slug": "ruli",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "266"
+  },
+  {
+    "id": 267,
+    "code": "RW-AMA-4-GAK-RSU",
+    "name": "Rusasa",
+    "slug": "rusasa",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "267"
+  },
+  {
+    "id": 268,
+    "code": "RW-AMA-4-GAK-RSU-268",
+    "name": "Rushashi",
+    "slug": "rushashi",
+    "parentCode": "RW-AMA-4-GAK",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "268"
+  },
+  {
+    "id": 269,
+    "code": "RW-AMA-4-MUS-BSU",
+    "name": "Busogo",
+    "slug": "busogo",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "269"
+  },
+  {
+    "id": 270,
+    "code": "RW-AMA-4-MUS-CUY",
+    "name": "Cyuve",
+    "slug": "cyuve",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "270"
+  },
+  {
+    "id": 271,
+    "code": "RW-AMA-4-MUS-GCA",
+    "name": "Gacaca",
+    "slug": "gacaca",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "271"
+  },
+  {
+    "id": 272,
+    "code": "RW-AMA-4-MUS-GSA",
+    "name": "Gashaki",
+    "slug": "gashaki",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "272"
+  },
+  {
+    "id": 273,
+    "code": "RW-AMA-4-MUS-GTA",
+    "name": "Gataraga",
+    "slug": "gataraga",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "273"
+  },
+  {
+    "id": 274,
+    "code": "RW-AMA-4-MUS-KMI",
+    "name": "Kimonyi",
+    "slug": "kimonyi",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "274"
+  },
+  {
+    "id": 275,
+    "code": "RW-AMA-4-MUS-KNI",
+    "name": "Kinigi",
+    "slug": "kinigi",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "275"
+  },
+  {
+    "id": 276,
+    "code": "RW-AMA-4-MUS-MHU",
+    "name": "Muhoza",
+    "slug": "muhoza",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "276"
+  },
+  {
+    "id": 277,
+    "code": "RW-AMA-4-MUS-MKU",
+    "name": "Muko",
+    "slug": "muko",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "277"
+  },
+  {
+    "id": 278,
+    "code": "RW-AMA-4-MUS-MSU",
+    "name": "Musanze",
+    "slug": "musanze-1",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "278"
+  },
+  {
+    "id": 279,
+    "code": "RW-AMA-4-MUS-NOK",
+    "name": "Nkotsi",
+    "slug": "nkotsi",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "279"
+  },
+  {
+    "id": 280,
+    "code": "RW-AMA-4-MUS-NAY",
+    "name": "Nyange",
+    "slug": "nyange-1",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "280"
+  },
+  {
+    "id": 281,
+    "code": "RW-AMA-4-MUS-RME",
+    "name": "Remera",
+    "slug": "remera-1",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "281"
+  },
+  {
+    "id": 282,
+    "code": "RW-AMA-4-MUS-RAW",
+    "name": "Rwaza",
+    "slug": "rwaza",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "282"
+  },
+  {
+    "id": 283,
+    "code": "RW-AMA-4-MUS-SHI",
+    "name": "Shingiro",
+    "slug": "shingiro",
+    "parentCode": "RW-AMA-4-MUS",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "283"
+  },
+  {
+    "id": 284,
+    "code": "RW-AMA-4-BUR-BUN",
+    "name": "Bungwe",
+    "slug": "bungwe",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "284"
+  },
+  {
+    "id": 285,
+    "code": "RW-AMA-4-BUR-BTU",
+    "name": "Butaro",
+    "slug": "butaro",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "285"
+  },
+  {
+    "id": 286,
+    "code": "RW-AMA-4-BUR-CAY",
+    "name": "Cyanika",
+    "slug": "cyanika-1",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "286"
+  },
+  {
+    "id": 287,
+    "code": "RW-AMA-4-BUR-CEY",
+    "name": "Cyeru",
+    "slug": "cyeru",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "287"
+  },
+  {
+    "id": 288,
+    "code": "RW-AMA-4-BUR-GHA",
+    "name": "Gahunga",
+    "slug": "gahunga",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "288"
+  },
+  {
+    "id": 289,
+    "code": "RW-AMA-4-BUR-GTA",
+    "name": "Gatebe",
+    "slug": "gatebe",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "289"
+  },
+  {
+    "id": 290,
+    "code": "RW-AMA-4-BUR-GTI",
+    "name": "Gitovu",
+    "slug": "gitovu",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "290"
+  },
+  {
+    "id": 291,
+    "code": "RW-AMA-4-BUR-KGA",
+    "name": "Kagogo",
+    "slug": "kagogo",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "291"
+  },
+  {
+    "id": 292,
+    "code": "RW-AMA-4-BUR-KNI",
+    "name": "Kinoni",
+    "slug": "kinoni",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "292"
+  },
+  {
+    "id": 293,
+    "code": "RW-AMA-4-BUR-KNI-293",
+    "name": "Kinyababa",
+    "slug": "kinyababa",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "293"
+  },
+  {
+    "id": 294,
+    "code": "RW-AMA-4-BUR-KVI",
+    "name": "Kivuye",
+    "slug": "kivuye",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "294"
+  },
+  {
+    "id": 295,
+    "code": "RW-AMA-4-BUR-NME",
+    "name": "Nemba",
+    "slug": "nemba-1",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "295"
+  },
+  {
+    "id": 296,
+    "code": "RW-AMA-4-BUR-RGU",
+    "name": "Rugarama",
+    "slug": "rugarama",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "296"
+  },
+  {
+    "id": 297,
+    "code": "RW-AMA-4-BUR-RGU-297",
+    "name": "Rugendabari",
+    "slug": "rugendabari-1",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "297"
+  },
+  {
+    "id": 298,
+    "code": "RW-AMA-4-BUR-RHU",
+    "name": "Ruhunde",
+    "slug": "ruhunde",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "298"
+  },
+  {
+    "id": 299,
+    "code": "RW-AMA-4-BUR-RSU",
+    "name": "Rusarabuye",
+    "slug": "rusarabuye",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "299"
+  },
+  {
+    "id": 300,
+    "code": "RW-AMA-4-BUR-REW",
+    "name": "Rwerere",
+    "slug": "rwerere",
+    "parentCode": "RW-AMA-4-BUR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "300"
+  },
+  {
+    "id": 301,
+    "code": "RW-AMA-4-GIC-BUK",
+    "name": "Bukure",
+    "slug": "bukure",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "301"
+  },
+  {
+    "id": 302,
+    "code": "RW-AMA-4-GIC-BIW",
+    "name": "Bwisige",
+    "slug": "bwisige",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "302"
+  },
+  {
+    "id": 303,
+    "code": "RW-AMA-4-GIC-BYU",
+    "name": "Byumba",
+    "slug": "byumba",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "303"
+  },
+  {
+    "id": 304,
+    "code": "RW-AMA-4-GIC-CUY",
+    "name": "Cyumba",
+    "slug": "cyumba",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "304"
+  },
+  {
+    "id": 305,
+    "code": "RW-AMA-4-GIC-GTI",
+    "name": "Giti",
+    "slug": "giti",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "305"
+  },
+  {
+    "id": 306,
+    "code": "RW-AMA-4-GIC-KGA",
+    "name": "Kageyo",
+    "slug": "kageyo-1",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "306"
+  },
+  {
+    "id": 307,
+    "code": "RW-AMA-4-GIC-KNA",
+    "name": "Kaniga",
+    "slug": "kaniga",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "307"
+  },
+  {
+    "id": 308,
+    "code": "RW-AMA-4-GIC-MNA",
+    "name": "Manyagiro",
+    "slug": "manyagiro",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "308"
+  },
+  {
+    "id": 309,
+    "code": "RW-AMA-4-GIC-MIY",
+    "name": "Miyove",
+    "slug": "miyove",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "309"
+  },
+  {
+    "id": 310,
+    "code": "RW-AMA-4-GIC-MKU",
+    "name": "Mukarange",
+    "slug": "mukarange",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "310"
+  },
+  {
+    "id": 311,
+    "code": "RW-AMA-4-GIC-MKU-311",
+    "name": "Muko",
+    "slug": "muko-1",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "311"
+  },
+  {
+    "id": 312,
+    "code": "RW-AMA-4-GIC-MTU",
+    "name": "Mutete",
+    "slug": "mutete",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "312"
+  },
+  {
+    "id": 313,
+    "code": "RW-AMA-4-GIC-NAY",
+    "name": "Nyamiyaga",
+    "slug": "nyamiyaga-1",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "313"
+  },
+  {
+    "id": 314,
+    "code": "RW-AMA-4-GIC-NAY-314",
+    "name": "Nyankenke",
+    "slug": "nyankenke",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "314"
+  },
+  {
+    "id": 315,
+    "code": "RW-AMA-4-GIC-RBU",
+    "name": "Rubaya",
+    "slug": "rubaya",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "315"
+  },
+  {
+    "id": 316,
+    "code": "RW-AMA-4-GIC-RKU",
+    "name": "Rukomo",
+    "slug": "rukomo",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "316"
+  },
+  {
+    "id": 317,
+    "code": "RW-AMA-4-GIC-RSU",
+    "name": "Rushaki",
+    "slug": "rushaki",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "317"
+  },
+  {
+    "id": 318,
+    "code": "RW-AMA-4-GIC-RTU",
+    "name": "Rutare",
+    "slug": "rutare",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "318"
+  },
+  {
+    "id": 319,
+    "code": "RW-AMA-4-GIC-RUV",
+    "name": "Ruvune",
+    "slug": "ruvune",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "319"
+  },
+  {
+    "id": 320,
+    "code": "RW-AMA-4-GIC-RAW",
+    "name": "Rwamiko",
+    "slug": "rwamiko",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "320"
+  },
+  {
+    "id": 321,
+    "code": "RW-AMA-4-GIC-SAH",
+    "name": "Shangasha",
+    "slug": "shangasha",
+    "parentCode": "RW-AMA-4-GIC",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "321"
+  },
+  {
+    "id": 322,
+    "code": "RW-IBU-5-RWA-FUM",
+    "name": "Fumbwe",
+    "slug": "fumbwe",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "322"
+  },
+  {
+    "id": 323,
+    "code": "RW-IBU-5-RWA-GHA",
+    "name": "Gahengeri",
+    "slug": "gahengeri",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "323"
+  },
+  {
+    "id": 324,
+    "code": "RW-IBU-5-RWA-GSI",
+    "name": "Gishali",
+    "slug": "gishali",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "324"
+  },
+  {
+    "id": 325,
+    "code": "RW-IBU-5-RWA-KRA",
+    "name": "Karenge",
+    "slug": "karenge",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "325"
+  },
+  {
+    "id": 326,
+    "code": "RW-IBU-5-RWA-KGI",
+    "name": "Kigabiro",
+    "slug": "kigabiro",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "326"
+  },
+  {
+    "id": 327,
+    "code": "RW-IBU-5-RWA-MHU",
+    "name": "Muhazi",
+    "slug": "muhazi",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "327"
+  },
+  {
+    "id": 328,
+    "code": "RW-IBU-5-RWA-MNU",
+    "name": "Munyaga",
+    "slug": "munyaga",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "328"
+  },
+  {
+    "id": 329,
+    "code": "RW-IBU-5-RWA-MNU-329",
+    "name": "Munyiginya",
+    "slug": "munyiginya",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "329"
+  },
+  {
+    "id": 330,
+    "code": "RW-IBU-5-RWA-MSU",
+    "name": "Musha",
+    "slug": "musha-1",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "330"
+  },
+  {
+    "id": 331,
+    "code": "RW-IBU-5-RWA-MYU",
+    "name": "Muyumbu",
+    "slug": "muyumbu",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "331"
+  },
+  {
+    "id": 332,
+    "code": "RW-IBU-5-RWA-MWU",
+    "name": "Mwulire",
+    "slug": "mwulire",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "332"
+  },
+  {
+    "id": 333,
+    "code": "RW-IBU-5-RWA-NAY",
+    "name": "Nyakaliro",
+    "slug": "nyakaliro",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "333"
+  },
+  {
+    "id": 334,
+    "code": "RW-IBU-5-RWA-NZI",
+    "name": "Nzige",
+    "slug": "nzige",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "334"
+  },
+  {
+    "id": 335,
+    "code": "RW-IBU-5-RWA-RBU",
+    "name": "Rubona",
+    "slug": "rubona",
+    "parentCode": "RW-IBU-5-RWA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "335"
+  },
+  {
+    "id": 336,
+    "code": "RW-IBU-5-NYA-GTA",
+    "name": "GATUNDA",
+    "slug": "gatunda",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "336"
+  },
+  {
+    "id": 337,
+    "code": "RW-IBU-5-NYA-KRA",
+    "name": "KARAMA",
+    "slug": "karama-2",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "337"
+  },
+  {
+    "id": 338,
+    "code": "RW-IBU-5-NYA-KRA-338",
+    "name": "KARANGAZI",
+    "slug": "karangazi",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "338"
+  },
+  {
+    "id": 339,
+    "code": "RW-IBU-5-NYA-KAT",
+    "name": "KATABAGEMU",
+    "slug": "katabagemu",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "339"
+  },
+  {
+    "id": 340,
+    "code": "RW-IBU-5-NYA-KYI",
+    "name": "KIYOMBE",
+    "slug": "kiyombe",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "340"
+  },
+  {
+    "id": 341,
+    "code": "RW-IBU-5-NYA-MTA",
+    "name": "MATIMBA",
+    "slug": "matimba",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "341"
+  },
+  {
+    "id": 342,
+    "code": "RW-IBU-5-NYA-MIM",
+    "name": "MIMURI",
+    "slug": "mimuri",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "342"
+  },
+  {
+    "id": 343,
+    "code": "RW-IBU-5-NYA-MKU",
+    "name": "MUKAMA",
+    "slug": "mukama",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "343"
+  },
+  {
+    "id": 344,
+    "code": "RW-IBU-5-NYA-MSU",
+    "name": "MUSHERI",
+    "slug": "musheri",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "344"
+  },
+  {
+    "id": 345,
+    "code": "RW-IBU-5-NYA-NAY",
+    "name": "NYAGATARE",
+    "slug": "nyagatare-1",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "345"
+  },
+  {
+    "id": 346,
+    "code": "RW-IBU-5-NYA-RKU",
+    "name": "RUKOMO",
+    "slug": "rukomo-1",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "346"
+  },
+  {
+    "id": 347,
+    "code": "RW-IBU-5-NYA-REW",
+    "name": "RWEMPASHA",
+    "slug": "rwempasha",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "347"
+  },
+  {
+    "id": 348,
+    "code": "RW-IBU-5-NYA-RIW",
+    "name": "RWIMIYAGA",
+    "slug": "rwimiyaga",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "348"
+  },
+  {
+    "id": 349,
+    "code": "RW-IBU-5-NYA-TAB",
+    "name": "TABAGWE",
+    "slug": "tabagwe",
+    "parentCode": "RW-IBU-5-NYA",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "349"
+  },
+  {
+    "id": 350,
+    "code": "RW-IBU-5-GAT-GSA",
+    "name": "Gasange",
+    "slug": "gasange",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "350"
+  },
+  {
+    "id": 351,
+    "code": "RW-IBU-5-GAT-GTA",
+    "name": "Gatsibo",
+    "slug": "gatsibo-1",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "351"
+  },
+  {
+    "id": 352,
+    "code": "RW-IBU-5-GAT-GTI",
+    "name": "Gitoki",
+    "slug": "gitoki",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "352"
+  },
+  {
+    "id": 353,
+    "code": "RW-IBU-5-GAT-KBA",
+    "name": "Kabarore",
+    "slug": "kabarore",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "353"
+  },
+  {
+    "id": 354,
+    "code": "RW-IBU-5-GAT-KGA",
+    "name": "Kageyo",
+    "slug": "kageyo-2",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "354"
+  },
+  {
+    "id": 355,
+    "code": "RW-IBU-5-GAT-KRI",
+    "name": "Kiramuruzi",
+    "slug": "kiramuruzi",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "355"
+  },
+  {
+    "id": 356,
+    "code": "RW-IBU-5-GAT-KIZ",
+    "name": "Kiziguro",
+    "slug": "kiziguro",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "356"
+  },
+  {
+    "id": 357,
+    "code": "RW-IBU-5-GAT-MHU",
+    "name": "Muhura",
+    "slug": "muhura",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "357"
+  },
+  {
+    "id": 358,
+    "code": "RW-IBU-5-GAT-MRU",
+    "name": "Murambi",
+    "slug": "murambi-2",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "358"
+  },
+  {
+    "id": 359,
+    "code": "RW-IBU-5-GAT-NAG",
+    "name": "Ngarama",
+    "slug": "ngarama",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "359"
+  },
+  {
+    "id": 360,
+    "code": "RW-IBU-5-GAT-NAY",
+    "name": "Nyagihanga",
+    "slug": "nyagihanga",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "360"
+  },
+  {
+    "id": 361,
+    "code": "RW-IBU-5-GAT-RME",
+    "name": "Remera",
+    "slug": "remera-2",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "361"
+  },
+  {
+    "id": 362,
+    "code": "RW-IBU-5-GAT-RGU",
+    "name": "Rugarama",
+    "slug": "rugarama-1",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "362"
+  },
+  {
+    "id": 363,
+    "code": "RW-IBU-5-GAT-RIW",
+    "name": "Rwimbogo",
+    "slug": "rwimbogo-1",
+    "parentCode": "RW-IBU-5-GAT",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "363"
+  },
+  {
+    "id": 364,
+    "code": "RW-IBU-5-KAY-GHA",
+    "name": "Gahini",
+    "slug": "gahini",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "364"
+  },
+  {
+    "id": 365,
+    "code": "RW-IBU-5-KAY-KBA",
+    "name": "Kabare",
+    "slug": "kabare",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "365"
+  },
+  {
+    "id": 366,
+    "code": "RW-IBU-5-KAY-KBA-366",
+    "name": "Kabarondo",
+    "slug": "kabarondo",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "366"
+  },
+  {
+    "id": 367,
+    "code": "RW-IBU-5-KAY-MKU",
+    "name": "Mukarange",
+    "slug": "mukarange-1",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "367"
+  },
+  {
+    "id": 368,
+    "code": "RW-IBU-5-KAY-MRU",
+    "name": "Murama",
+    "slug": "murama",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "368"
+  },
+  {
+    "id": 369,
+    "code": "RW-IBU-5-KAY-MRU-369",
+    "name": "Murundi",
+    "slug": "murundi-1",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "369"
+  },
+  {
+    "id": 370,
+    "code": "RW-IBU-5-KAY-MWI",
+    "name": "Mwiri",
+    "slug": "mwiri",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "370"
+  },
+  {
+    "id": 371,
+    "code": "RW-IBU-5-KAY-NED",
+    "name": "Ndego",
+    "slug": "ndego",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "371"
+  },
+  {
+    "id": 372,
+    "code": "RW-IBU-5-KAY-NAY",
+    "name": "Nyamirama",
+    "slug": "nyamirama",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "372"
+  },
+  {
+    "id": 373,
+    "code": "RW-IBU-5-KAY-RKU",
+    "name": "Rukara",
+    "slug": "rukara",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "373"
+  },
+  {
+    "id": 374,
+    "code": "RW-IBU-5-KAY-RRU",
+    "name": "Ruramira",
+    "slug": "ruramira",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "374"
+  },
+  {
+    "id": 375,
+    "code": "RW-IBU-5-KAY-RIW",
+    "name": "Rwinkwavu",
+    "slug": "rwinkwavu",
+    "parentCode": "RW-IBU-5-KAY",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "375"
+  },
+  {
+    "id": 376,
+    "code": "RW-IBU-5-KIR-GHA",
+    "name": "Gahara",
+    "slug": "gahara",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "376"
+  },
+  {
+    "id": 377,
+    "code": "RW-IBU-5-KIR-GTA",
+    "name": "Gatore",
+    "slug": "gatore",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "377"
+  },
+  {
+    "id": 378,
+    "code": "RW-IBU-5-KIR-KGI",
+    "name": "Kigarama",
+    "slug": "kigarama-1",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "378"
+  },
+  {
+    "id": 379,
+    "code": "RW-IBU-5-KIR-KGI-379",
+    "name": "Kigina",
+    "slug": "kigina",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "379"
+  },
+  {
+    "id": 380,
+    "code": "RW-IBU-5-KIR-KRI",
+    "name": "Kirehe",
+    "slug": "kirehe-1",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "380"
+  },
+  {
+    "id": 381,
+    "code": "RW-IBU-5-KIR-MHA",
+    "name": "Mahama",
+    "slug": "mahama",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "381"
+  },
+  {
+    "id": 382,
+    "code": "RW-IBU-5-KIR-MPA",
+    "name": "Mpanga",
+    "slug": "mpanga",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "382"
+  },
+  {
+    "id": 383,
+    "code": "RW-IBU-5-KIR-MSU",
+    "name": "Musaza",
+    "slug": "musaza",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "383"
+  },
+  {
+    "id": 384,
+    "code": "RW-IBU-5-KIR-MSU-384",
+    "name": "Mushikiri",
+    "slug": "mushikiri",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "384"
+  },
+  {
+    "id": 385,
+    "code": "RW-IBU-5-KIR-NAS",
+    "name": "Nasho",
+    "slug": "nasho",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "385"
+  },
+  {
+    "id": 386,
+    "code": "RW-IBU-5-KIR-NAY",
+    "name": "Nyamugari",
+    "slug": "nyamugari",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "386"
+  },
+  {
+    "id": 387,
+    "code": "RW-IBU-5-KIR-NAY-387",
+    "name": "Nyarubuye",
+    "slug": "nyarubuye",
+    "parentCode": "RW-IBU-5-KIR",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "387"
+  },
+  {
+    "id": 388,
+    "code": "RW-IBU-5-NGO-GSA",
+    "name": "Gashanda",
+    "slug": "gashanda",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "388"
+  },
+  {
+    "id": 389,
+    "code": "RW-IBU-5-NGO-JAR",
+    "name": "Jarama",
+    "slug": "jarama",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "389"
+  },
+  {
+    "id": 390,
+    "code": "RW-IBU-5-NGO-KRA",
+    "name": "Karembo",
+    "slug": "karembo",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "390"
+  },
+  {
+    "id": 391,
+    "code": "RW-IBU-5-NGO-KAZ",
+    "name": "Kazo",
+    "slug": "kazo",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "391"
+  },
+  {
+    "id": 392,
+    "code": "RW-IBU-5-NGO-KBI",
+    "name": "Kibungo",
+    "slug": "kibungo",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "392"
+  },
+  {
+    "id": 393,
+    "code": "RW-IBU-5-NGO-MGU",
+    "name": "Mugesera",
+    "slug": "mugesera",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "393"
+  },
+  {
+    "id": 394,
+    "code": "RW-IBU-5-NGO-MRU",
+    "name": "Murama",
+    "slug": "murama-1",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "394"
+  },
+  {
+    "id": 395,
+    "code": "RW-IBU-5-NGO-MTU",
+    "name": "Mutenderi",
+    "slug": "mutenderi",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "395"
+  },
+  {
+    "id": 396,
+    "code": "RW-IBU-5-NGO-RME",
+    "name": "Remera",
+    "slug": "remera-3",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "396"
+  },
+  {
+    "id": 397,
+    "code": "RW-IBU-5-NGO-RKU",
+    "name": "Rukira",
+    "slug": "rukira",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "397"
+  },
+  {
+    "id": 398,
+    "code": "RW-IBU-5-NGO-RKU-398",
+    "name": "Rukumberi",
+    "slug": "rukumberi",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "398"
+  },
+  {
+    "id": 399,
+    "code": "RW-IBU-5-NGO-RRU",
+    "name": "Rurenge",
+    "slug": "rurenge",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "399"
+  },
+  {
+    "id": 400,
+    "code": "RW-IBU-5-NGO-SAK",
+    "name": "Sake",
+    "slug": "sake",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "400"
+  },
+  {
+    "id": 401,
+    "code": "RW-IBU-5-NGO-ZAZ",
+    "name": "Zaza",
+    "slug": "zaza",
+    "parentCode": "RW-IBU-5-NGO",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "401"
+  },
+  {
+    "id": 402,
+    "code": "RW-IBU-5-BUG-GSA",
+    "name": "Gashora",
+    "slug": "gashora",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "402"
+  },
+  {
+    "id": 403,
+    "code": "RW-IBU-5-BUG-JUR",
+    "name": "Juru",
+    "slug": "juru",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "403"
+  },
+  {
+    "id": 404,
+    "code": "RW-IBU-5-BUG-KMA",
+    "name": "Kamabuye",
+    "slug": "kamabuye",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "404"
+  },
+  {
+    "id": 405,
+    "code": "RW-IBU-5-BUG-MRA",
+    "name": "Mareba",
+    "slug": "mareba",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "405"
+  },
+  {
+    "id": 406,
+    "code": "RW-IBU-5-BUG-MAY",
+    "name": "Mayange",
+    "slug": "mayange",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "406"
+  },
+  {
+    "id": 407,
+    "code": "RW-IBU-5-BUG-MSU",
+    "name": "Musenyi",
+    "slug": "musenyi",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "407"
+  },
+  {
+    "id": 408,
+    "code": "RW-IBU-5-BUG-MWO",
+    "name": "Mwogo",
+    "slug": "mwogo",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "408"
+  },
+  {
+    "id": 409,
+    "code": "RW-IBU-5-BUG-NEG",
+    "name": "Ngeruka",
+    "slug": "ngeruka",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "409"
+  },
+  {
+    "id": 410,
+    "code": "RW-IBU-5-BUG-NAT",
+    "name": "Ntarama",
+    "slug": "ntarama",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "410"
+  },
+  {
+    "id": 411,
+    "code": "RW-IBU-5-BUG-NAY",
+    "name": "Nyamata",
+    "slug": "nyamata",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "411"
+  },
+  {
+    "id": 412,
+    "code": "RW-IBU-5-BUG-NAY-412",
+    "name": "Nyarugenge",
+    "slug": "nyarugenge-2",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "412"
+  },
+  {
+    "id": 413,
+    "code": "RW-IBU-5-BUG-RIR",
+    "name": "Ririma",
+    "slug": "ririma",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "413"
+  },
+  {
+    "id": 414,
+    "code": "RW-IBU-5-BUG-RHU",
+    "name": "Ruhuha",
+    "slug": "ruhuha",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "414"
+  },
+  {
+    "id": 415,
+    "code": "RW-IBU-5-BUG-REW",
+    "name": "Rweru",
+    "slug": "rweru",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "415"
+  },
+  {
+    "id": 416,
+    "code": "RW-IBU-5-BUG-SYH",
+    "name": "Shyara",
+    "slug": "shyara",
+    "parentCode": "RW-IBU-5-BUG",
+    "center": {
+      "lat": 0,
+      "lng": 0
+    },
+    "shortCode": "416"
+  }
+]

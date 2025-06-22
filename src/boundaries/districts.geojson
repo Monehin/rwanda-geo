@@ -1,0 +1,225 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-KG-GAS",
+        "name": "Gasabo",
+        "slug": "gasabo",
+        "parentCode": "RW-KG",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, -1.9],
+          [30.05, -1.9],
+          [30.05, -1.95],
+          [30.0, -1.95],
+          [30.0, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-KG-KIC",
+        "name": "Kicukiro",
+        "slug": "kicukiro",
+        "parentCode": "RW-KG",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.05, -1.9],
+          [30.1, -1.9],
+          [30.1, -1.95],
+          [30.05, -1.95],
+          [30.05, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-KG-NYA",
+        "name": "Nyarugenge",
+        "slug": "nyarugenge",
+        "parentCode": "RW-KG",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, -1.95],
+          [30.1, -1.95],
+          [30.1, -2.0],
+          [30.0, -2.0],
+          [30.0, -1.95]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-SO-HUY",
+        "name": "Huye",
+        "slug": "huye",
+        "parentCode": "RW-SO",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.5, -2.5],
+          [29.6, -2.5],
+          [29.6, -2.55],
+          [29.5, -2.55],
+          [29.5, -2.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-SO-NYA",
+        "name": "Nyanza",
+        "slug": "nyanza",
+        "parentCode": "RW-SO",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.6, -2.5],
+          [29.7, -2.5],
+          [29.7, -2.55],
+          [29.6, -2.55],
+          [29.6, -2.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-NO-BUR",
+        "name": "Burera",
+        "slug": "burera",
+        "parentCode": "RW-NO",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.8, -1.6],
+          [29.9, -1.6],
+          [29.9, -1.65],
+          [29.8, -1.65],
+          [29.8, -1.6]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-NO-GIC",
+        "name": "Gicumbi",
+        "slug": "gicumbi",
+        "parentCode": "RW-NO",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.9, -1.6],
+          [30.0, -1.6],
+          [30.0, -1.65],
+          [29.9, -1.65],
+          [29.9, -1.6]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-ES-BUG",
+        "name": "Bugesera",
+        "slug": "bugesera",
+        "parentCode": "RW-ES",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.0, -1.9],
+          [30.1, -1.9],
+          [30.1, -1.95],
+          [30.0, -1.95],
+          [30.0, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-ES-KAY",
+        "name": "Kayonza",
+        "slug": "kayonza",
+        "parentCode": "RW-ES",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [30.1, -1.9],
+          [30.2, -1.9],
+          [30.2, -1.95],
+          [30.1, -1.95],
+          [30.1, -1.9]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-WE-KAR",
+        "name": "Karongi",
+        "slug": "karongi",
+        "parentCode": "RW-WE",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.5, -2.5],
+          [29.6, -2.5],
+          [29.6, -2.55],
+          [29.5, -2.55],
+          [29.5, -2.5]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "code": "RW-WE-RUB",
+        "name": "Rubavu",
+        "slug": "rubavu",
+        "parentCode": "RW-WE",
+        "level": "district"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [29.6, -2.5],
+          [29.7, -2.5],
+          [29.7, -2.55],
+          [29.6, -2.55],
+          [29.6, -2.5]
+        ]]
+      }
+    }
+  ]
+} 

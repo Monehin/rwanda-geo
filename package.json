@@ -1,0 +1,79 @@
+{
+  "name": "rwanda-geo",
+  "version": "1.0.0",
+  "description": "A reliable, typed, and lightweight dataset of Rwanda's full administrative divisions with geospatial support",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./data/*": {
+      "import": "./dist/data/*.mjs",
+      "require": "./dist/data/*.js"
+    },
+    "./boundaries/*": {
+      "import": "./dist/boundaries/*.mjs",
+      "require": "./dist/boundaries/*.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "rwanda",
+    "geography",
+    "administrative",
+    "provinces",
+    "districts",
+    "sectors",
+    "cells",
+    "villages",
+    "geojson",
+    "geospatial",
+    "civic-tech",
+    "government",
+    "africa"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/rwanda-geo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/rwanda-geo/issues"
+  },
+  "homepage": "https://github.com/yourusername/rwanda-geo#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^8.57.1",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "tsup": "^7.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "csv-parser": "^3.2.0"
+  }
+}
