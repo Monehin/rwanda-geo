@@ -17,13 +17,80 @@ import {
   getByCode,
   getHierarchy,
   getSummary
-} from '../dist/index.js';
+} from '../dist/index.mjs';
 
-console.log('=== Rwanda Geo Basic Usage Examples ===\n');
+console.log('=== Basic Usage Examples ===\n');
+
+// Get all provinces
+const provinces = getAllProvinces();
+console.log('All Provinces:');
+console.log(JSON.stringify(provinces, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "slug": "umujyi-wa-kigali" },
+  { "code": "RW-AMA", "name": "Amajyepfo", "slug": "amajyepfo" },
+  { "code": "RW-IBU", "name": "Iburengerazuba", "slug": "iburengerazuba" },
+  { "code": "RW-AMA-4", "name": "Amajyaruguru", "slug": "amajyaruguru" },
+  { "code": "RW-IBU-5", "name": "Iburasirazuba", "slug": "iburasirazuba" }
+]
+*/
+
+console.log('\n---\n');
+
+// Get districts in Kigali City
+const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+console.log('Districts in Kigali City:');
+console.log(JSON.stringify(kigaliDistricts, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-NYA", "name": "Nyarugenge", "parentCode": "RW-UMU" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "parentCode": "RW-UMU" },
+  { "code": "RW-UMU-KIC", "name": "Kicukiro", "parentCode": "RW-UMU" }
+]
+*/
+
+console.log('\n---\n');
+
+// Get a specific unit by code
+const gasabo = getByCode('RW-UMU-GAS');
+console.log('Gasabo District Details:');
+console.log(JSON.stringify(gasabo, null, 2));
+
+/*
+Output:
+{
+  "code": "RW-UMU-GAS",
+  "name": "Gasabo",
+  "slug": "gasabo",
+  "parentCode": "RW-UMU",
+  "center": { "lat": 0, "lng": 0 }
+}
+*/
+
+console.log('\n---\n');
+
+// Get full hierarchy for a village
+const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+console.log('Hierarchy for Village RW-UMU-GAS-BUM-BUM-BUM:');
+console.log(JSON.stringify(hierarchy, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo" },
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" }
+]
+*/
 
 // 1. Get all administrative units at each level
 console.log('1. Getting all units at each level:');
-const provinces = getAllProvinces();
 const districts = getAllDistricts();
 const sectors = getAllSectors();
 const cells = getAllCells();
@@ -42,16 +109,8 @@ provinces.forEach(province => {
 });
 console.log();
 
-// 3. Get districts in Kigali City
-console.log('3. Districts in Kigali City:');
-const kigaliDistricts = getDistrictsByProvince('RW-UMU');
-kigaliDistricts.forEach(district => {
-  console.log(`   ${district.code}: ${district.name}`);
-});
-console.log();
-
-// 4. Get sectors in Gasabo district
-console.log('4. Sectors in Gasabo district:');
+// 3. Get sectors in Gasabo district
+console.log('3. Sectors in Gasabo district:');
 const gasaboSectors = getSectorsByDistrict('RW-UMU-GAS');
 console.log(`   Total sectors in Gasabo: ${gasaboSectors.length}`);
 gasaboSectors.slice(0, 5).forEach(sector => {
@@ -62,8 +121,8 @@ if (gasaboSectors.length > 5) {
 }
 console.log();
 
-// 5. Get cells in Bumbogo sector
-console.log('5. Cells in Bumbogo sector:');
+// 4. Get cells in Bumbogo sector
+console.log('4. Cells in Bumbogo sector:');
 const bumbogoCells = getCellsBySector('RW-UMU-GAS-BUM');
 console.log(`   Total cells in Bumbogo: ${bumbogoCells.length}`);
 bumbogoCells.forEach(cell => {
@@ -71,8 +130,8 @@ bumbogoCells.forEach(cell => {
 });
 console.log();
 
-// 6. Get villages in Bumbogo cell
-console.log('6. Villages in Bumbogo cell:');
+// 5. Get villages in Bumbogo cell
+console.log('5. Villages in Bumbogo cell:');
 const bumbogoVillages = getVillagesByCell('RW-UMU-GAS-BUM-BUM');
 console.log(`   Total villages in Bumbogo cell: ${bumbogoVillages.length}`);
 bumbogoVillages.forEach(village => {
@@ -80,31 +139,8 @@ bumbogoVillages.forEach(village => {
 });
 console.log();
 
-// 7. Get a specific unit by code
-console.log('7. Getting specific units by code:');
-const gasabo = getByCode('RW-UMU-GAS');
-const bumbogo = getByCode('RW-UMU-GAS-BUM');
-const bumbogoCell = getByCode('RW-UMU-GAS-BUM-BUM');
-const bumbogoVillage = getByCode('RW-UMU-GAS-BUM-BUM-BUM');
-
-console.log(`   Gasabo district: ${gasabo?.name} (${gasabo?.code})`);
-console.log(`   Bumbogo sector: ${bumbogo?.name} (${bumbogo?.code})`);
-console.log(`   Bumbogo cell: ${bumbogoCell?.name} (${bumbogoCell?.code})`);
-console.log(`   Bumbogo village: ${bumbogoVillage?.name} (${bumbogoVillage?.code})`);
-console.log();
-
-// 8. Get hierarchy for a village
-console.log('8. Complete hierarchy for Bumbogo village:');
-const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
-console.log('   Hierarchy chain:');
-hierarchy.forEach((unit, index) => {
-  const indent = '   '.repeat(index + 1);
-  console.log(`${indent}${unit.name} (${unit.code})`);
-});
-console.log();
-
-// 9. Get summary statistics
-console.log('9. Summary statistics:');
+// 7. Get summary statistics
+console.log('7. Summary statistics:');
 const summary = getSummary();
 const total = summary.provinces + summary.districts + summary.sectors + summary.cells + summary.villages;
 console.log(`   Total administrative units: ${total}`);

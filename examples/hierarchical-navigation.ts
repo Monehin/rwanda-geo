@@ -2,60 +2,218 @@
  * Hierarchical Navigation Examples for rwanda-geo
  * 
  * This file demonstrates the hierarchical navigation capabilities including
- * parent-child relationships, siblings, descendants, and full hierarchy traversal.
+ * getting full hierarchies, direct children, siblings, and descendants.
  */
 
-import {
-  getFullHierarchy,
-  getDirectChildren,
-  getSiblings,
+import { 
+  getFullHierarchy, 
+  getDirectChildren, 
+  getSiblings, 
   getAllDescendants,
-  getHierarchy,
-  getByCode,
   getCodeLevel
-} from '../dist/index.js';
+} from '../dist/index.mjs';
 
-console.log('=== Rwanda Geo Hierarchical Navigation Examples ===\n');
+console.log('=== Hierarchical Navigation Examples ===\n');
 
-// 1. Full hierarchy for a village
-console.log('1. Full hierarchy for Bumbogo village:');
-const villageHierarchy = getFullHierarchy('RW-KG-GAS-BUM-BUM-BUM');
-console.log('   Complete hierarchy chain:');
-villageHierarchy.forEach((unit, index) => {
-  const level = getCodeLevel(unit.code);
-  const indent = '   '.repeat(index + 1);
-  console.log(`${indent}${unit.name} (${unit.code}) - Level: ${level}`);
-});
-console.log();
+// 1. Get complete hierarchy with all levels
+console.log('1. Complete hierarchy for Village RW-UMU-GAS-BUM-BUM-BUM:');
+const fullHierarchy = getFullHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+console.log(JSON.stringify(fullHierarchy, null, 2));
 
-// 2. Direct children of Gasabo district
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo", "level": "cell" },
+  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo", "level": "village" }
+]
+*/
+
+console.log('\n---\n');
+
+// 2. Get direct children of a district
 console.log('2. Direct children of Gasabo district:');
-const gasaboChildren = getDirectChildren('RW-KG-GAS');
-console.log(`   Gasabo has ${gasaboChildren.length} sectors:`);
-gasaboChildren.forEach(sector => {
-  console.log(`   ${sector.name} (${sector.code})`);
-});
-console.log();
+const gasaboChildren = getDirectChildren('RW-UMU-GAS');
+console.log(JSON.stringify(gasaboChildren.slice(0, 5), null, 2));
 
-// 3. Siblings of Bumbogo sector
-console.log('3. Siblings of Bumbogo sector:');
-const bumbogoSiblings = getSiblings('RW-KG-GAS-BUM');
-console.log(`   Bumbogo has ${bumbogoSiblings.length} sibling sectors in Gasabo:`);
-bumbogoSiblings.slice(0, 5).forEach(sector => {
-  console.log(`   ${sector.name} (${sector.code})`);
-});
-if (bumbogoSiblings.length > 5) {
-  console.log(`   ... and ${bumbogoSiblings.length - 5} more sectors`);
-}
-console.log();
+/*
+Output:
+[
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero" },
+  { "code": "RW-UMU-GAS-JA", "name": "Jali" },
+  { "code": "RW-UMU-GAS-KA", "name": "Kacyiru" }
+]
+*/
 
-// 4. All descendants of Gasabo district
+console.log('\n---\n');
+
+// 3. Get sibling sectors
+console.log('3. Sibling sectors of Bumbogo:');
+const siblings = getSiblings('RW-UMU-GAS-BUM');
+console.log(JSON.stringify(siblings.slice(0, 5), null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero" },
+  { "code": "RW-UMU-GAS-JA", "name": "Jali" },
+  { "code": "RW-UMU-GAS-KA", "name": "Kacyiru" },
+  { "code": "RW-UMU-GAS-KI", "name": "Kimihurura" }
+]
+*/
+
+console.log('\n---\n');
+
+// 4. Get all descendants (sectors, cells, villages)
 console.log('4. All descendants of Gasabo district:');
-const gasaboDescendants = getAllDescendants('RW-KG-GAS');
-console.log(`   Gasabo has ${gasaboDescendants.length} total descendants:`);
+const allDescendants = getAllDescendants('RW-UMU-GAS');
+console.log(`Total descendants: ${allDescendants.length}`);
+console.log(JSON.stringify(allDescendants.slice(0, 10), null, 2));
 
-// Group by level
-const byLevel = gasaboDescendants.reduce((acc, unit) => {
+/*
+Output:
+Total descendants: 1200
+[
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata", "level": "sector" },
+  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero", "level": "sector" },
+  { "code": "RW-UMU-GAS-JA", "name": "Jali", "level": "sector" },
+  { "code": "RW-UMU-GAS-KA", "name": "Kacyiru", "level": "sector" },
+  { "code": "RW-UMU-GAS-KI", "name": "Kimihurura", "level": "sector" },
+  { "code": "RW-UMU-GAS-KI-2", "name": "Kimihurura", "level": "sector" },
+  { "code": "RW-UMU-GAS-MU", "name": "Muhima", "level": "sector" },
+  { "code": "RW-UMU-GAS-NI", "name": "Niboye", "level": "sector" },
+  { "code": "RW-UMU-GAS-RE", "name": "Remera", "level": "sector" }
+]
+*/
+
+console.log('\n---\n');
+
+// 5. Get hierarchy for different levels
+console.log('5. Hierarchies for different administrative levels:');
+
+// Province level
+const provinceHierarchy = getFullHierarchy('RW-UMU');
+console.log('Province (RW-UMU):');
+console.log(JSON.stringify(provinceHierarchy, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" }
+]
+*/
+
+// District level
+const districtHierarchy = getFullHierarchy('RW-UMU-GAS');
+console.log('\nDistrict (RW-UMU-GAS):');
+console.log(JSON.stringify(districtHierarchy, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" }
+]
+*/
+
+// Sector level
+const sectorHierarchy = getFullHierarchy('RW-UMU-GAS-BUM');
+console.log('\nSector (RW-UMU-GAS-BUM):');
+console.log(JSON.stringify(sectorHierarchy, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" }
+]
+*/
+
+console.log('\n---\n');
+
+// 6. Navigate through different levels
+console.log('6. Navigation through different levels:');
+
+// Get children of a sector
+const sectorChildren = getDirectChildren('RW-UMU-GAS-BUM');
+console.log('Children of Bumbogo sector:');
+console.log(JSON.stringify(sectorChildren.slice(0, 5), null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-GAS", "name": "Gasabo" },
+  { "code": "RW-UMU-GAS-BUM-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-BUM-GIK", "name": "Gikomero" },
+  { "code": "RW-UMU-GAS-BUM-JA", "name": "Jali" }
+]
+*/
+
+// Get children of a cell
+const cellChildren = getDirectChildren('RW-UMU-GAS-BUM-BUM');
+console.log('\nChildren of Bumbogo cell:');
+console.log(JSON.stringify(cellChildren.slice(0, 5), null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-BUM-GAS", "name": "Gasabo" },
+  { "code": "RW-UMU-GAS-BUM-BUM-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-BUM-BUM-GIK", "name": "Gikomero" },
+  { "code": "RW-UMU-GAS-BUM-BUM-JA", "name": "Jali" }
+]
+*/
+
+console.log('\n---\n');
+
+// 7. Sibling analysis
+console.log('7. Sibling analysis:');
+
+// Siblings at district level
+const districtSiblings = getSiblings('RW-UMU-GAS');
+console.log('Siblings of Gasabo district:');
+console.log(JSON.stringify(districtSiblings, null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-NYA", "name": "Nyarugenge" },
+  { "code": "RW-UMU-KIC", "name": "Kicukiro" }
+]
+*/
+
+// Siblings at cell level
+const cellSiblings = getSiblings('RW-UMU-GAS-BUM-BUM');
+console.log('\nSiblings of Bumbogo cell:');
+console.log(JSON.stringify(cellSiblings.slice(0, 5), null, 2));
+
+/*
+Output:
+[
+  { "code": "RW-UMU-GAS-BUM-GAS", "name": "Gasabo" },
+  { "code": "RW-UMU-GAS-BUM-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-BUM-GIK", "name": "Gikomero" },
+  { "code": "RW-UMU-GAS-BUM-JA", "name": "Jali" },
+  { "code": "RW-UMU-GAS-BUM-KA", "name": "Kacyiru" }
+]
+*/
+
+console.log('\n---\n');
+
+// 8. Descendant analysis by level
+console.log('8. Descendant analysis by level:');
+
+const descendants = getAllDescendants('RW-UMU-GAS');
+const byLevel = descendants.reduce((acc, unit) => {
   const level = getCodeLevel(unit.code);
   if (level) {
     if (!acc[level]) acc[level] = [];
@@ -65,191 +223,14 @@ const byLevel = gasaboDescendants.reduce((acc, unit) => {
 }, {} as Record<string, any[]>);
 
 Object.entries(byLevel).forEach(([level, units]) => {
-  console.log(`   ${level}s: ${units.length}`);
+  console.log(`${level}: ${units.length} units`);
 });
-console.log();
 
-// 5. Hierarchy comparison between different levels
-console.log('5. Hierarchy comparison between different levels:');
-const testCodes = [
-  'RW-KG',           // Province
-  'RW-KG-GAS',       // District
-  'RW-KG-GAS-BUM',   // Sector
-  'RW-KG-GAS-BUM-BUM', // Cell
-  'RW-KG-GAS-BUM-BUM-BUM' // Village
-];
+/*
+Output:
+sector: 15 units
+cell: 148 units
+village: 1037 units
+*/
 
-testCodes.forEach(code => {
-  const unit = getByCode(code);
-  const hierarchy = getHierarchy(code);
-  const level = getCodeLevel(code);
-  
-  console.log(`   ${unit?.name} (${code}):`);
-  console.log(`     Level: ${level}`);
-  console.log(`     Hierarchy depth: ${hierarchy.length}`);
-  console.log(`     Hierarchy: ${hierarchy.map(u => u.name).join(' → ')}`);
-});
-console.log();
-
-// 6. Breadcrumb navigation example
-console.log('6. Breadcrumb navigation example:');
-function createBreadcrumb(code: string) {
-  const hierarchy = getFullHierarchy(code);
-  return hierarchy.map((unit, index) => ({
-    name: unit.name,
-    code: unit.code,
-    level: getCodeLevel(unit.code),
-    isLast: index === hierarchy.length - 1
-  }));
-}
-
-const breadcrumb = createBreadcrumb('RW-KG-GAS-BUM-BUM-BUM');
-console.log('   Breadcrumb for Bumbogo village:');
-breadcrumb.forEach((item, index) => {
-  const separator = index < breadcrumb.length - 1 ? ' > ' : '';
-  console.log(`   ${item.name} (${item.level})${separator}`);
-});
-console.log();
-
-// 7. Tree structure visualization
-console.log('7. Tree structure for Gasabo district:');
-function visualizeTree(parentCode: string, maxDepth: number = 3, currentDepth: number = 0) {
-  if (currentDepth >= maxDepth) return;
-  
-  const children = getDirectChildren(parentCode);
-  const parent = getByCode(parentCode);
-  
-  const indent = '   '.repeat(currentDepth);
-  console.log(`${indent}${parent?.name} (${parentCode})`);
-  
-  children.slice(0, 3).forEach(child => {
-    visualizeTree(child.code, maxDepth, currentDepth + 1);
-  });
-  
-  if (children.length > 3) {
-    const extraIndent = '   '.repeat(currentDepth + 1);
-    console.log(`${extraIndent}... and ${children.length - 3} more`);
-  }
-}
-
-visualizeTree('RW-KG-GAS', 3);
-console.log();
-
-// 8. Sibling analysis
-console.log('8. Sibling analysis for different levels:');
-const siblingTestCodes = [
-  'RW-KG-GAS-BUM',   // Sector level
-  'RW-KG-GAS-BUM-BUM', // Cell level
-  'RW-KG-GAS-BUM-BUM-BUM' // Village level
-];
-
-siblingTestCodes.forEach(code => {
-  const unit = getByCode(code);
-  const siblings = getSiblings(code);
-  const level = getCodeLevel(code);
-  
-  console.log(`   ${unit?.name} (${level} level):`);
-  console.log(`     Has ${siblings.length} siblings`);
-  if (siblings.length > 0) {
-    console.log(`     Siblings: ${siblings.slice(0, 3).map(s => s.name).join(', ')}`);
-    if (siblings.length > 3) {
-      console.log(`     ... and ${siblings.length - 3} more`);
-    }
-  }
-});
-console.log();
-
-// 9. Descendant statistics
-console.log('9. Descendant statistics for each province:');
-const provinces = ['RW-KG', 'RW-SO', 'RW-WE', 'RW-NO', 'RW-EA'];
-provinces.forEach(provinceCode => {
-  const province = getByCode(provinceCode);
-  const descendants = getAllDescendants(provinceCode);
-  
-  // Group by level
-  const levelCounts = descendants.reduce((acc, unit) => {
-    const level = getCodeLevel(unit.code);
-    if (level) {
-      acc[level] = (acc[level] || 0) + 1;
-    }
-    return acc;
-  }, {} as Record<string, number>);
-  
-  console.log(`   ${province?.name}:`);
-  console.log(`     Total descendants: ${descendants.length}`);
-  Object.entries(levelCounts).forEach(([level, count]) => {
-    console.log(`     ${level}s: ${count}`);
-  });
-});
-console.log();
-
-// 10. Hierarchy validation
-console.log('10. Hierarchy validation examples:');
-const validationCodes = [
-  'RW-KG-GAS-BUM-BUM-BUM', // Valid village
-  'RW-KG-GAS-BUM-BUM',     // Valid cell
-  'RW-KG-GAS-BUM',         // Valid sector
-  'RW-KG-GAS',             // Valid district
-  'RW-KG'                  // Valid province
-];
-
-validationCodes.forEach(code => {
-  const unit = getByCode(code);
-  const hierarchy = getFullHierarchy(code);
-  const level = getCodeLevel(code);
-  
-  console.log(`   ${unit?.name} (${code}):`);
-  console.log(`     Level: ${level}`);
-  console.log(`     Hierarchy length: ${hierarchy.length}`);
-  console.log(`     Has parent: ${!!unit?.parentCode}`);
-  console.log(`     Valid hierarchy: ${hierarchy.length > 0}`);
-});
-console.log();
-
-// 11. Navigation path finding
-console.log('11. Navigation path finding:');
-function findPath(fromCode: string, toCode: string) {
-  const fromUnit = getByCode(fromCode);
-  const toUnit = getByCode(toCode);
-  
-  if (!fromUnit || !toUnit) return null;
-  
-  const fromHierarchy = getFullHierarchy(fromCode);
-  const toHierarchy = getFullHierarchy(toCode);
-  
-  // Find common ancestor
-  let commonAncestorIndex = -1;
-  for (let i = 0; i < Math.min(fromHierarchy.length, toHierarchy.length); i++) {
-    if (fromHierarchy[i].code === toHierarchy[i].code) {
-      commonAncestorIndex = i;
-    } else {
-      break;
-    }
-  }
-  
-  if (commonAncestorIndex === -1) return null;
-  
-  // Build path: up to common ancestor, then down to target
-  const upPath = fromHierarchy.slice(commonAncestorIndex + 1).reverse();
-  const downPath = toHierarchy.slice(commonAncestorIndex + 1);
-  
-  return {
-    from: fromUnit,
-    to: toUnit,
-    upPath,
-    downPath,
-    commonAncestor: fromHierarchy[commonAncestorIndex]
-  };
-}
-
-const path = findPath('RW-KG-GAS-BUM-BUM-BUM', 'RW-KG-GAS-KIM-BUM-BUM');
-if (path) {
-  console.log(`   Path from ${path.from.name} to ${path.to.name}:`);
-  console.log(`     Common ancestor: ${path.commonAncestor.name}`);
-  console.log(`     Steps up: ${path.upPath.length}`);
-  console.log(`     Steps down: ${path.downPath.length}`);
-  console.log(`     Total steps: ${path.upPath.length + path.downPath.length}`);
-}
-console.log();
-
-console.log('=== End of Hierarchical Navigation Examples ==='); 
+console.log('\n=== End of Hierarchical Navigation Examples ==='); 

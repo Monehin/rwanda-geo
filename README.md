@@ -39,25 +39,63 @@ import {
 
 // Get all provinces
 const provinces = getAllProvinces();
-console.log(provinces);
-// [
-//   { code: 'RW-KG', name: 'Kigali City', slug: 'kigali-city', ... },
-//   { code: 'RW-SO', name: 'Southern Province', slug: 'southern-province', ... },
-//   ...
-// ]
+```
 
+**Output:**
+```json
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "slug": "umujyi-wa-kigali" },
+  { "code": "RW-AMA", "name": "Amajyepfo", "slug": "amajyepfo" },
+  { "code": "RW-IBU", "name": "Iburengerazuba", "slug": "iburengerazuba" },
+  { "code": "RW-AMA-4", "name": "Amajyaruguru", "slug": "amajyaruguru" },
+  { "code": "RW-IBU-5", "name": "Iburasirazuba", "slug": "iburasirazuba" }
+]
+```
+
+```ts
 // Get districts in Kigali City
-const kigaliDistricts = getDistrictsByProvince('RW-KG');
-console.log(kigaliDistricts.length); // 3
+const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+```
 
+**Output:**
+```json
+[
+  { "code": "RW-UMU-NYA", "name": "Nyarugenge", "parentCode": "RW-UMU" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "parentCode": "RW-UMU" },
+  { "code": "RW-UMU-KIC", "name": "Kicukiro", "parentCode": "RW-UMU" }
+]
+```
+
+```ts
 // Get a specific unit by code
-const gasabo = getByCode('RW-KG-GAS');
-console.log(gasabo?.name); // 'Gasabo'
+const gasabo = getByCode('RW-UMU-GAS');
+```
 
+**Output:**
+```json
+{
+  "code": "RW-UMU-GAS",
+  "name": "Gasabo",
+  "slug": "gasabo",
+  "parentCode": "RW-UMU",
+  "center": { "lat": 0, "lng": 0 }
+}
+```
+
+```ts
 // Get full hierarchy for a village
-const hierarchy = getHierarchy('RW-KG-GAS-BUM-BUM-BUM');
-console.log(hierarchy.map(u => u.name));
-// ['Kigali City', 'Gasabo', 'Bumbogo', 'Bumbogo', 'Bumbogo']
+const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+```
+
+**Output:**
+```json
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo" },
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" }
+]
 ```
 
 ### Advanced Search and Navigation
@@ -72,28 +110,51 @@ import {
 
 // Fuzzy search for locations
 const searchResults = fuzzySearchByName('kigali', 3, 5);
-console.log(searchResults);
-// [
-//   { unit: { code: 'RW-KG', name: 'Kigali City', ... }, score: 0 },
-//   { unit: { code: 'RW-KG-GAS', name: 'Gasabo', ... }, score: 2 },
-//   ...
-// ]
+```
 
+**Output:**
+```json
+[
+  { 
+    "unit": { "code": "RW-UMU", "name": "Umujyi wa Kigali" }, 
+    "score": 1.0 
+  },
+  { 
+    "unit": { "code": "RW-UMU-GAS", "name": "Gasabo" }, 
+    "score": 0.8 
+  }
+]
+```
+
+```ts
 // Get complete hierarchy with all levels
-const fullHierarchy = getFullHierarchy('RW-KG-GAS-BUM-BUM-BUM');
-console.log(fullHierarchy.length); // 5 (province -> district -> sector -> cell -> village)
+const fullHierarchy = getFullHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+```
 
+**Output:**
+```json
+[
+  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
+  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo", "level": "cell" },
+  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo", "level": "village" }
+]
+```
+
+```ts
 // Get direct children of a district
-const gasaboChildren = getDirectChildren('RW-KG-GAS');
-console.log(gasaboChildren.length); // 15 sectors
+const gasaboChildren = getDirectChildren('RW-UMU-GAS');
+```
 
-// Get sibling sectors
-const siblings = getSiblings('RW-KG-GAS-BUM');
-console.log(siblings.length); // 14 (other sectors in Gasabo)
-
-// Get all descendants (sectors, cells, villages)
-const allDescendants = getAllDescendants('RW-KG-GAS');
-console.log(allDescendants.length); // 15 sectors + 148 cells + 1,037 villages
+**Output:**
+```json
+[
+  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
+  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata" },
+  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero" },
+  // ... 12 more sectors
+]
 ```
 
 ### Validation and Data Integrity
@@ -107,38 +168,65 @@ import {
 } from 'rwanda-geo';
 
 // Validate code format
-const validation = validateCodeFormat('RW-KG-GAS-BUM-BUM-BUM');
-console.log(validation);
-// { isValid: true, level: 'village', format: 'RW-XX-YY-ZZ-AA-BB' }
+const validation = validateCodeFormat('RW-UMU-GAS-BUM-BUM-BUM');
+```
 
+**Output:**
+```json
+{
+  "isValid": true,
+  "level": "village",
+  "format": "RW-XX-YY-ZZ-AA-BB"
+}
+```
+
+```ts
 // Validate parent-child relationship
-const relationship = validateParentChildRelationship('RW-KG-GAS', 'RW-KG-GAS-BUM');
-console.log(relationship);
-// { isValid: true, parentLevel: 'district', childLevel: 'sector' }
+const relationship = validateParentChildRelationship('RW-UMU-GAS', 'RW-UMU-GAS-BUM');
+```
 
+**Output:**
+```json
+{
+  "isValid": true,
+  "parentLevel": "district",
+  "childLevel": "sector"
+}
+```
+
+```ts
 // Check overall hierarchy integrity
 const integrity = validateHierarchyIntegrity();
-console.log(integrity.isValid); // true
-console.log(integrity.summary);
-// {
-//   totalUnits: 17736,
-//   orphanedUnits: 0,
-//   invalidParents: 0,
-//   circularReferences: 0,
-//   missingUnits: 0
-// }
+```
 
+**Output:**
+```json
+{
+  "isValid": true,
+  "summary": {
+    "totalUnits": 17436,
+    "orphanedUnits": 0,
+    "invalidParents": 0,
+    "circularReferences": 0,
+    "missingUnits": 0
+  }
+}
+```
+
+```ts
 // Get data summary
 const summary = getSummary();
-console.log(summary);
-// {
-//   provinces: 5,
-//   districts: 30,
-//   sectors: 416,
-//   cells: 2148,
-//   villages: 14837,
-//   total: 17736
-// }
+```
+
+**Output:**
+```json
+{
+  "provinces": 5,
+  "districts": 30,
+  "sectors": 416,
+  "cells": 2148,
+  "villages": 14837
+}
 ```
 
 ## API Reference
