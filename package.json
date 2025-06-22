@@ -1,6 +1,6 @@
 {
   "name": "rwanda-geo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A reliable, typed, and lightweight dataset of Rwanda's administrative divisions with official codes and center coordinates",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
