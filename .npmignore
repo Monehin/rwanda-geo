@@ -1,0 +1,31 @@
+# Source files
+src/**/*.ts
+src/**/*.js
+src/data/*.json
+
+# Development files
+scripts/
+tests/
+examples/
+*.test.ts
+*.test.js
+
+# Build artifacts
+*.tsbuildinfo
+
+# Development configs
+.eslintrc.js
+tsconfig.json
+tsup.config.ts
+jest.config.js
+
+# Git files
+.gitignore
+.git/
+
+# Documentation
+docs/
+
+# Temporary files
+tmp/
+temp/ 

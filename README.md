@@ -1,34 +1,41 @@
-# rwanda-geo
+# 🇷🇼 Rwanda Geo
 
-> Reliable, typed, and lightweight dataset of Rwanda's full administrative divisions - from provinces to villages - with geospatial support for mapping and data analysis.
+> **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** - from provinces to villages - with advanced geospatial support for mapping, data analysis, and location-based applications.
 
-## Features
-- **Complete Administrative Hierarchy**: All 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages
-- **TypeScript Support**: Fully typed with comprehensive interfaces
-- **Hierarchical Navigation**: Parent-child relationships and full hierarchy traversal
-- **Advanced Search**: Fuzzy search, partial code matching, and suggestions
-- **Validation Utilities**: Code format validation, hierarchy integrity checks
-- **GeoJSON Boundaries**: For provinces and districts (expandable to all levels)
-- **ESM + CommonJS Support**: Works in both Node.js and browser environments
-- **Tree-shakable**: Only import what you need
-- **MIT Licensed**: Free for commercial and personal use
+[![npm version](https://badge.fury.io/js/rwanda-geo.svg)](https://badge.fury.io/js/rwanda-geo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Bundle Size](https://img.shields.io/bundlephobia/min/rwanda-geo)](https://bundlephobia.com/package/rwanda-geo)
 
-## Data Source
-This package uses data extracted from `locations.json`, which contains the complete administrative hierarchy of Rwanda with official counts:
-- **5 Provinces** (Kigali City, Southern, Western, Northern, Eastern)
-- **30 Districts**
-- **416 Sectors**
-- **2,148 Cells**
-- **14,837 Villages** (official count)
+## ✨ Features
 
-## Installation
+- **🗺️ Complete Administrative Hierarchy**: All 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages
+- **🔍 Advanced Search & Navigation**: Fuzzy search, hierarchical traversal, and intelligent suggestions
+- **🛡️ TypeScript First**: Fully typed with comprehensive interfaces and IntelliSense support
+- **⚡ High Performance**: Optimized data structures with 92% compression (373KB package size)
+- **🌐 Universal Support**: Works in Node.js, browsers, and modern JavaScript environments
+- **🔧 Validation Tools**: Built-in data integrity checks and format validation
+- **📊 Rich Metadata**: Geographic coordinates, hierarchical relationships, and official codes
+- **🎯 Tree-shakable**: Only import what you need to keep your bundle size minimal
+
+## 📦 Installation
+
 ```bash
 npm install rwanda-geo
 ```
 
-## Quick Start
+```bash
+yarn add rwanda-geo
+```
+
+```bash
+pnpm add rwanda-geo
+```
+
+## 🚀 Quick Start
 
 ### Basic Usage
+
 ```ts
 import { 
   getAllProvinces, 
@@ -52,184 +59,46 @@ const provinces = getAllProvinces();
 ]
 ```
 
+### Hierarchical Navigation
+
 ```ts
 // Get districts in Kigali City
 const kigaliDistricts = getDistrictsByProvince('RW-UMU');
-```
 
-**Output:**
-```json
-[
-  { "code": "RW-UMU-NYA", "name": "Nyarugenge", "parentCode": "RW-UMU" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo", "parentCode": "RW-UMU" },
-  { "code": "RW-UMU-KIC", "name": "Kicukiro", "parentCode": "RW-UMU" }
-]
-```
-
-```ts
-// Get a specific unit by code
+// Get a specific administrative unit
 const gasabo = getByCode('RW-UMU-GAS');
-```
 
-**Output:**
-```json
-{
-  "code": "RW-UMU-GAS",
-  "name": "Gasabo",
-  "slug": "gasabo",
-  "parentCode": "RW-UMU",
-  "center": { "lat": 0, "lng": 0 }
-}
-```
-
-```ts
-// Get full hierarchy for a village
+// Get complete hierarchy for any location
 const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
 ```
 
-**Output:**
-```json
-[
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo" },
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
-  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo" },
-  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" }
-]
-```
-
-### Advanced Search and Navigation
-```ts
-import { 
-  fuzzySearchByName, 
-  getFullHierarchy, 
-  getDirectChildren, 
-  getSiblings,
-  getAllDescendants 
-} from 'rwanda-geo';
-
-// Fuzzy search for locations
-const searchResults = fuzzySearchByName('kigali', 3, 5);
-```
-
-**Output:**
-```json
-[
-  { 
-    "unit": { "code": "RW-UMU", "name": "Umujyi wa Kigali" }, 
-    "score": 1.0 
-  },
-  { 
-    "unit": { "code": "RW-UMU-GAS", "name": "Gasabo" }, 
-    "score": 0.8 
-  }
-]
-```
+### Advanced Search
 
 ```ts
-// Get complete hierarchy with all levels
-const fullHierarchy = getFullHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+import { fuzzySearchByName, getSuggestions } from 'rwanda-geo';
+
+// Fuzzy search with scoring
+const results = fuzzySearchByName('kigali', 0.8, 5);
+
+// Smart suggestions with match types
+const suggestions = getSuggestions('gas', 10);
 ```
 
-**Output:**
-```json
-[
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
-  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo", "level": "cell" },
-  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo", "level": "village" }
-]
-```
+## 📊 Data Overview
 
-```ts
-// Get direct children of a district
-const gasaboChildren = getDirectChildren('RW-UMU-GAS');
-```
+This package contains the complete administrative hierarchy of Rwanda with official counts:
 
-**Output:**
-```json
-[
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
-  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata" },
-  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero" },
-  // ... 12 more sectors
-]
-```
+| Level | Count | Example Code | Example Name |
+|-------|-------|--------------|--------------|
+| **Provinces** | 5 | `RW-UMU` | Umujyi wa Kigali |
+| **Districts** | 30 | `RW-UMU-GAS` | Gasabo |
+| **Sectors** | 416 | `RW-UMU-GAS-BUM` | Bumbogo |
+| **Cells** | 2,148 | `RW-UMU-GAS-BUM-BUM` | Bumbogo |
+| **Villages** | 14,837 | `RW-UMU-GAS-BUM-BUM-BUM` | Bumbogo |
 
-### Validation and Data Integrity
-```ts
-import { 
-  validateCodeFormat, 
-  validateParentChildRelationship,
-  validateHierarchyIntegrity,
-  validateUnitProperties,
-  getSummary 
-} from 'rwanda-geo';
+**Total: 17,436 administrative units**
 
-// Validate code format
-const validation = validateCodeFormat('RW-UMU-GAS-BUM-BUM-BUM');
-```
-
-**Output:**
-```json
-{
-  "isValid": true,
-  "level": "village",
-  "format": "RW-XX-YY-ZZ-AA-BB"
-}
-```
-
-```ts
-// Validate parent-child relationship
-const relationship = validateParentChildRelationship('RW-UMU-GAS', 'RW-UMU-GAS-BUM');
-```
-
-**Output:**
-```json
-{
-  "isValid": true,
-  "parentLevel": "district",
-  "childLevel": "sector"
-}
-```
-
-```ts
-// Check overall hierarchy integrity
-const integrity = validateHierarchyIntegrity();
-```
-
-**Output:**
-```json
-{
-  "isValid": true,
-  "summary": {
-    "totalUnits": 17436,
-    "orphanedUnits": 0,
-    "invalidParents": 0,
-    "circularReferences": 0,
-    "missingUnits": 0
-  }
-}
-```
-
-```ts
-// Get data summary
-const summary = getSummary();
-```
-
-**Output:**
-```json
-{
-  "provinces": 5,
-  "districts": 30,
-  "sectors": 416,
-  "cells": 2148,
-  "villages": 14837
-}
-```
-
-## API Reference
+## 🔧 API Reference
 
 ### Core Data Functions
 
@@ -328,18 +197,20 @@ Comprehensive hierarchy validation.
 #### `validateUnitProperties(unit: AdministrativeUnit): { isValid: boolean; issues: string[] }`
 Validates individual unit properties.
 
-## Data Structure
+## 📋 Data Structure
 
 ### Code Format
-- **Province**: `RW-XX` (e.g., `RW-KG` for Kigali City)
-- **District**: `RW-XX-YY` (e.g., `RW-KG-GAS` for Gasabo)
-- **Sector**: `RW-XX-YY-ZZ` (e.g., `RW-KG-GAS-BUM` for Bumbogo)
-- **Cell**: `RW-XX-YY-ZZ-AA` (e.g., `RW-KG-GAS-BUM-BUM` for Bumbogo cell)
-- **Village**: `RW-XX-YY-ZZ-AA-BB` (e.g., `RW-KG-GAS-BUM-BUM-BUM` for Bumbogo village)
+Each administrative unit has a unique hierarchical code:
+
+- **Province**: `RW-XX` (e.g., `RW-UMU` for Kigali City)
+- **District**: `RW-XX-YY` (e.g., `RW-UMU-GAS` for Gasabo)
+- **Sector**: `RW-XX-YY-ZZ` (e.g., `RW-UMU-GAS-BUM` for Bumbogo)
+- **Cell**: `RW-XX-YY-ZZ-AA` (e.g., `RW-UMU-GAS-BUM-BUM` for Bumbogo cell)
+- **Village**: `RW-XX-YY-ZZ-AA-BB` (e.g., `RW-UMU-GAS-BUM-BUM-BUM` for Bumbogo village)
 
 ### Unit Properties
 ```ts
-interface GeoUnit {
+interface AdministrativeUnit {
   code: string;           // Unique hierarchical code
   name: string;           // Official name
   slug: string;           // URL-friendly slug
@@ -351,9 +222,10 @@ interface GeoUnit {
 }
 ```
 
-## Examples
+## 💡 Practical Examples
 
-### Building a Location Selector
+### 1. Building a Location Selector
+
 ```ts
 import { 
   getAllProvinces, 
@@ -405,7 +277,8 @@ class LocationSelector {
 }
 ```
 
-### Creating a Search Autocomplete
+### 2. Creating a Search Autocomplete
+
 ```ts
 import { getSuggestions } from 'rwanda-geo';
 
@@ -433,7 +306,8 @@ function createAutocomplete(input: HTMLInputElement) {
 }
 ```
 
-### Data Analysis and Reporting
+### 3. Data Analysis and Reporting
+
 ```ts
 import { 
   getAllProvinces, 
@@ -447,32 +321,33 @@ function generateReport() {
   const provinces = getAllProvinces();
   const districts = getAllDistricts();
 
-  console.log('Rwanda Administrative Report');
-  console.log('============================');
-  console.log(`Total Administrative Units: ${summary.total}`);
-  console.log(`Provinces: ${summary.provinces}`);
-  console.log(`Districts: ${summary.districts}`);
-  console.log(`Sectors: ${summary.sectors}`);
-  console.log(`Cells: ${summary.cells}`);
-  console.log(`Villages: ${summary.villages}`);
+  const report = {
+    title: 'Rwanda Administrative Report',
+    totalUnits: summary.total,
+    provinces: summary.provinces,
+    districts: summary.districts,
+    sectors: summary.sectors,
+    cells: summary.cells,
+    villages: summary.villages,
+    averages: {
+      villagesPerCell: summary.villages / summary.cells,
+      cellsPerSector: summary.cells / summary.sectors
+    },
+    provinceBreakdown: provinces.map(province => {
+      const provinceDistricts = districts.filter(d => d.parentCode === province.code);
+      return {
+        name: province.name,
+        districtCount: provinceDistricts.length
+      };
+    })
+  };
 
-  // Average villages per cell
-  const avgVillagesPerCell = summary.villages / summary.cells;
-  console.log(`Average villages per cell: ${avgVillagesPerCell.toFixed(2)}`);
-
-  // Average cells per sector
-  const avgCellsPerSector = summary.cells / summary.sectors;
-  console.log(`Average cells per sector: ${avgCellsPerSector.toFixed(2)}`);
-
-  // Province breakdown
-  provinces.forEach(province => {
-    const provinceDistricts = districts.filter(d => d.parentCode === province.code);
-    console.log(`${province.name}: ${provinceDistricts.length} districts`);
-  });
+  return report;
 }
 ```
 
-### Geographic Visualization
+### 4. Geographic Visualization
+
 ```ts
 import { getByCode, getFullHierarchy } from 'rwanda-geo';
 
@@ -510,7 +385,61 @@ function visualizeLocation(code: string) {
 }
 ```
 
-## Development
+### 5. Form Validation
+
+```ts
+import { 
+  validateCodeFormat, 
+  validateParentChildRelationship,
+  getByCode 
+} from 'rwanda-geo';
+
+function validateLocationForm(provinceCode: string, districtCode: string) {
+  const errors: string[] = [];
+
+  // Validate province code format
+  const provinceValidation = validateCodeFormat(provinceCode);
+  if (!provinceValidation.isValid) {
+    errors.push(`Invalid province code: ${provinceValidation.error}`);
+  }
+
+  // Validate district code format
+  const districtValidation = validateCodeFormat(districtCode);
+  if (!districtValidation.isValid) {
+    errors.push(`Invalid district code: ${districtValidation.error}`);
+  }
+
+  // Validate parent-child relationship
+  const relationshipValidation = validateParentChildRelationship(provinceCode, districtCode);
+  if (!relationshipValidation.isValid) {
+    errors.push(`Invalid relationship: ${relationshipValidation.error}`);
+  }
+
+  // Check if units exist
+  if (!getByCode(provinceCode)) {
+    errors.push('Province not found');
+  }
+  if (!getByCode(districtCode)) {
+    errors.push('District not found');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+}
+```
+
+## 🛠️ Development
+
+### Automated Build Process
+The project uses an automated build process that handles data compression and file management:
+
+- **`npm run build`**: Automatically gzips JSON data files, builds the TypeScript code, and copies gzipped files to the build output
+- **`npm run build:all`**: Cleans the build directory, then runs the full build process
+- **`npm run gzip-data`**: Manually gzip JSON data files (usually not needed as it's automated)
+
+The build process reduces data file sizes by ~92% using gzip compression while maintaining full functionality.
 
 ### Data Generation
 To regenerate the data files from the source `locations.json`:
@@ -537,11 +466,49 @@ npm run lint
 npm test
 ```
 
-## Data Structure
-- `src/data/` — JSON files for each administrative level
-- `src/boundaries/` — GeoJSON boundaries
-- `src/types.ts` — TypeScript type definitions
-- `src/helpers.ts` — Helper functions for querying data
+## 📁 Project Structure
+```
+rwanda-geo/
+├── src/
+│   ├── data/           # JSON data files (gzipped for production)
+│   ├── boundaries/     # GeoJSON boundaries
+│   ├── types.ts        # TypeScript type definitions
+│   ├── helpers.ts      # Core helper functions
+│   └── index.ts        # Main entry point
+├── examples/           # Usage examples
+├── scripts/            # Build and data processing scripts
+└── dist/              # Build output
+```
 
-## License
-MIT 
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+```bash
+git clone https://github.com/monehin/rwanda-geo.git
+cd rwanda-geo
+npm install
+npm run build:all
+npm test
+```
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Data sourced from official Rwanda administrative divisions
+- Built with TypeScript for type safety and developer experience
+- Optimized for performance and bundle size
+
+## 📞 Support
+
+- 📧 **Email**: e.monehin@live.com
+- 🐛 **Issues**: [GitHub Issues](https://github.com/monehin/rwanda-geo/issues)
+- 📖 **Documentation**: [Full API Reference](https://github.com/monehin/rwanda-geo#api-reference)
+
+---
+
+**Made with ❤️ for Rwanda's digital transformation** 

@@ -1,16 +1,12 @@
-import provinces from './data/provinces.json';
-import districts from './data/districts.json';
-import sectors from './data/sectors.json';
-import cells from './data/cells.json';
-import villages from './data/villages.json';
+import { loadGzippedJson } from './utils/gzip-loader';
 import { Province, District, Sector, Cell, Village, AdministrativeUnit } from './types';
 
-// Type the imported JSON data
-const provincesData = provinces as Province[];
-const districtsData = districts as District[];
-const sectorsData = sectors as Sector[];
-const cellsData = cells as Cell[];
-const villagesData = villages as Village[];
+// Load gzipped JSON data
+const provincesData = loadGzippedJson<Province[]>('provinces');
+const districtsData = loadGzippedJson<District[]>('districts');
+const sectorsData = loadGzippedJson<Sector[]>('sectors');
+const cellsData = loadGzippedJson<Cell[]>('cells');
+const villagesData = loadGzippedJson<Village[]>('villages');
 
 // Create a map for fast lookups
 const allUnits = new Map<string, AdministrativeUnit>();
