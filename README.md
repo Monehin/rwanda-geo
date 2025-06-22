@@ -310,35 +310,6 @@ interface AdministrativeUnit {
 
 ## 🛠️ Development
 
-### Setup Required
-To enable automated publishing, you need to:
-
-1. **Create NPM Token:**
-   - Go to [npmjs.com](https://www.npmjs.com/settings/tokens)
-   - Create a new "Automation" token
-   - Copy the token
-
-2. **Add GitHub Secret:**
-   - Go to your GitHub repository settings
-   - Navigate to "Secrets and variables" → "Actions"
-   - Create a new secret named `NPM_TOKEN`
-   - Paste your npm token
-
-### Automated Build Process
-The project uses an automated build process that handles data compression and file management:
-
-- **`npm run build`**: Automatically gzips JSON data files, builds the TypeScript code, and copies gzipped files to the build output
-- **`npm run build:all`**: Cleans the build directory, then runs the full build process
-- **`npm run gzip-data`**: Manually gzip JSON data files (usually not needed as it's automated)
-
-The build process reduces data file sizes by ~92% using gzip compression while maintaining full functionality.
-
-### Data Generation
-To regenerate the data files from the source `locations.json`:
-```bash
-node scripts/generate-data.js
-```
-
 ### Code Quality
 The project uses TypeScript for type safety. To check types:
 ```bash
@@ -391,6 +362,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 ## 🙏 Acknowledgments
 
 - Data sourced from official Rwanda administrative divisions
+- Original data structure inspired by [jnkindi/rwanda-locations-json](https://github.com/jnkindi/rwanda-locations-json)
 - Built with TypeScript for type safety and developer experience
 - Optimized for performance and bundle size
 
