@@ -432,6 +432,57 @@ function validateLocationForm(provinceCode: string, districtCode: string) {
 
 ## 🛠️ Development
 
+### Automated Publishing Workflow
+This project uses GitHub Actions for automated npm publishing. There are several ways to trigger a release:
+
+#### Method 1: Using Release Scripts (Recommended)
+```bash
+# For patch releases (1.0.5 → 1.0.6)
+npm run release:patch
+
+# For minor releases (1.0.5 → 1.1.0)
+npm run release:minor
+
+# For major releases (1.0.5 → 2.0.0)
+npm run release:major
+```
+
+The release script will:
+1. ✅ Check if working directory is clean
+2. 🧪 Run all tests
+3. 🔨 Build the package
+4. 📦 Bump the version
+5. 📤 Push changes and create git tag
+6. 🎉 Guide you to create a GitHub release
+
+#### Method 2: Manual GitHub Actions
+1. Go to [Actions](https://github.com/monehin/rwanda-geo/actions)
+2. Select "Version and Publish to NPM"
+3. Click "Run workflow"
+4. Choose version type (patch/minor/major)
+5. Click "Run workflow"
+
+#### Method 3: Git Tags
+```bash
+# Create and push a tag
+git tag v1.0.6
+git push origin v1.0.6
+```
+
+### Setup Required
+To enable automated publishing, you need to:
+
+1. **Create NPM Token:**
+   - Go to [npmjs.com](https://www.npmjs.com/settings/tokens)
+   - Create a new "Automation" token
+   - Copy the token
+
+2. **Add GitHub Secret:**
+   - Go to your GitHub repository settings
+   - Navigate to "Secrets and variables" → "Actions"
+   - Create a new secret named `NPM_TOKEN`
+   - Paste your npm token
+
 ### Automated Build Process
 The project uses an automated build process that handles data compression and file management:
 

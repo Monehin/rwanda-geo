@@ -38,7 +38,10 @@
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit",
-    "gzip-data": "node scripts/gzip-data.js"
+    "gzip-data": "node scripts/gzip-data.js",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major"
   },
   "keywords": [
     "rwanda",
