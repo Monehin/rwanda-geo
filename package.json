@@ -1,6 +1,6 @@
 {
   "name": "rwanda-geo",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "🇷🇼 Complete, typed, and lightweight dataset of Rwanda's administrative divisions - Provinces, Districts, Sectors, Cells, Villages with official codes and coordinates",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
