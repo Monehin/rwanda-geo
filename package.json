@@ -1,6 +1,6 @@
 {
   "name": "rwanda-geo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A reliable, typed, and lightweight dataset of Rwanda's full administrative divisions with geospatial support",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
@@ -59,12 +59,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Monehin/rwanda-geo.git"
+    "url": "git+https://github.com/monehin/rwanda-geo.git"
   },
   "bugs": {
-    "url": "https://github.com/Monehin/rwanda-geo/issues"
+    "url": "https://github.com/monehin/rwanda-geo/issues"
   },
-  "homepage": "https://github.com/Monehin/rwanda-geo#readme",
+  "homepage": "https://github.com/monehin/rwanda-geo#readme",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^20.0.0",
