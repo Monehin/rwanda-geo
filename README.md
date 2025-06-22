@@ -1,6 +1,6 @@
 # 🇷🇼 Rwanda Geo
 
-> **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** - from provinces to villages - with advanced geospatial support for mapping, data analysis, and location-based applications.
+> **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** — from provinces to villages — with official codes and center coordinates for each unit.
 
 [![npm version](https://badge.fury.io/js/rwanda-geo.svg)](https://badge.fury.io/js/rwanda-geo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
