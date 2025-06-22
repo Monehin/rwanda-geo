@@ -361,7 +361,6 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Data sourced from official Rwanda administrative divisions
 - Original data structure source: [jnkindi/rwanda-locations-json](https://github.com/jnkindi/rwanda-locations-json)
 - Built with TypeScript for type safety and developer experience
 - Optimized for performance and bundle size
