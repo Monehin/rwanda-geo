@@ -53,12 +53,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/rwanda-geo.git"
+    "url": "https://github.com/Monehin/rwanda-geo.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/rwanda-geo/issues"
+    "url": "https://github.com/Monehin/rwanda-geo/issues"
   },
-  "homepage": "https://github.com/yourusername/rwanda-geo#readme",
+  "homepage": "https://github.com/Monehin/rwanda-geo#readme",
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^20.0.0",
