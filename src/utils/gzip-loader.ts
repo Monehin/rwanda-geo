@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { gunzipSync } from 'zlib';
 import { join } from 'path';
 
@@ -8,22 +8,36 @@ import { join } from 'path';
  * @returns The parsed JSON data
  */
 export function loadGzippedJson<T>(filename: string): T {
-  try {
-    // Always resolve relative to dist/data
-    const gzPath = join(process.cwd(), 'dist/data', `${filename}.json.gz`);
-    const gzipped = readFileSync(gzPath);
-    const decompressed = gunzipSync(gzipped);
-    return JSON.parse(decompressed.toString('utf8'));
-  } catch (error) {
-    // Fallback to regular JSON if gzipped version doesn't exist
+  // Try multiple paths in order of preference
+  const paths = [
+    join(process.cwd(), 'src/data', `${filename}.json.gz`),  // Development
+    join(process.cwd(), 'dist/data', `${filename}.json.gz`), // Production
+    join(process.cwd(), 'src/data', `${filename}.json`),     // Fallback JSON
+    join(process.cwd(), 'dist/data', `${filename}.json`)     // Production fallback
+  ];
+
+  for (const path of paths) {
     try {
-      const jsonPath = join(process.cwd(), 'dist/data', `${filename}.json`);
-      const content = readFileSync(jsonPath, 'utf8');
-      return JSON.parse(content);
-    } catch (fallbackError) {
-      throw new Error(`Failed to load ${filename}.json.gz or ${filename}.json: ${error instanceof Error ? error.message : 'Unknown error'} (fallback: ${fallbackError instanceof Error ? fallbackError.message : 'Unknown error'})`);
+      if (existsSync(path)) {
+        if (path.endsWith('.gz')) {
+          // Load and decompress gzipped file
+          const gzipped = readFileSync(path);
+          const decompressed = gunzipSync(gzipped);
+          return JSON.parse(decompressed.toString('utf8'));
+        } else {
+          // Load regular JSON file
+          const content = readFileSync(path, 'utf8');
+          return JSON.parse(content);
+        }
+      }
+    } catch {
+      // Continue to next path if this one fails
+      continue;
     }
   }
+
+  // If all paths fail, throw an error
+  throw new Error(`Failed to load ${filename}.json.gz or ${filename}.json from any of the expected locations: ${paths.join(', ')}`);
 }
 
 /**
