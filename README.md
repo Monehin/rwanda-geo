@@ -204,11 +204,13 @@ Each administrative unit has a unique hierarchical code:
 ### Unit Properties
 ```ts
 interface AdministrativeUnit {
-  code: string;           // Unique hierarchical code
-  name: string;           // Official name
-  slug: string;           // URL-friendly slug
-  parentCode?: string;    // Parent unit code (undefined for provinces)
-  center?: {              // Geographic center coordinates
+  id: number;              // Unique numeric identifier
+  code: string;            // Unique hierarchical code
+  name: string;            // Official name
+  slug: string;            // URL-friendly slug
+  shortCode: string;       // Short numeric code (1, 01, 001, 0001, 00001)
+  parentCode?: string;     // Parent unit code (undefined for provinces)
+  center?: {               // Geographic center coordinates
     lat: number;
     lng: number;
   };

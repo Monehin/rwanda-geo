@@ -2,9 +2,11 @@
  * Core interface for all geographical units in Rwanda
  */
 export interface GeoUnit {
+  id: number;
   code: string;
   name: string;
   slug: string;
+  shortCode: string;
   parentCode?: string;
   center?: {
     lat: number;
@@ -16,14 +18,14 @@ export interface GeoUnit {
  * Province-level administrative unit
  */
 export interface Province extends GeoUnit {
-  code: string; // Format: RW-XX (e.g., RW-KG for Kigali)
+  code: string; // Format: RW-XX (e.g., RW-01 for Kigali)
 }
 
 /**
  * District-level administrative unit
  */
 export interface District extends GeoUnit {
-  code: string; // Format: RW-XX-YY (e.g., RW-KG-GAS for Gasabo)
+  code: string; // Format: RW-D-XX (e.g., RW-D-01 for Gasabo)
   parentCode: string; // Province code
 }
 
@@ -31,7 +33,7 @@ export interface District extends GeoUnit {
  * Sector-level administrative unit
  */
 export interface Sector extends GeoUnit {
-  code: string; // Format: RW-XX-YY-ZZ
+  code: string; // Format: RW-S-XXX (e.g., RW-S-001 for Bumbogo)
   parentCode: string; // District code
 }
 
@@ -39,7 +41,7 @@ export interface Sector extends GeoUnit {
  * Cell-level administrative unit
  */
 export interface Cell extends GeoUnit {
-  code: string; // Format: RW-XX-YY-ZZ-AA
+  code: string; // Format: RW-C-XXXX (e.g., RW-C-0001 for Bumbogo cell)
   parentCode: string; // Sector code
 }
 
@@ -47,9 +49,8 @@ export interface Cell extends GeoUnit {
  * Village-level administrative unit
  */
 export interface Village extends GeoUnit {
-  code: string; // Format: RW-XX-YY-ZZ-AA-BB
+  code: string; // Format: RW-V-XXXXX (e.g., RW-V-00001 for Bumbogo village)
   parentCode: string; // Cell code
-  shortCode: string; // Short numeric code for villages
 }
 
 /**
