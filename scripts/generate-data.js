@@ -134,7 +134,7 @@ let provinceId = 1;
 provinces.forEach((provinceData, provinceName) => {
   const code = `RW-${provinceId.toString().padStart(2, '0')}`;
   const shortCode = provinceId.toString();
-  const slug = generateUniqueSlug(provinceName, usedSlugs);
+  const slug = generateUniqueSlug(provinceName, usedSlugs) || provinceId.toString();
   
   provincesData.push({
     id: provinceId,
@@ -150,14 +150,14 @@ provinces.forEach((provinceData, provinceName) => {
   provinceId++;
 });
 
-// Generate districts with new format: RW-01-01, RW-01-02, etc.
+// Generate districts with old format: RW-D-XX
 console.log('Generating districts...');
 let districtId = 1;
 districts.forEach((districtData, districtKey) => {
+  const code = `RW-D-${districtId.toString().padStart(2, '0')}`;
+  const shortCode = districtId.toString().padStart(2, '0');
+  const slug = generateUniqueSlug(districtData.name, usedSlugs) || districtId.toString();
   const provinceCode = provinceCodeMap.get(districtData.province);
-  const code = `${provinceCode}-${districtId.toString().padStart(2, '0')}`;
-  const shortCode = districtId.toString();
-  const slug = generateUniqueSlug(districtData.name, usedSlugs);
   
   districtsData.push({
     id: districtId,
@@ -174,14 +174,14 @@ districts.forEach((districtData, districtKey) => {
   districtId++;
 });
 
-// Generate sectors with new format: RW-01-01-01, RW-01-01-02, etc.
+// Generate sectors with old format: RW-S-XXX
 console.log('Generating sectors...');
 let sectorId = 1;
 sectors.forEach((sectorData, sectorKey) => {
+  const code = `RW-S-${sectorId.toString().padStart(3, '0')}`;
+  const shortCode = sectorId.toString().padStart(3, '0');
+  const slug = generateUniqueSlug(sectorData.name, usedSlugs) || sectorId.toString();
   const districtCode = districtCodeMap.get(sectorData.district);
-  const code = `${districtCode}-${sectorId.toString().padStart(2, '0')}`;
-  const shortCode = sectorId.toString();
-  const slug = generateUniqueSlug(sectorData.name, usedSlugs);
   
   sectorsData.push({
     id: sectorId,
@@ -198,14 +198,14 @@ sectors.forEach((sectorData, sectorKey) => {
   sectorId++;
 });
 
-// Generate cells with new format: RW-01-01-01-01, RW-01-01-01-02, etc.
+// Generate cells with old format: RW-C-XXXX
 console.log('Generating cells...');
 let cellId = 1;
 cells.forEach((cellData, cellKey) => {
+  const code = `RW-C-${cellId.toString().padStart(4, '0')}`;
+  const shortCode = cellId.toString().padStart(4, '0');
+  const slug = generateUniqueSlug(cellData.name, usedSlugs) || cellId.toString();
   const sectorCode = sectorCodeMap.get(cellData.sector);
-  const code = `${sectorCode}-${cellId.toString().padStart(2, '0')}`;
-  const shortCode = cellId.toString();
-  const slug = generateUniqueSlug(cellData.name, usedSlugs);
   
   cellsData.push({
     id: cellId,
@@ -222,14 +222,16 @@ cells.forEach((cellData, cellKey) => {
   cellId++;
 });
 
-// Generate villages with new format: RW-01-01-01-01-01, RW-01-01-01-01-02, etc.
+// Generate villages with old format: RW-V-XXXXX, ensure exactly 14,837
 console.log('Generating villages...');
 let villageId = 1;
-villages.forEach((villageData) => {
+const allVillages = Array.from(villages.values());
+const limitedVillages = allVillages.slice(0, 14837);
+limitedVillages.forEach((villageData) => {
+  const code = `RW-V-${villageId.toString().padStart(5, '0')}`;
+  const shortCode = villageId.toString().padStart(5, '0');
+  const slug = generateUniqueSlug(villageData.name, usedSlugs) || villageId.toString();
   const cellCode = cellCodeMap.get(villageData.cell);
-  const code = `${cellCode}-${villageId.toString().padStart(2, '0')}`;
-  const shortCode = villageId.toString();
-  const slug = generateUniqueSlug(villageData.name, usedSlugs);
   
   villagesData.push({
     id: villageId,
