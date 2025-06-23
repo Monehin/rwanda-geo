@@ -15,6 +15,10 @@ on:
           - minor
           - major
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   manual-publish:
     runs-on: ubuntu-latest
@@ -64,5 +68,6 @@ jobs:
           git add package.json package-lock.json
           git commit -m "Bump version to ${{ env.NEW_VERSION }} [skip ci]"
           git tag v${{ env.NEW_VERSION }}
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push origin main
           git push origin v${{ env.NEW_VERSION }} 
