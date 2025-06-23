@@ -1,4 +1,4 @@
-# 🇷🇼 Rwanda Geo
+# Rwanda-Geo 🇷🇼
 
 > **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** - Provinces, Districts, Sectors, Cells, Villages.
 
