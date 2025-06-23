@@ -5,32 +5,72 @@ const { execSync } = require('child_process');
 console.log('Starting data extraction from locations.json.gz...');
 
 // Read the locations.json.gz file
-const locationsPath = path.join(__dirname, '..', 'locations.json.gz');
+const locationsGzPath = path.join(__dirname, '..', 'locations.json.gz');
+const locationsJsonPath = path.join(__dirname, '..', 'locations.json');
 console.log('Reading locations.json.gz...');
 
-if (!fs.existsSync(locationsPath)) {
+let locations;
+
+// Check if we have the compressed file
+if (fs.existsSync(locationsGzPath)) {
+  try {
+    const compressedData = fs.readFileSync(locationsGzPath);
+    const jsonData = execSync('gunzip -c', { input: compressedData, encoding: 'utf8' });
+    locations = JSON.parse(jsonData);
+    console.log('✓ Successfully parsed locations.json.gz');
+  } catch (error) {
+    console.error('Error parsing locations.json.gz:', error.message);
+    process.exit(1);
+  }
+} 
+// Check if we have the uncompressed file
+else if (fs.existsSync(locationsJsonPath)) {
+  try {
+    const jsonData = fs.readFileSync(locationsJsonPath, 'utf8');
+    locations = JSON.parse(jsonData);
+    console.log('✓ Successfully parsed locations.json');
+    
+    // Compress it for future use
+    try {
+      execSync('gzip -9 locations.json', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+      console.log('✓ Compressed locations.json to locations.json.gz');
+    } catch (compressError) {
+      console.warn('Warning: Could not compress locations.json:', compressError.message);
+    }
+  } catch (error) {
+    console.error('Error parsing locations.json:', error.message);
+    process.exit(1);
+  }
+} 
+// Download the file if neither exists
+else {
   console.error('Error: locations.json.gz not found');
   console.log('Downloading from source repository...');
   
-  // Download the file if it doesn't exist
   try {
-    execSync('curl -H "Accept: application/vnd.github.v3.raw" -o locations.json.gz https://api.github.com/repos/jnkindi/rwanda-locations-json/contents/locations.json', { stdio: 'inherit' });
-    console.log('✓ Downloaded locations.json.gz');
+    // Download the uncompressed file
+    execSync('curl -H "Accept: application/vnd.github.v3.raw" -o locations.json https://api.github.com/repos/jnkindi/rwanda-locations-json/contents/locations.json', { 
+      stdio: 'inherit',
+      cwd: path.join(__dirname, '..')
+    });
+    console.log('✓ Downloaded locations.json');
+    
+    // Parse the downloaded file
+    const jsonData = fs.readFileSync(locationsJsonPath, 'utf8');
+    locations = JSON.parse(jsonData);
+    console.log('✓ Successfully parsed locations.json');
+    
+    // Compress it for future use
+    try {
+      execSync('gzip -9 locations.json', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+      console.log('✓ Compressed locations.json to locations.json.gz');
+    } catch (compressError) {
+      console.warn('Warning: Could not compress locations.json:', compressError.message);
+    }
   } catch (error) {
-    console.error('Error downloading locations.json.gz:', error.message);
+    console.error('Error downloading or parsing locations.json:', error.message);
     process.exit(1);
   }
-}
-
-// Parse the gzipped JSON file
-let locations;
-try {
-  const compressedData = fs.readFileSync(locationsPath);
-  const jsonData = execSync('gunzip -c', { input: compressedData, encoding: 'utf8' });
-  locations = JSON.parse(jsonData);
-} catch (error) {
-  console.error('Error parsing locations.json.gz:', error.message);
-  process.exit(1);
 }
 
 // Helper to generate slug
