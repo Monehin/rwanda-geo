@@ -12,48 +12,33 @@
  */
 
 const fs = require('fs');
-const { execSync } = require('child_process');
-
-function run(cmd) {
-  try {
-    return execSync(cmd, { encoding: 'utf8' }).trim();
-  } catch {
-    return null;
-  }
-}
+const { 
+  runGitCommand, 
+  getLatestRemoteTag, 
+  getTagCommit, 
+  getHeadCommit,
+  logSection, 
+  logSuccess, 
+  logError, 
+  logWarning 
+} = require('./utils');
 
 function getLocalVersion() {
   try {
     const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
     return packageJson.version;
   } catch (error) {
-    console.error('❌ Error reading package.json:', error.message);
+    logError(`Error reading package.json: ${error.message}`);
     return null;
   }
 }
 
 function getNpmVersion() {
-  return run('npm view rwanda-geo version');
-}
-
-function getLatestRemoteTag() {
-  // Fetch all tags from remote
-  run('git fetch --tags --force');
-  // Get the latest tag by version sort
-  const tag = run('git tag --list --sort=-v:refname | head -1');
-  return tag || null;
+  return runGitCommand('npm view rwanda-geo version');
 }
 
 function getTagVersion(tag) {
   return tag ? tag.replace(/^v/, '') : null;
-}
-
-function getTagCommit(tag) {
-  return tag ? run(`git rev-list -n 1 ${tag}`) : null;
-}
-
-function getHeadCommit() {
-  return run('git rev-parse HEAD');
 }
 
 function updateLocalVersion(newVersion) {
@@ -61,41 +46,41 @@ function updateLocalVersion(newVersion) {
     const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
     packageJson.version = newVersion;
     fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2) + '\n');
-    console.log(`✅ Updated local version to ${newVersion}`);
+    logSuccess(`Updated local version to ${newVersion}`);
     return true;
   } catch (error) {
-    console.error('❌ Error updating package.json:', error.message);
+    logError(`Error updating package.json: ${error.message}`);
     return false;
   }
 }
 
 function createGitTag(version) {
   try {
-    run(`git tag v${version}`);
-    console.log(`✅ Created git tag v${version}`);
+    runGitCommand(`git tag v${version}`);
+    logSuccess(`Created git tag v${version}`);
     return true;
   } catch (error) {
-    console.error('❌ Error creating git tag:', error.message);
+    logError(`Error creating git tag: ${error.message}`);
     return false;
   }
 }
 
 function pushGitTag(version) {
   try {
-    run(`git push origin v${version}`);
-    console.log(`✅ Pushed git tag v${version}`);
+    runGitCommand(`git push origin v${version}`);
+    logSuccess(`Pushed git tag v${version}`);
     return true;
   } catch (error) {
-    console.error('❌ Error pushing git tag:', error.message);
+    logError(`Error pushing git tag: ${error.message}`);
     return false;
   }
 }
 
 function main() {
-  console.log('🔍 Improved Version Sync Check\n');
+  logSection('Improved Version Sync Check');
 
   // Always fetch tags from remote
-  run('git fetch --tags --force');
+  runGitCommand('git fetch --tags --force');
 
   const localVersion = getLocalVersion();
   const npmVersion = getNpmVersion();
@@ -113,19 +98,19 @@ function main() {
   console.log('');
 
   if (!localVersion || !npmVersion) {
-    console.log('❌ Cannot proceed due to errors reading versions');
+    logError('Cannot proceed due to errors reading versions');
     process.exit(1);
   }
 
   // Check if all versions are the same
   if (localVersion === npmVersion && localVersion === latestTagVersion && latestTagCommit === headCommit) {
-    console.log('✅ All versions and git tags are in sync!');
+    logSuccess('All versions and git tags are in sync!');
     return;
   }
 
   // If HEAD is not at the latest tag, warn user
   if (latestTagCommit && headCommit && latestTagCommit !== headCommit) {
-    console.log('⚠️  HEAD is not at the latest tag commit!');
+    logWarning('HEAD is not at the latest tag commit!');
     console.log(`   Latest tag (${latestTag}) is at commit ${latestTagCommit}`);
     console.log(`   Your HEAD is at commit ${headCommit}`);
     console.log('');
@@ -153,11 +138,11 @@ function main() {
   }
 
   if (npmVersion !== highestVersion) {
-    console.log(`⚠️  NPM registry version (${npmVersion}) is not the highest. You may need to publish.`);
+    logWarning(`NPM registry version (${npmVersion}) is not the highest. You may need to publish.`);
     console.log('   To publish, run: npm publish');
   }
 
-  console.log('\n✅ Version sync completed. All versions should now be aligned!');
+  logSuccess('Version sync completed. All versions should now be aligned!');
 }
 
 main(); 

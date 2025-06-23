@@ -1,76 +1,22 @@
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { 
+  loadLocationsData, 
+  PATHS, 
+  logSection, 
+  logSuccess, 
+  logError 
+} = require('./utils');
 
 console.log('Starting data extraction from locations.json.gz...');
 
-// Read the locations.json.gz file
-const locationsGzPath = path.join(__dirname, '..', 'locations.json.gz');
-const locationsJsonPath = path.join(__dirname, '..', 'locations.json');
-console.log('Reading locations.json.gz...');
-
+// Load locations data using shared utility
 let locations;
-
-// Check if we have the compressed file
-if (fs.existsSync(locationsGzPath)) {
-  try {
-    const compressedData = fs.readFileSync(locationsGzPath);
-    const jsonData = execSync('gunzip -c', { input: compressedData, encoding: 'utf8' });
-    locations = JSON.parse(jsonData);
-    console.log('✓ Successfully parsed locations.json.gz');
-  } catch (error) {
-    console.error('Error parsing locations.json.gz:', error.message);
-    process.exit(1);
-  }
-} 
-// Check if we have the uncompressed file
-else if (fs.existsSync(locationsJsonPath)) {
-  try {
-    const jsonData = fs.readFileSync(locationsJsonPath, 'utf8');
-    locations = JSON.parse(jsonData);
-    console.log('✓ Successfully parsed locations.json');
-    
-    // Compress it for future use
-    try {
-      execSync('gzip -9 locations.json', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
-      console.log('✓ Compressed locations.json to locations.json.gz');
-    } catch (compressError) {
-      console.warn('Warning: Could not compress locations.json:', compressError.message);
-    }
-  } catch (error) {
-    console.error('Error parsing locations.json:', error.message);
-    process.exit(1);
-  }
-} 
-// Download the file if neither exists
-else {
-  console.error('Error: locations.json.gz not found');
-  console.log('Downloading from source repository...');
-  
-  try {
-    // Download the uncompressed file
-    execSync('curl -H "Accept: application/vnd.github.v3.raw" -o locations.json https://api.github.com/repos/jnkindi/rwanda-locations-json/contents/locations.json', { 
-      stdio: 'inherit',
-      cwd: path.join(__dirname, '..')
-    });
-    console.log('✓ Downloaded locations.json');
-    
-    // Parse the downloaded file
-    const jsonData = fs.readFileSync(locationsJsonPath, 'utf8');
-    locations = JSON.parse(jsonData);
-    console.log('✓ Successfully parsed locations.json');
-    
-    // Compress it for future use
-    try {
-      execSync('gzip -9 locations.json', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
-      console.log('✓ Compressed locations.json to locations.json.gz');
-    } catch (compressError) {
-      console.warn('Warning: Could not compress locations.json:', compressError.message);
-    }
-  } catch (error) {
-    console.error('Error downloading or parsing locations.json:', error.message);
-    process.exit(1);
-  }
+try {
+  locations = loadLocationsData();
+} catch (error) {
+  logError(error.message);
+  process.exit(1);
 }
 
 // Helper to generate slug
@@ -199,20 +145,18 @@ provinces.forEach((provinceData, provinceName) => {
     shortCode
   });
   
-  // Store the generated code for parent references
   provinceCodeMap.set(provinceName, code);
   usedSlugs.add(slug);
   provinceId++;
 });
 
-// Generate districts with new format: RW-D-01, RW-D-02, etc.
+// Generate districts with new format: RW-01-01, RW-01-02, etc.
 console.log('Generating districts...');
 let districtId = 1;
 districts.forEach((districtData, districtKey) => {
-  const provinceName = districtData.province;
-  const provinceCode = provinceCodeMap.get(provinceName);
-  const code = `RW-D-${districtId.toString().padStart(2, '0')}`;
-  const shortCode = districtId.toString().padStart(2, '0');
+  const provinceCode = provinceCodeMap.get(districtData.province);
+  const code = `${provinceCode}-${districtId.toString().padStart(2, '0')}`;
+  const shortCode = districtId.toString();
   const slug = generateUniqueSlug(districtData.name, usedSlugs);
   
   districtsData.push({
@@ -225,19 +169,18 @@ districts.forEach((districtData, districtKey) => {
     shortCode
   });
   
-  // Store the generated code for parent references
   districtCodeMap.set(districtKey, code);
   usedSlugs.add(slug);
   districtId++;
 });
 
-// Generate sectors with new format: RW-S-001, RW-S-002, etc.
+// Generate sectors with new format: RW-01-01-01, RW-01-01-02, etc.
 console.log('Generating sectors...');
 let sectorId = 1;
 sectors.forEach((sectorData, sectorKey) => {
   const districtCode = districtCodeMap.get(sectorData.district);
-  const code = `RW-S-${sectorId.toString().padStart(3, '0')}`;
-  const shortCode = sectorId.toString().padStart(3, '0');
+  const code = `${districtCode}-${sectorId.toString().padStart(2, '0')}`;
+  const shortCode = sectorId.toString();
   const slug = generateUniqueSlug(sectorData.name, usedSlugs);
   
   sectorsData.push({
@@ -250,19 +193,18 @@ sectors.forEach((sectorData, sectorKey) => {
     shortCode
   });
   
-  // Store the generated code for parent references
   sectorCodeMap.set(sectorKey, code);
   usedSlugs.add(slug);
   sectorId++;
 });
 
-// Generate cells with new format: RW-C-0001, RW-C-0002, etc.
+// Generate cells with new format: RW-01-01-01-01, RW-01-01-01-02, etc.
 console.log('Generating cells...');
 let cellId = 1;
 cells.forEach((cellData, cellKey) => {
   const sectorCode = sectorCodeMap.get(cellData.sector);
-  const code = `RW-C-${cellId.toString().padStart(4, '0')}`;
-  const shortCode = cellId.toString().padStart(4, '0');
+  const code = `${sectorCode}-${cellId.toString().padStart(2, '0')}`;
+  const shortCode = cellId.toString();
   const slug = generateUniqueSlug(cellData.name, usedSlugs);
   
   cellsData.push({
@@ -275,23 +217,18 @@ cells.forEach((cellData, cellKey) => {
     shortCode
   });
   
-  // Store the generated code for parent references
   cellCodeMap.set(cellKey, code);
   usedSlugs.add(slug);
   cellId++;
 });
 
-// Generate villages with new format: RW-V-00001, RW-V-00002, etc.
+// Generate villages with new format: RW-01-01-01-01-01, RW-01-01-01-01-02, etc.
 console.log('Generating villages...');
 let villageId = 1;
-const validVillages = Array.from(villages.entries())
-  .filter(([, villageData]) => villageData.name && villageData.name.trim() !== '') // Remove empty names
-  .slice(0, 14837); // Ensure exact count
-
-validVillages.forEach(([, villageData]) => {
+villages.forEach((villageData) => {
   const cellCode = cellCodeMap.get(villageData.cell);
-  const code = `RW-V-${villageId.toString().padStart(5, '0')}`;
-  const shortCode = villageId.toString().padStart(5, '0');
+  const code = `${cellCode}-${villageId.toString().padStart(2, '0')}`;
+  const shortCode = villageId.toString();
   const slug = generateUniqueSlug(villageData.name, usedSlugs);
   
   villagesData.push({
@@ -303,24 +240,33 @@ validVillages.forEach(([, villageData]) => {
     center: { lat: 0, lng: 0 },
     shortCode
   });
+  
   usedSlugs.add(slug);
   villageId++;
 });
 
-console.log(`Generated: ${provincesData.length} provinces, ${districtsData.length} districts, ${sectorsData.length} sectors, ${cellsData.length} cells, ${villagesData.length} villages`);
-
-// Write data files
-const dataDir = path.join(__dirname, '..', 'src', 'data');
-
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+// Ensure data directory exists
+if (!fs.existsSync(PATHS.dataDir)) {
+  fs.mkdirSync(PATHS.dataDir, { recursive: true });
 }
 
-fs.writeFileSync(path.join(dataDir, 'provinces.json'), JSON.stringify(provincesData, null, 2));
-fs.writeFileSync(path.join(dataDir, 'districts.json'), JSON.stringify(districtsData, null, 2));
-fs.writeFileSync(path.join(dataDir, 'sectors.json'), JSON.stringify(sectorsData, null, 2));
-fs.writeFileSync(path.join(dataDir, 'cells.json'), JSON.stringify(cellsData, null, 2));
-fs.writeFileSync(path.join(dataDir, 'villages.json'), JSON.stringify(villagesData, null, 2));
+// Write data files
+console.log('Writing data files...');
 
-console.log('Data files generated successfully!');
-console.log('Files saved to:', dataDir); 
+fs.writeFileSync(path.join(PATHS.dataDir, 'provinces.json'), JSON.stringify(provincesData, null, 2));
+fs.writeFileSync(path.join(PATHS.dataDir, 'districts.json'), JSON.stringify(districtsData, null, 2));
+fs.writeFileSync(path.join(PATHS.dataDir, 'sectors.json'), JSON.stringify(sectorsData, null, 2));
+fs.writeFileSync(path.join(PATHS.dataDir, 'cells.json'), JSON.stringify(cellsData, null, 2));
+fs.writeFileSync(path.join(PATHS.dataDir, 'villages.json'), JSON.stringify(villagesData, null, 2));
+
+logSection('Data Generation Summary');
+console.log(`Provinces: ${provincesData.length}`);
+console.log(`Districts: ${districtsData.length}`);
+console.log(`Sectors: ${sectorsData.length}`);
+console.log(`Cells: ${cellsData.length}`);
+console.log(`Villages: ${villagesData.length}`);
+console.log(`Total: ${provincesData.length + districtsData.length + sectorsData.length + cellsData.length + villagesData.length} locations`);
+
+logSuccess('Data generation complete!');
+console.log('Files written to src/data/');
+console.log('Next: Run "npm run optimize-data" to compress the files'); 
