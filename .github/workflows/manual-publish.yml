@@ -1,9 +1,8 @@
-name: Version and Publish to NPM
+name: Manual Publish to NPM
 
 on:
-  push:
-    branches: [main]
-    tags: ['v*']
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       version_type:
@@ -17,7 +16,7 @@ on:
           - major
 
 jobs:
-  version-and-publish:
+  manual-publish:
     runs-on: ubuntu-latest
     
     steps:
@@ -42,48 +41,28 @@ jobs:
       - name: Build package
         run: npm run build:all
         
-      - name: Check if version bump is needed
-        id: check_version
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "manual_trigger=true" >> $GITHUB_OUTPUT
-            echo "version_type=${{ github.event.inputs.version_type }}" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            echo "tag_trigger=true" >> $GITHUB_OUTPUT
-          else
-            echo "no_version_bump=true" >> $GITHUB_OUTPUT
-          fi
-          
-      - name: Bump version (manual trigger)
-        if: steps.check_version.outputs.manual_trigger == 'true'
+      - name: Bump version (if manual trigger)
+        if: github.event_name == 'workflow_dispatch'
         run: |
           npm version ${{ github.event.inputs.version_type }} --no-git-tag-version
           echo "NEW_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
           
-      - name: Get version from tag
-        if: steps.check_version.outputs.tag_trigger == 'true'
-        run: |
-          TAG_VERSION=${GITHUB_REF#refs/tags/v}
-          echo "NEW_VERSION=$TAG_VERSION" >> $GITHUB_ENV
-          npm version $TAG_VERSION --no-git-tag-version --allow-same-version
-          
       - name: Build with new version
-        if: steps.check_version.outputs.manual_trigger == 'true' || steps.check_version.outputs.tag_trigger == 'true'
+        if: github.event_name == 'workflow_dispatch'
         run: npm run build:all
         
       - name: Publish to NPM
-        if: steps.check_version.outputs.manual_trigger == 'true' || steps.check_version.outputs.tag_trigger == 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
-      - name: Create Git tag and push
-        if: steps.check_version.outputs.manual_trigger == 'true'
+      - name: Create Git tag and push (manual trigger)
+        if: github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add package.json package-lock.json
-          git commit -m "Bump version to ${{ env.NEW_VERSION }}"
+          git commit -m "Bump version to ${{ env.NEW_VERSION }} [skip ci]"
           git tag v${{ env.NEW_VERSION }}
           git push origin main
           git push origin v${{ env.NEW_VERSION }} 

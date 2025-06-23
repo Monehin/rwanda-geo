@@ -1,11 +1,11 @@
 # Rwanda-Geo 🇷🇼
 
-> **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** - Provinces, Districts, Sectors, Cells, Villages.
-
 [![npm version](https://badge.fury.io/js/rwanda-geo.svg)](https://badge.fury.io/js/rwanda-geo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Bundle Size](https://img.shields.io/bundlephobia/min/rwanda-geo)](https://bundlephobia.com/package/rwanda-geo)
+
+> **Complete, typed, and lightweight dataset of Rwanda's administrative divisions** - Provinces, Districts, Sectors, Cells, Villages.
 
 ## ✨ Features
 
@@ -32,36 +32,7 @@ yarn add rwanda-geo
 pnpm add rwanda-geo
 ```
 
-## 📁 Source Data Management
-
-This package uses a compressed source file (`locations.json.gz`) to generate the administrative data. The source file is automatically managed and only loaded when needed.
-
-### Managing the Source File
-
-```bash
-# Check current status
-node scripts/manage-locations.js status
-
-# Download fresh source data
-node scripts/manage-locations.js download
-
-# Compress the source file
-node scripts/manage-locations.js compress
-
-# Extract for development
-node scripts/manage-locations.js extract
-
-# Clean up (production mode)
-node scripts/manage-locations.js clean
-```
-
-**Production Mode**: Only the compressed `locations.json.gz` file is kept (72KB), reducing storage and improving performance.
-
-**Development Mode**: Both compressed and uncompressed files are available for easier debugging.
-
 ## 🚀 Quick Start
-
-### Basic Usage
 
 ```ts
 import { 
@@ -128,61 +99,33 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 ## 🔧 API Reference
 
 ### 📊 Core Data Functions
-
 <details>
 <summary><strong>🔄 Data Retrieval Functions</strong></summary>
 
 ```ts
-// Get all administrative units by level
 getAllProvinces(): Province[]
 getAllDistricts(): District[]
 getAllSectors(): Sector[]
 getAllCells(): Cell[]
 getAllVillages(): Village[]
 ```
-
-**Examples:**
-```ts
-import { getAllProvinces, getAllDistricts } from 'rwanda-geo';
-
-const provinces = getAllProvinces();
-// Returns: [{ code: "RW-01", name: "Kigali City", slug: "kigali-city" }, ...]
-
-const districts = getAllDistricts();
-// Returns: [{ code: "RW-D-01", name: "Gasabo", slug: "gasabo" }, ...]
-```
 </details>
 
 ### 🗺️ Hierarchical Navigation
-
 <details>
 <summary><strong>🔗 Parent-Child Relationships</strong></summary>
 
 ```ts
-// Navigate the administrative hierarchy
 getDistrictsByProvince(provinceCode: string): District[]
 getSectorsByDistrict(districtCode: string): Sector[]
 getCellsBySector(sectorCode: string): Cell[]
 getVillagesByCell(cellCode: string): Village[]
 ```
-
-**Examples:**
-```ts
-import { getDistrictsByProvince, getSectorsByDistrict } from 'rwanda-geo';
-
-const kigaliDistricts = getDistrictsByProvince('RW-01');
-// Returns all districts in Kigali City
-
-const gasaboSectors = getSectorsByDistrict('RW-D-01');
-// Returns all sectors in Gasabo district
-```
 </details>
-
 <details>
 <summary><strong>🎯 Direct Access & Hierarchy</strong></summary>
 
 ```ts
-// Direct access and hierarchy traversal
 getByCode(code: string): AdministrativeUnit | undefined
 getHierarchy(code: string): AdministrativeUnit[]
 getFullHierarchy(code: string): AdministrativeUnit[]
@@ -190,117 +133,55 @@ getDirectChildren(parentCode: string): AdministrativeUnit[]
 getSiblings(code: string): AdministrativeUnit[]
 getAllDescendants(parentCode: string): AdministrativeUnit[]
 ```
-
-**Examples:**
-```ts
-import { getByCode, getHierarchy, getSiblings } from 'rwanda-geo';
-
-const gasabo = getByCode('RW-D-01');
-// Returns: { code: "RW-D-01", name: "Gasabo", slug: "gasabo", ... }
-
-const hierarchy = getHierarchy('RW-S-001');
-// Returns: [Province, District, Sector] chain
-
-const siblings = getSiblings('RW-D-01');
-// Returns all districts in the same province as Gasabo
-```
 </details>
 
 ### 🔍 Search & Discovery
-
 <details>
 <summary><strong>🔎 Search Functions</strong></summary>
 
 ```ts
-// Basic search operations
 searchByName(name: string): AdministrativeUnit[]
 searchBySlug(slug: string): AdministrativeUnit[]
 fuzzySearchByName(query: string, threshold?: number, limit?: number): Array<{unit: AdministrativeUnit, score: number}>
 searchByPartialCode(partialCode: string, limit?: number): AdministrativeUnit[]
 getSuggestions(query: string, limit?: number): Array<{unit: AdministrativeUnit, type: 'exact' | 'fuzzy' | 'partial', matchField: 'name' | 'code' | 'slug'}>
 ```
-
-**Examples:**
-```ts
-import { searchByName, fuzzySearchByName, getSuggestions } from 'rwanda-geo';
-
-const exactMatches = searchByName('Gasabo');
-// Returns: [{ code: "RW-D-01", name: "Gasabo", ... }]
-
-const fuzzyResults = fuzzySearchByName('kigali', 0.8, 5);
-// Returns: [{ unit: {...}, score: 0.95 }, ...]
-
-const suggestions = getSuggestions('gas', 10);
-// Returns: [{ unit: {...}, type: 'exact', matchField: 'name' }, ...]
-```
 </details>
 
 ### ⚙️ Utility Functions
-
 <details>
 <summary><strong>🛠️ Helper Functions</strong></summary>
 
 ```ts
-// Utility and helper functions
 getByLevel(level: AdminLevel): AdministrativeUnit[]
 getCounts(): { provinces: number; districts: number; sectors: number; cells: number; villages: number }
 getSummary(): { provinces: number; districts: number; sectors: number; cells: number; villages: number; total: number }
 isValidCode(code: string): boolean
 getCodeLevel(code: string): AdminLevel | undefined
 ```
-
-**Examples:**
-```ts
-import { getCounts, getSummary, isValidCode } from 'rwanda-geo';
-
-const counts = getCounts();
-// Returns: { provinces: 5, districts: 30, sectors: 416, cells: 2148, villages: 14837 }
-
-const summary = getSummary();
-// Returns: { provinces: 5, districts: 30, sectors: 416, cells: 2148, villages: 14837, total: 17436 }
-
-const isValid = isValidCode('RW-D-01');
-// Returns: true
-```
 </details>
 
 ### ✅ Validation Functions
-
 <details>
 <summary><strong>🔍 Data Validation</strong></summary>
 
 ```ts
-// Comprehensive validation functions
 validateCodeFormat(code: string): { isValid: boolean; error?: string; level?: string; format?: string }
 validateParentChildRelationship(parentCode: string, childCode: string): { isValid: boolean; error?: string; parentLevel?: string; childLevel?: string }
 validateHierarchyIntegrity(): { isValid: boolean; issues: Array<{type: string, message: string, code?: string}>; summary: { totalUnits: number; orphanedUnits: number; invalidParents: number; circularReferences: number; missingUnits: number } }
 validateUnitProperties(unit: AdministrativeUnit): { isValid: boolean; issues: string[] }
-```
-
-**Examples:**
-```ts
-import { validateCodeFormat, validateParentChildRelationship } from 'rwanda-geo';
-
-const formatCheck = validateCodeFormat('RW-D-01');
-// Returns: { isValid: true, level: 'district', format: 'RW-XX-YY' }
-
-const relationshipCheck = validateParentChildRelationship('RW-01', 'RW-D-01');
-// Returns: { isValid: true, parentLevel: 'province', childLevel: 'district' }
 ```
 </details>
 
 ---
 
 ### 📋 Quick Reference
-
-#### **Parameter Types**
 | Type | Description | Example |
 |------|-------------|---------|
 | `string` | Administrative code or name | `'RW-D-01'`, `'Gasabo'` |
 | `number` | Threshold (0-1) or limit | `0.8`, `10` |
 | `AdminLevel` | Administrative level | `'district'` |
 
-#### **Return Types**
 | Type | Description |
 |------|-------------|
 | `AdministrativeUnit` | Base unit with `{code, name, slug, parentCode?, center?}` |
@@ -310,16 +191,15 @@ const relationshipCheck = validateParentChildRelationship('RW-01', 'RW-D-01');
 | `Cell[]` | Array of cell units |
 | `Village[]` | Array of village units |
 
-## 📋 Data Structure
+## 🏷️ Code Format & Data Structure
 
 ### Code Format
 Each administrative unit has a unique hierarchical code:
-
 - **Province**: `RW-XX` (e.g., `RW-01` for Kigali City)
-- **District**: `RW-XX-YY` (e.g., `RW-D-01` for Gasabo)
-- **Sector**: `RW-XX-YY-ZZ` (e.g., `RW-S-001` for Bumbogo)
-- **Cell**: `RW-XX-YY-ZZ-AA` (e.g., `RW-C-0001` for Bumbogo cell)
-- **Village**: `RW-XX-YY-ZZ-AA-BB` (e.g., `RW-V-00001` for Bumbogo village)
+- **District**: `RW-D-XX` (e.g., `RW-D-01` for Gasabo)
+- **Sector**: `RW-S-XXX` (e.g., `RW-S-001` for Bumbogo)
+- **Cell**: `RW-C-XXXX` (e.g., `RW-C-0001` for Bumbogo cell)
+- **Village**: `RW-V-XXXXX` (e.g., `RW-V-00001` for Bumbogo village)
 
 ### Unit Properties
 ```ts
@@ -335,28 +215,68 @@ interface AdministrativeUnit {
 }
 ```
 
+## 📁 Source Data Management
+
+This package uses a compressed source file (`locations.json.gz`) to generate the administrative data. The source file is automatically managed and only loaded when needed.
+
+### Managing the Source File
+
+```bash
+# Check current status
+node scripts/manage-locations.js status
+
+# Download fresh source data
+node scripts/manage-locations.js download
+
+# Compress the source file
+node scripts/manage-locations.js compress
+
+# Extract for development
+node scripts/manage-locations.js extract
+
+# Clean up (production mode)
+node scripts/manage-locations.js clean
+```
+
+**Production Mode**: Only the compressed `locations.json.gz` file is kept (72KB), reducing storage and improving performance.
+
+**Development Mode**: Both compressed and uncompressed files are available for easier debugging.
+
 ## 🛠️ Development
 
 ### Code Quality
-The project uses TypeScript for type safety. To check types:
 ```bash
 npm run type-check
 ```
 
 ### Linting
-The codebase uses ESLint with TypeScript support to ensure code quality and catch unused code or bad patterns. Test files (`*.test.ts`) are currently ignored by the linter for compatibility. To lint the codebase:
 ```bash
 npm run lint
 ```
-- All linting issues have been resolved and the codebase is clean.
-- If you want to lint test files, add them to your `tsconfig.json` or adjust the ESLint config.
 
 ### Testing
 ```bash
 npm test
 ```
 
-## 📁 Project Structure
+## 🚀 Automatic Publishing
+
+This project uses GitHub Actions for automatic npm publishing and version management.
+
+### How It Works
+- Every push to the `main` branch triggers the auto-publish workflow
+- The workflow analyzes commit messages to determine version bump type:
+  - `BREAKING CHANGE:` or `major:` → Major version (1.0.0 → 2.0.0)
+  - `feat:` or `feature:` → Minor version (1.0.0 → 1.1.0)
+  - Everything else → Patch version (1.0.0 → 1.0.1)
+- Automatically creates git tags and publishes to npm
+- Skips publishing if no changes detected since last tag
+
+### Requirements
+- `NPM_TOKEN` secret must be configured in GitHub repository settings
+- Repository must have write permissions for the workflow to create tags
+
+## 📂 Project Structure
 ```
 rwanda-geo/
 ├── src/
@@ -370,7 +290,6 @@ rwanda-geo/
 ```
 
 ## 🤝 Contributing
-
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Development Setup
@@ -383,17 +302,14 @@ npm test
 ```
 
 ## 📄 License
-
 MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
-
 - Original data structure source: [jnkindi/rwanda-locations-json](https://github.com/jnkindi/rwanda-locations-json)
 - Built with TypeScript for type safety and developer experience
 - Optimized for performance and bundle size
 
 ## 📞 Support
-
 - 📧 **Email**: e.monehin@live.com
 - 🐛 **Issues**: [GitHub Issues](https://github.com/monehin/rwanda-geo/issues)
 - 📖 **Documentation**: [Full API Reference](https://github.com/monehin/rwanda-geo#api-reference)
