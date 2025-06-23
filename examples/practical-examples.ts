@@ -1,338 +1,253 @@
 /**
  * Practical Examples for rwanda-geo
  * 
- * This file demonstrates practical real-world use cases including
- * location selectors, data export, and integration examples.
+ * This file demonstrates practical use cases and real-world applications
+ * of the rwanda-geo package.
  */
 
-import { 
-  getAllProvinces, 
-  getDistrictsByProvince, 
+import {
+  getAllProvinces,
+  getDistrictsByProvince,
   getSectorsByDistrict,
-  getFullHierarchy,
+  getByCode,
+  searchByName,
   fuzzySearchByName,
-  getSuggestions,
-  getSummary
-} from 'rwanda-geo';
+  getHierarchy
+} from '../dist/index.mjs';
 
 console.log('=== Practical Examples ===\n');
 
 // 1. Location Selector Component
 console.log('1. Location Selector Component:');
-function createLocationSelector() {
-  const provinces = getAllProvinces();
-  const kigaliDistricts = getDistrictsByProvince('RW-UMU');
-  const gasaboSectors = getSectorsByDistrict('RW-UMU-GAS');
-  
-  const selector = {
-    provinces: provinces.map(p => ({ code: p.code, name: p.name })),
-    districts: kigaliDistricts.map(d => ({ code: d.code, name: d.name })),
-    sectors: gasaboSectors.map(s => ({ code: s.code, name: s.name }))
-  };
-  
-  console.log(JSON.stringify(selector, null, 2));
-}
 
-createLocationSelector();
+// Get provinces for dropdown
+const provinces = getAllProvinces();
+console.log('Provinces dropdown:');
+provinces.forEach(province => {
+  console.log(`  <option value="${province.code}">${province.name}</option>`);
+});
 
-/*
-Output:
-{
-  "provinces": [
-    { "code": "RW-UMU", "name": "Umujyi wa Kigali" },
-    { "code": "RW-AMA", "name": "Amajyepfo" },
-    { "code": "RW-IBU", "name": "Iburengerazuba" },
-    { "code": "RW-AMA-4", "name": "Amajyaruguru" },
-    { "code": "RW-IBU-5", "name": "Iburasirazuba" }
-  ],
-  "districts": [
-    { "code": "RW-UMU-NYA", "name": "Nyarugenge" },
-    { "code": "RW-UMU-GAS", "name": "Gasabo" },
-    { "code": "RW-UMU-KIC", "name": "Kicukiro" }
-  ],
-  "sectors": [
-    { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
-    { "code": "RW-UMU-GAS-GAT", "name": "Gatsata" },
-    { "code": "RW-UMU-GAS-GIK", "name": "Gikomero" }
-  ]
-}
-*/
+// Get districts for selected province
+const kigaliDistricts = getDistrictsByProvince('RW-01');
+const gasaboSectors = getSectorsByDistrict('RW-D-01');
+
+console.log('\nDistricts in Kigali City:');
+kigaliDistricts.forEach(district => {
+  console.log(`  <option value="${district.code}">${district.name}</option>`);
+});
+
+console.log('\nSectors in Gasabo:');
+gasaboSectors.slice(0, 5).forEach(sector => {
+  console.log(`  <option value="${sector.code}">${sector.name}</option>`);
+});
 
 console.log('\n---\n');
 
-// 2. Data Export for CSV
-console.log('2. Data Export for CSV:');
-function exportToCSV() {
-  const provinces = getAllProvinces();
-  const csvData = provinces.map(province => ({
+// 2. Data Analysis and Reporting
+console.log('2. Data Analysis and Reporting:');
+
+// Province statistics
+console.log('Province Statistics:');
+provinces.forEach(province => {
+  const districts = getDistrictsByProvince(province.code);
+  const totalSectors = districts.reduce((sum, district) => {
+    return sum + getSectorsByDistrict(district.code).length;
+  }, 0);
+  
+  console.log(`${province.name}:`);
+  console.log(`  Districts: ${districts.length}`);
+  console.log(`  Sectors: ${totalSectors}`);
+  console.log();
+});
+
+console.log('\n---\n');
+
+// 3. Search Autocomplete Component
+console.log('3. Search Autocomplete Component:');
+
+// Function to format address
+function formatAddress(villageCode: string): string {
+  const village = getByCode(villageCode);
+  if (!village) return 'Location not found';
+  
+  const hierarchy: string[] = [];
+  let current: any = village;
+  
+  while (current) {
+    hierarchy.unshift(current.name);
+    current = current.parentCode ? getByCode(current.parentCode) : null;
+  }
+  
+  return hierarchy.join(', ');
+}
+
+// Example usage
+const address = formatAddress('RW-V-00001');
+console.log('Formatted Address:');
+console.log(`Village Code: RW-V-00001`);
+console.log(`Address: ${address}`);
+
+console.log('\n---\n');
+
+// 4. Geographic Visualization Helper
+console.log('4. Geographic Visualization Helper:');
+
+// Get data for map visualization
+const mapData = {
+  provinces: provinces.map(province => ({
     code: province.code,
     name: province.name,
-    slug: province.slug,
-    level: 'province',
-    parentCode: province.parentCode || ''
-  }));
+    center: province.center
+  })),
+  districts: kigaliDistricts.map(district => ({
+    code: district.code,
+    name: district.name,
+    center: district.center
+  })),
+  sectors: gasaboSectors.map(sector => ({
+    code: sector.code,
+    name: sector.name,
+    center: sector.center
+  }))
+};
+
+console.log('Map Data Structure:');
+console.log(JSON.stringify(mapData, null, 2));
+
+console.log('\n---\n');
+
+// 5. Data Export and Integration
+console.log('5. Data Export and Integration:');
+
+// Export to CSV format
+function exportToCSV(units: any[]): string {
+  const headers = ['code', 'name', 'slug', 'parentCode', 'center'];
+  const csvContent = [
+    headers.join(','),
+    ...units.map(unit => 
+      headers.map(header => {
+        const value = unit[header];
+        if (header === 'center' && value) {
+          return `"${value.lat},${value.lng}"`;
+        }
+        return `"${value || ''}"`;
+      }).join(',')
+    )
+  ].join('\n');
   
-  console.log('CSV Headers: code,name,slug,level,parentCode');
-  console.log('Sample Data:');
-  console.log(JSON.stringify(csvData.slice(0, 3), null, 2));
+  return csvContent;
 }
 
-exportToCSV();
+const csvData = exportToCSV(provinces);
+console.log('CSV Export (first few lines):');
+console.log(csvData.split('\n').slice(0, 5).join('\n'));
 
-/*
-Output:
-CSV Headers: code,name,slug,level,parentCode
-Sample Data:
-[
-  {
-    "code": "RW-UMU",
-    "name": "Umujyi wa Kigali",
-    "slug": "umujyi-wa-kigali",
-    "level": "province",
-    "parentCode": ""
-  },
-  {
-    "code": "RW-AMA",
-    "name": "Amajyepfo",
-    "slug": "amajyepfo",
-    "level": "province",
-    "parentCode": ""
-  },
-  {
-    "code": "RW-IBU",
-    "name": "Iburengerazuba",
-    "slug": "iburengerazuba",
-    "level": "province",
-    "parentCode": ""
+console.log('\n---\n');
+
+// 6. Performance Monitoring
+console.log('6. Performance Monitoring:');
+
+// Search performance test
+const searchTerms = ['kigali', 'gasabo', 'bumbogo'];
+searchTerms.forEach(term => {
+  const start = Date.now();
+  const results = searchByName(term);
+  const end = Date.now();
+  
+  console.log(`Search "${term}": ${results.length} results in ${end - start}ms`);
+});
+
+// Fuzzy search performance
+console.log('\nFuzzy search performance:');
+searchTerms.forEach(term => {
+  const start = Date.now();
+  const results = fuzzySearchByName(term, 0.8, 10);
+  const end = Date.now();
+  
+  console.log(`Fuzzy search "${term}": ${results.length} results in ${end - start}ms`);
+});
+
+console.log('\n---\n');
+
+// 7. Real-world Application: Address Validation
+console.log('7. Address Validation Application:');
+
+function validateAddress(provinceCode: string, districtCode: string, sectorCode: string): {
+  isValid: boolean;
+  errors: string[];
+  suggestions?: any[];
+} {
+  const errors: string[] = [];
+  const suggestions: any[] = [];
+  
+  // Validate province
+  const province = getByCode(provinceCode);
+  if (!province) {
+    errors.push(`Invalid province code: ${provinceCode}`);
+    suggestions.push(...searchByName(provinceCode));
   }
-]
-*/
-
-console.log('\n---\n');
-
-// 3. Address Formatter
-console.log('3. Address Formatter:');
-function formatAddress(villageCode: string) {
-  const hierarchy = getFullHierarchy(villageCode);
-  const address = hierarchy.map(unit => unit.name).join(', ');
   
-  console.log(`Village Code: ${villageCode}`);
-  console.log(`Formatted Address: ${address}`);
-}
-
-formatAddress('RW-UMU-GAS-BUM-BUM-BUM');
-
-/*
-Output:
-Village Code: RW-UMU-GAS-BUM-BUM-BUM
-Formatted Address: Umujyi wa Kigali, Gasabo, Bumbogo, Bumbogo, Bumbogo
-*/
-
-console.log('\n---\n');
-
-// 4. Search Autocomplete
-console.log('4. Search Autocomplete:');
-function searchAutocomplete(query: string) {
-  const suggestions = getSuggestions(query, 5);
-  const results = suggestions.map(s => ({
-    code: s.unit.code,
-    name: s.unit.name,
-    type: s.type,
-    matchField: s.matchField
-  }));
-  
-  console.log(`Query: "${query}"`);
-  console.log(JSON.stringify(results, null, 2));
-}
-
-searchAutocomplete('gas');
-
-/*
-Output:
-Query: "gas"
-[
-  {
-    "code": "RW-UMU-GAS",
-    "name": "Gasabo",
-    "type": "fuzzy",
-    "matchField": "name"
-  },
-  {
-    "code": "RW-UMU-GAS-BUM",
-    "name": "Bumbogo",
-    "type": "fuzzy",
-    "matchField": "name"
-  },
-  {
-    "code": "RW-UMU-GAS-GAT",
-    "name": "Gatsata",
-    "type": "fuzzy",
-    "matchField": "name"
+  // Validate district
+  const district = getByCode(districtCode);
+  if (!district) {
+    errors.push(`Invalid district code: ${districtCode}`);
+    suggestions.push(...searchByName(districtCode));
+  } else if (district.parentCode !== provinceCode) {
+    errors.push(`District ${districtCode} does not belong to province ${provinceCode}`);
   }
-]
-*/
-
-console.log('\n---\n');
-
-// 5. Data Statistics Dashboard
-console.log('5. Data Statistics Dashboard:');
-function createDashboard() {
-  const summary = getSummary();
-  const total = summary.provinces + summary.districts + summary.sectors + summary.cells + summary.villages;
   
-  const dashboard = {
-    totalUnits: total,
-    breakdown: summary,
-    averageDistrictsPerProvince: summary.districts / summary.provinces,
-    averageSectorsPerDistrict: summary.sectors / summary.districts,
-    averageCellsPerSector: summary.cells / summary.sectors,
-    averageVillagesPerCell: summary.villages / summary.cells
+  // Validate sector
+  const sector = getByCode(sectorCode);
+  if (!sector) {
+    errors.push(`Invalid sector code: ${sectorCode}`);
+    suggestions.push(...searchByName(sectorCode));
+  } else if (sector.parentCode !== districtCode) {
+    errors.push(`Sector ${sectorCode} does not belong to district ${districtCode}`);
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors,
+    suggestions: suggestions.length > 0 ? suggestions : undefined
   };
-  
-  console.log(JSON.stringify(dashboard, null, 2));
 }
 
-createDashboard();
-
-/*
-Output:
-{
-  "totalUnits": 17436,
-  "breakdown": {
-    "provinces": 5,
-    "districts": 30,
-    "sectors": 416,
-    "cells": 2148,
-    "villages": 14837
-  },
-  "averageDistrictsPerProvince": 6,
-  "averageSectorsPerDistrict": 13.87,
-  "averageCellsPerSector": 5.16,
-  "averageVillagesPerCell": 6.91
-}
-*/
+// Test address validation
+const validationResult = validateAddress('RW-01', 'RW-D-01', 'RW-S-001');
+console.log('Address Validation Result:');
+console.log(JSON.stringify(validationResult, null, 2));
 
 console.log('\n---\n');
 
-// 6. Geographic Coverage Analysis
-console.log('6. Geographic Coverage Analysis:');
-function analyzeCoverage() {
-  const provinces = getAllProvinces();
-  const coverage = provinces.map(province => {
-    const districts = getDistrictsByProvince(province.code);
-    const totalSectors = districts.reduce((sum, district) => {
-      const sectors = getSectorsByDistrict(district.code);
-      return sum + sectors.length;
-    }, 0);
-    
-    return {
-      province: province.name,
-      districts: districts.length,
-      sectors: totalSectors,
-      coverage: `${districts.length} districts, ${totalSectors} sectors`
-    };
-  });
-  
-  console.log(JSON.stringify(coverage, null, 2));
-}
+// 8. Data Integration Example
+console.log('8. Data Integration Example:');
 
-analyzeCoverage();
+// Simulate external data with location codes
+const externalData = [
+  { id: 1, name: 'User 1', location: 'RW-D-01' },
+  { id: 2, name: 'User 2', location: 'RW-S-001' },
+  { id: 3, name: 'User 3', location: 'RW-C-0001' },
+  { id: 4, name: 'User 4', location: 'INVALID-CODE' }
+];
 
-/*
-Output:
-[
-  {
-    "province": "Umujyi wa Kigali",
-    "districts": 3,
-    "sectors": 15,
-    "coverage": "3 districts, 15 sectors"
-  },
-  {
-    "province": "Amajyepfo",
-    "districts": 8,
-    "sectors": 96,
-    "coverage": "8 districts, 96 sectors"
-  },
-  {
-    "province": "Iburengerazuba",
-    "districts": 7,
-    "sectors": 96,
-    "coverage": "7 districts, 96 sectors"
-  },
-  {
-    "province": "Amajyaruguru",
-    "districts": 5,
-    "sectors": 96,
-    "coverage": "5 districts, 96 sectors"
-  },
-  {
-    "province": "Iburasirazuba",
-    "districts": 7,
-    "sectors": 113,
-    "coverage": "7 districts, 113 sectors"
-  }
-]
-*/
+// Enrich external data with location information
+const enrichedData = externalData.map(item => {
+  const location = getByCode(item.location);
+  return {
+    ...item,
+    locationInfo: location ? {
+      name: location.name,
+      level: location.code.startsWith('RW-') ? 
+        (location.code.startsWith('RW-D-') ? 'district' :
+         location.code.startsWith('RW-S-') ? 'sector' :
+         location.code.startsWith('RW-C-') ? 'cell' :
+         location.code.startsWith('RW-V-') ? 'village' : 'province') : 'unknown',
+      hierarchy: location ? getHierarchy(location.code).map(h => h.name) : []
+    } : null
+  };
+});
 
-console.log('\n---\n');
-
-// 7. Fuzzy Search with Results
-console.log('7. Fuzzy Search with Results:');
-function fuzzySearchExample() {
-  const searchTerms = ['kigali', 'gasabo', 'bumbogo'];
-  
-  searchTerms.forEach(term => {
-    const results = fuzzySearchByName(term, 3, 3);
-    console.log(`Search for "${term}":`);
-    console.log(JSON.stringify(results.map(r => ({
-      name: r.unit.name,
-      code: r.unit.code,
-      score: r.score.toFixed(3)
-    })), null, 2));
-    console.log();
-  });
-}
-
-fuzzySearchExample();
-
-/*
-Output:
-Search for "kigali":
-[
-  {
-    "name": "Umujyi wa Kigali",
-    "code": "RW-UMU",
-    "score": "1.000"
-  },
-  {
-    "name": "Gasabo",
-    "code": "RW-UMU-GAS",
-    "score": "0.800"
-  }
-]
-
-Search for "gasabo":
-[
-  {
-    "name": "Gasabo",
-    "code": "RW-UMU-GAS",
-    "score": "1.000"
-  },
-  {
-    "name": "Bumbogo",
-    "code": "RW-UMU-GAS-BUM",
-    "score": "0.600"
-  }
-]
-
-Search for "bumbogo":
-[
-  {
-    "name": "Bumbogo",
-    "code": "RW-UMU-GAS-BUM",
-    "score": "1.000"
-  }
-]
-*/
+console.log('Enriched External Data:');
+console.log(JSON.stringify(enrichedData, null, 2));
 
 console.log('\n=== End of Practical Examples ==='); 

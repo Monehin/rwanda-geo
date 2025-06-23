@@ -29,44 +29,44 @@ console.log(JSON.stringify(provinces, null, 2));
 /*
 Output:
 [
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "slug": "umujyi-wa-kigali" },
-  { "code": "RW-AMA", "name": "Amajyepfo", "slug": "amajyepfo" },
-  { "code": "RW-IBU", "name": "Iburengerazuba", "slug": "iburengerazuba" },
-  { "code": "RW-AMA-4", "name": "Amajyaruguru", "slug": "amajyaruguru" },
-  { "code": "RW-IBU-5", "name": "Iburasirazuba", "slug": "iburasirazuba" }
+  { "code": "RW-01", "name": "Kigali City", "slug": "kigali-city" },
+  { "code": "RW-02", "name": "Southern Province", "slug": "southern-province" },
+  { "code": "RW-03", "name": "Western Province", "slug": "western-province" },
+  { "code": "RW-04", "name": "Northern Province", "slug": "northern-province" },
+  { "code": "RW-05", "name": "Eastern Province", "slug": "eastern-province" }
 ]
 */
 
 console.log('\n---\n');
 
 // Get districts in Kigali City
-const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+const kigaliDistricts = getDistrictsByProvince('RW-01');
 console.log('Districts in Kigali City:');
 console.log(JSON.stringify(kigaliDistricts, null, 2));
 
 /*
 Output:
 [
-  { "code": "RW-UMU-NYA", "name": "Nyarugenge", "parentCode": "RW-UMU" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo", "parentCode": "RW-UMU" },
-  { "code": "RW-UMU-KIC", "name": "Kicukiro", "parentCode": "RW-UMU" }
+  { "code": "RW-D-01", "name": "Gasabo", "parentCode": "RW-01" },
+  { "code": "RW-D-02", "name": "Kicukiro", "parentCode": "RW-01" },
+  { "code": "RW-D-03", "name": "Nyarugenge", "parentCode": "RW-01" }
 ]
 */
 
 console.log('\n---\n');
 
 // Get a specific unit by code
-const gasabo = getByCode('RW-UMU-GAS');
+const gasabo = getByCode('RW-D-01');
 console.log('Gasabo District Details:');
 console.log(JSON.stringify(gasabo, null, 2));
 
 /*
 Output:
 {
-  "code": "RW-UMU-GAS",
+  "code": "RW-D-01",
   "name": "Gasabo",
   "slug": "gasabo",
-  "parentCode": "RW-UMU",
+  "parentCode": "RW-01",
   "center": { "lat": 0, "lng": 0 }
 }
 */
@@ -74,18 +74,18 @@ Output:
 console.log('\n---\n');
 
 // Get full hierarchy for a village
-const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
-console.log('Hierarchy for Village RW-UMU-GAS-BUM-BUM-BUM:');
+const hierarchy = getHierarchy('RW-V-00001');
+console.log('Hierarchy for Village RW-V-00001:');
 console.log(JSON.stringify(hierarchy, null, 2));
 
 /*
 Output:
 [
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo" },
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" },
-  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo" },
-  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" }
+  { "code": "RW-01", "name": "Kigali City" },
+  { "code": "RW-D-01", "name": "Gasabo" },
+  { "code": "RW-S-001", "name": "Bumbogo" },
+  { "code": "RW-C-0001", "name": "Bumbogo" },
+  { "code": "RW-V-00001", "name": "Bumbogo" }
 ]
 */
 
@@ -111,7 +111,7 @@ console.log();
 
 // 3. Get sectors in Gasabo district
 console.log('3. Sectors in Gasabo district:');
-const gasaboSectors = getSectorsByDistrict('RW-UMU-GAS');
+const gasaboSectors = getSectorsByDistrict('RW-D-01');
 console.log(`   Total sectors in Gasabo: ${gasaboSectors.length}`);
 gasaboSectors.slice(0, 5).forEach(sector => {
   console.log(`   ${sector.code}: ${sector.name}`);
@@ -123,7 +123,7 @@ console.log();
 
 // 4. Get cells in Bumbogo sector
 console.log('4. Cells in Bumbogo sector:');
-const bumbogoCells = getCellsBySector('RW-UMU-GAS-BUM');
+const bumbogoCells = getCellsBySector('RW-S-001');
 console.log(`   Total cells in Bumbogo: ${bumbogoCells.length}`);
 bumbogoCells.forEach(cell => {
   console.log(`   ${cell.code}: ${cell.name}`);
@@ -132,7 +132,7 @@ console.log();
 
 // 5. Get villages in Bumbogo cell
 console.log('5. Villages in Bumbogo cell:');
-const bumbogoVillages = getVillagesByCell('RW-UMU-GAS-BUM-BUM');
+const bumbogoVillages = getVillagesByCell('RW-C-0001');
 console.log(`   Total villages in Bumbogo cell: ${bumbogoVillages.length}`);
 bumbogoVillages.forEach(village => {
   console.log(`   ${village.code}: ${village.name}`);

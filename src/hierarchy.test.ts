@@ -4,15 +4,71 @@ import {
   getAllSectors,
   getAllCells,
   getAllVillages,
-  getDistrictsByProvince,
-  getSectorsByDistrict,
-  getCellsBySector,
-  getVillagesByCell,
-  getChildren,
+  getByCode,
   getHierarchy,
+  getChildren,
+  getByLevel,
+  getCounts,
+  getFullHierarchy,
+  getDirectChildren,
+  getSiblings,
+  getAllDescendants,
 } from './helpers';
 
 describe('Rwanda Administrative Hierarchy Tests', () => {
+  describe('Data Loading', () => {
+    test('should load all administrative levels', () => {
+      expect(getAllProvinces()).toHaveLength(5);
+      expect(getAllDistricts()).toHaveLength(30);
+      expect(getAllSectors()).toHaveLength(416);
+      expect(getAllCells()).toHaveLength(2148);
+      expect(getAllVillages()).toHaveLength(14837);
+    });
+
+    test('should have correct total count', () => {
+      const counts = getCounts();
+      expect(counts.total).toBe(17436);
+    });
+  });
+
+  describe('Hierarchical Relationships', () => {
+    test('provinces should have districts as children', () => {
+      const provinces = getAllProvinces();
+      provinces.forEach(province => {
+        const districts = getChildren(province.code);
+        expect(districts.length).toBeGreaterThan(0);
+        expect(districts.every(d => d.parentCode === province.code)).toBe(true);
+      });
+    });
+
+    test('districts should have sectors as children', () => {
+      const districts = getAllDistricts();
+      districts.forEach(district => {
+        const sectors = getChildren(district.code);
+        expect(sectors.length).toBeGreaterThan(0);
+        expect(sectors.every(s => s.parentCode === district.code)).toBe(true);
+      });
+    });
+
+    test('sectors should have cells as children', () => {
+      const sectors = getAllSectors();
+      sectors.forEach(sector => {
+        const cells = getChildren(sector.code);
+        expect(cells.length).toBeGreaterThan(0);
+        expect(cells.every(c => c.parentCode === sector.code)).toBe(true);
+      });
+    });
+
+    test('cells should have villages as children', () => {
+      const cells = getAllCells();
+      cells.forEach(cell => {
+        const villages = getChildren(cell.code);
+        expect(villages.length).toBeGreaterThan(0);
+        expect(villages.every(v => v.parentCode === cell.code)).toBe(true);
+      });
+    });
+  });
+
   describe('Province Level Validation', () => {
     test('should have exactly 5 provinces', () => {
       const provinces = getAllProvinces();
@@ -22,7 +78,7 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
     test('each province should have districts', () => {
       const provinces = getAllProvinces();
       provinces.forEach(province => {
-        const districts = getDistrictsByProvince(province.code);
+        const districts = getChildren(province.code);
         expect(districts.length).toBeGreaterThan(0);
         expect(districts.every(d => d.parentCode === province.code)).toBe(true);
       });
@@ -33,6 +89,13 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const codes = provinces.map(p => p.code);
       const uniqueCodes = new Set(codes);
       expect(uniqueCodes.size).toBe(codes.length);
+    });
+
+    test('province codes should follow RW-XX format', () => {
+      const provinces = getAllProvinces();
+      provinces.forEach(province => {
+        expect(province.code).toMatch(/^RW-\d{2}$/);
+      });
     });
 
     test('province slugs should be unique', () => {
@@ -63,7 +126,7 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
     test('each district should have sectors', () => {
       const districts = getAllDistricts();
       districts.forEach(district => {
-        const sectors = getSectorsByDistrict(district.code);
+        const sectors = getChildren(district.code);
         expect(sectors.length).toBeGreaterThan(0);
         expect(sectors.every(s => s.parentCode === district.code)).toBe(true);
       });
@@ -74,6 +137,13 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const codes = districts.map(d => d.code);
       const uniqueCodes = new Set(codes);
       expect(uniqueCodes.size).toBe(codes.length);
+    });
+
+    test('district codes should follow RW-D-XX format', () => {
+      const districts = getAllDistricts();
+      districts.forEach(district => {
+        expect(district.code).toMatch(/^RW-D-\d{2}$/);
+      });
     });
   });
 
@@ -97,7 +167,7 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
     test('each sector should have cells', () => {
       const sectors = getAllSectors();
       sectors.forEach(sector => {
-        const cells = getCellsBySector(sector.code);
+        const cells = getChildren(sector.code);
         expect(cells.length).toBeGreaterThan(0);
         expect(cells.every(c => c.parentCode === sector.code)).toBe(true);
       });
@@ -108,6 +178,13 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const codes = sectors.map(s => s.code);
       const uniqueCodes = new Set(codes);
       expect(uniqueCodes.size).toBe(codes.length);
+    });
+
+    test('sector codes should follow RW-S-XXX format', () => {
+      const sectors = getAllSectors();
+      sectors.forEach(sector => {
+        expect(sector.code).toMatch(/^RW-S-\d{3}$/);
+      });
     });
   });
 
@@ -131,7 +208,7 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
     test('each cell should have villages', () => {
       const cells = getAllCells();
       cells.forEach(cell => {
-        const villages = getVillagesByCell(cell.code);
+        const villages = getChildren(cell.code);
         expect(villages.length).toBeGreaterThan(0);
         expect(villages.every(v => v.parentCode === cell.code)).toBe(true);
       });
@@ -142,6 +219,13 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const codes = cells.map(c => c.code);
       const uniqueCodes = new Set(codes);
       expect(uniqueCodes.size).toBe(codes.length);
+    });
+
+    test('cell codes should follow RW-C-XXXX format', () => {
+      const cells = getAllCells();
+      cells.forEach(cell => {
+        expect(cell.code).toMatch(/^RW-C-\d{4}$/);
+      });
     });
   });
 
@@ -167,14 +251,6 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const codes = villages.map(v => v.code);
       const uniqueCodes = new Set(codes);
       expect(uniqueCodes.size).toBe(codes.length);
-    });
-
-    test('villages should have shortCode property', () => {
-      const villages = getAllVillages();
-      villages.forEach(village => {
-        expect(village).toHaveProperty('shortCode');
-        expect(typeof village.shortCode).toBe('string');
-      });
     });
   });
 
@@ -257,29 +333,29 @@ describe('Rwanda Administrative Hierarchy Tests', () => {
       const cells = getAllCells();
       const villages = getAllVillages();
 
-      // Province codes: RW-XX (allow letters, numbers, and hyphens for uniqueness)
+      // Province codes: RW-XX
       provinces.forEach(province => {
-        expect(province.code).toMatch(/^RW-[A-Z0-9-]+$/);
+        expect(province.code).toMatch(/^RW-\d{2}$/);
       });
 
-      // District codes: RW-XX-YYY (allow numbers and hyphens for uniqueness)
+      // District codes: RW-D-XX
       districts.forEach(district => {
-        expect(district.code).toMatch(/^RW-[A-Z0-9-]+-[A-Z0-9-]+$/);
+        expect(district.code).toMatch(/^RW-D-\d{2}$/);
       });
 
-      // Sector codes: RW-XX-YYY-ZZZ (allow numbers and hyphens for uniqueness)
+      // Sector codes: RW-S-XXX
       sectors.forEach(sector => {
-        expect(sector.code).toMatch(/^RW-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+$/);
+        expect(sector.code).toMatch(/^RW-S-\d{3}$/);
       });
 
-      // Cell codes: RW-XX-YYY-ZZZ-AAA (allow numbers and hyphens for uniqueness)
+      // Cell codes: RW-C-XXXX
       cells.forEach(cell => {
-        expect(cell.code).toMatch(/^RW-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+$/);
+        expect(cell.code).toMatch(/^RW-C-\d{4}$/);
       });
 
-      // Village codes: RW-XX-YYY-ZZZ-AAA-BBB (allow numbers and hyphens for uniqueness)
+      // Village codes: RW-V-XXXXX
       villages.forEach(village => {
-        expect(village.code).toMatch(/^RW-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+-[A-Z0-9-]+$/);
+        expect(village.code).toMatch(/^RW-V-\d{5}$/);
       });
     });
 

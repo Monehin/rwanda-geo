@@ -32,7 +32,7 @@ Demonstrates hierarchical navigation features:
 - Tree structure visualization
 - Navigation path finding
 
-### 4. Validation Examples (`validation-examples.ts`)
+### 4. Validation Examples (`validation.ts`)
 Shows validation capabilities:
 - Code format validation
 - Parent-child relationship validation
@@ -42,7 +42,7 @@ Shows validation capabilities:
 - Comprehensive validation examples
 - Performance testing
 
-### 5. Practical Applications (`practical-applications.ts`)
+### 5. Practical Applications (`practical-examples.ts`)
 Real-world use cases:
 - Location selector component
 - Search autocomplete component
@@ -50,6 +50,12 @@ Real-world use cases:
 - Geographic visualization helper
 - Data export and integration
 - Performance monitoring
+- Address validation
+- Data enrichment
+
+## Bundle Size
+
+- **Current bundle size:** ~135KB
 
 ## Running the Examples
 
@@ -66,10 +72,10 @@ npx ts-node examples/advanced-search.ts
 npx ts-node examples/hierarchical-navigation.ts
 
 # Run validation examples
-npx ts-node examples/validation-examples.ts
+npx ts-node examples/validation.ts
 
 # Run practical applications example
-npx ts-node examples/practical-applications.ts
+npx ts-node examples/practical-examples.ts
 ```
 
 ## Example Output
@@ -111,13 +117,23 @@ These examples demonstrate how to use `rwanda-geo` for:
 
 ## Key Features Demonstrated
 
-1. **Complete Data Access**: All 17,736 administrative units
+1. **Complete Data Access**: All 17,436 administrative units
 2. **Hierarchical Navigation**: Parent-child relationships
 3. **Advanced Search**: Fuzzy matching and suggestions
 4. **Validation**: Data integrity and format checking
 5. **Performance**: Optimized queries and caching
 6. **TypeScript Support**: Full type safety
 7. **Export Capabilities**: JSON, CSV, and GeoJSON formats
+
+## Code Format Examples
+
+The examples use the new simplified code format:
+
+- **Provinces**: `RW-01`, `RW-02`, etc.
+- **Districts**: `RW-D-01`, `RW-D-02`, etc.
+- **Sectors**: `RW-S-001`, `RW-S-002`, etc.
+- **Cells**: `RW-C-0001`, `RW-C-0002`, etc.
+- **Villages**: `RW-V-00001`, `RW-V-00002`, etc.
 
 ## Integration Examples
 

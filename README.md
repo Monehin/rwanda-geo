@@ -12,10 +12,10 @@
 - **🗺️ Complete Administrative Hierarchy**: All 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages
 - **🔍 Advanced Search & Navigation**: Fuzzy search, hierarchical traversal, and intelligent suggestions
 - **🛡️ TypeScript First**: Fully typed with comprehensive interfaces and IntelliSense support
-- **⚡ High Performance**: Optimized data structures with 92% compression (373KB package size)
+- **⚡ High Performance**: Optimized data structures (**~135KB bundle size**)
 - **🌐 Universal Support**: Works in Node.js, browsers, and modern JavaScript environments
 - **🔧 Validation Tools**: Built-in data integrity checks and format validation
-- **📊 Rich Metadata**: Geographic coordinates, hierarchical relationships, and official codes
+- **📊 Rich Metadata**: Geographic coordinates, hierarchical relationships, and user-friendly codes
 - **🎯 Tree-shakable**: Only import what you need to keep your bundle size minimal
 
 ## 📦 Installation
@@ -31,6 +31,33 @@ yarn add rwanda-geo
 ```bash
 pnpm add rwanda-geo
 ```
+
+## 📁 Source Data Management
+
+This package uses a compressed source file (`locations.json.gz`) to generate the administrative data. The source file is automatically managed and only loaded when needed.
+
+### Managing the Source File
+
+```bash
+# Check current status
+node scripts/manage-locations.js status
+
+# Download fresh source data
+node scripts/manage-locations.js download
+
+# Compress the source file
+node scripts/manage-locations.js compress
+
+# Extract for development
+node scripts/manage-locations.js extract
+
+# Clean up (production mode)
+node scripts/manage-locations.js clean
+```
+
+**Production Mode**: Only the compressed `locations.json.gz` file is kept (72KB), reducing storage and improving performance.
+
+**Development Mode**: Both compressed and uncompressed files are available for easier debugging.
 
 ## 🚀 Quick Start
 
@@ -51,11 +78,11 @@ const provinces = getAllProvinces();
 **Output:**
 ```json
 [
-  { "code": "RW-UMU", "name": "Kigali City", "slug": "kigali-city" },
-  { "code": "RW-AMA", "name": "Southern Province", "slug": "southern-province" },
-  { "code": "RW-IBU", "name": "Western Province", "slug": "western-province" },
-  { "code": "RW-AMA-4", "name": "Northern Province", "slug": "northern-province" },
-  { "code": "RW-IBU-5", "name": "Eastern Province", "slug": "eastern-province" }
+  { "code": "RW-01", "name": "Kigali City", "slug": "kigali-city" },
+  { "code": "RW-02", "name": "Southern Province", "slug": "southern-province" },
+  { "code": "RW-03", "name": "Western Province", "slug": "western-province" },
+  { "code": "RW-04", "name": "Northern Province", "slug": "northern-province" },
+  { "code": "RW-05", "name": "Eastern Province", "slug": "eastern-province" }
 ]
 ```
 
@@ -63,13 +90,13 @@ const provinces = getAllProvinces();
 
 ```ts
 // Get districts in Kigali City
-const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+const kigaliDistricts = getDistrictsByProvince('RW-01');
 
 // Get a specific administrative unit
-const gasabo = getByCode('RW-UMU-GAS');
+const gasabo = getByCode('RW-D-01');
 
 // Get complete hierarchy for any location
-const hierarchy = getHierarchy('RW-UMU-GAS-BUM-BUM-BUM');
+const hierarchy = getHierarchy('RW-V-00001');
 ```
 
 ### Advanced Search
@@ -90,11 +117,11 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 
 | Level | Count | Example Code | Example Name |
 |-------|-------|--------------|--------------|
-| **Provinces** | 5 | `RW-UMU` | Kigali City |
-| **Districts** | 30 | `RW-UMU-GAS` | Gasabo |
-| **Sectors** | 416 | `RW-UMU-GAS-BUM` | Bumbogo |
-| **Cells** | 2,148 | `RW-UMU-GAS-BUM-BUM` | Bumbogo |
-| **Villages** | 14,837 | `RW-UMU-GAS-BUM-BUM-BUM` | Bumbogo |
+| **Provinces** | 5 | `RW-01` | Kigali City |
+| **Districts** | 30 | `RW-D-01` | Gasabo |
+| **Sectors** | 416 | `RW-S-001` | Bumbogo |
+| **Cells** | 2,148 | `RW-C-0001` | Bumbogo |
+| **Villages** | 14,837 | `RW-V-00001` | Bumbogo |
 
 **Total: 17,436 administrative units**
 
@@ -119,10 +146,10 @@ getAllVillages(): Village[]
 import { getAllProvinces, getAllDistricts } from 'rwanda-geo';
 
 const provinces = getAllProvinces();
-// Returns: [{ code: "RW-UMU", name: "Kigali City", slug: "kigali-city" }, ...]
+// Returns: [{ code: "RW-01", name: "Kigali City", slug: "kigali-city" }, ...]
 
 const districts = getAllDistricts();
-// Returns: [{ code: "RW-UMU-GAS", name: "Gasabo", slug: "gasabo" }, ...]
+// Returns: [{ code: "RW-D-01", name: "Gasabo", slug: "gasabo" }, ...]
 ```
 </details>
 
@@ -143,10 +170,10 @@ getVillagesByCell(cellCode: string): Village[]
 ```ts
 import { getDistrictsByProvince, getSectorsByDistrict } from 'rwanda-geo';
 
-const kigaliDistricts = getDistrictsByProvince('RW-UMU');
+const kigaliDistricts = getDistrictsByProvince('RW-01');
 // Returns all districts in Kigali City
 
-const gasaboSectors = getSectorsByDistrict('RW-UMU-GAS');
+const gasaboSectors = getSectorsByDistrict('RW-D-01');
 // Returns all sectors in Gasabo district
 ```
 </details>
@@ -168,14 +195,14 @@ getAllDescendants(parentCode: string): AdministrativeUnit[]
 ```ts
 import { getByCode, getHierarchy, getSiblings } from 'rwanda-geo';
 
-const gasabo = getByCode('RW-UMU-GAS');
-// Returns: { code: "RW-UMU-GAS", name: "Gasabo", slug: "gasabo", ... }
+const gasabo = getByCode('RW-D-01');
+// Returns: { code: "RW-D-01", name: "Gasabo", slug: "gasabo", ... }
 
-const hierarchy = getHierarchy('RW-UMU-GAS-BUM');
+const hierarchy = getHierarchy('RW-S-001');
 // Returns: [Province, District, Sector] chain
 
-const siblings = getSiblings('RW-UMU-GAS');
-// Returns all districts in Kigali City (same level as Gasabo)
+const siblings = getSiblings('RW-D-01');
+// Returns all districts in the same province as Gasabo
 ```
 </details>
 
@@ -198,7 +225,7 @@ getSuggestions(query: string, limit?: number): Array<{unit: AdministrativeUnit, 
 import { searchByName, fuzzySearchByName, getSuggestions } from 'rwanda-geo';
 
 const exactMatches = searchByName('Gasabo');
-// Returns: [{ code: "RW-UMU-GAS", name: "Gasabo", ... }]
+// Returns: [{ code: "RW-D-01", name: "Gasabo", ... }]
 
 const fuzzyResults = fuzzySearchByName('kigali', 0.8, 5);
 // Returns: [{ unit: {...}, score: 0.95 }, ...]
@@ -232,7 +259,7 @@ const counts = getCounts();
 const summary = getSummary();
 // Returns: { provinces: 5, districts: 30, sectors: 416, cells: 2148, villages: 14837, total: 17436 }
 
-const isValid = isValidCode('RW-UMU-GAS');
+const isValid = isValidCode('RW-D-01');
 // Returns: true
 ```
 </details>
@@ -254,10 +281,10 @@ validateUnitProperties(unit: AdministrativeUnit): { isValid: boolean; issues: st
 ```ts
 import { validateCodeFormat, validateParentChildRelationship } from 'rwanda-geo';
 
-const formatCheck = validateCodeFormat('RW-UMU-GAS');
+const formatCheck = validateCodeFormat('RW-D-01');
 // Returns: { isValid: true, level: 'district', format: 'RW-XX-YY' }
 
-const relationshipCheck = validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS');
+const relationshipCheck = validateParentChildRelationship('RW-01', 'RW-D-01');
 // Returns: { isValid: true, parentLevel: 'province', childLevel: 'district' }
 ```
 </details>
@@ -269,7 +296,7 @@ const relationshipCheck = validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS'
 #### **Parameter Types**
 | Type | Description | Example |
 |------|-------------|---------|
-| `string` | Administrative code or name | `'RW-UMU-GAS'`, `'Gasabo'` |
+| `string` | Administrative code or name | `'RW-D-01'`, `'Gasabo'` |
 | `number` | Threshold (0-1) or limit | `0.8`, `10` |
 | `AdminLevel` | Administrative level | `'district'` |
 
@@ -288,11 +315,11 @@ const relationshipCheck = validateParentChildRelationship('RW-UMU', 'RW-UMU-GAS'
 ### Code Format
 Each administrative unit has a unique hierarchical code:
 
-- **Province**: `RW-XX` (e.g., `RW-UMU` for Kigali City)
-- **District**: `RW-XX-YY` (e.g., `RW-UMU-GAS` for Gasabo)
-- **Sector**: `RW-XX-YY-ZZ` (e.g., `RW-UMU-GAS-BUM` for Bumbogo)
-- **Cell**: `RW-XX-YY-ZZ-AA` (e.g., `RW-UMU-GAS-BUM-BUM` for Bumbogo cell)
-- **Village**: `RW-XX-YY-ZZ-AA-BB` (e.g., `RW-UMU-GAS-BUM-BUM-BUM` for Bumbogo village)
+- **Province**: `RW-XX` (e.g., `RW-01` for Kigali City)
+- **District**: `RW-XX-YY` (e.g., `RW-D-01` for Gasabo)
+- **Sector**: `RW-XX-YY-ZZ` (e.g., `RW-S-001` for Bumbogo)
+- **Cell**: `RW-XX-YY-ZZ-AA` (e.g., `RW-C-0001` for Bumbogo cell)
+- **Village**: `RW-XX-YY-ZZ-AA-BB` (e.g., `RW-V-00001` for Bumbogo village)
 
 ### Unit Properties
 ```ts

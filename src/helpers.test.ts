@@ -6,6 +6,8 @@ import {
   getAllVillages,
   getDistrictsByProvince,
   getSectorsByDistrict,
+  getCellsBySector,
+  getVillagesByCell,
   getByCode,
   getHierarchy,
   getChildren,
@@ -16,16 +18,16 @@ import {
   isValidCode,
   getCodeLevel,
   getSummary,
-  // New hierarchical navigation functions
+  // Hierarchical navigation functions
   getFullHierarchy,
   getDirectChildren,
   getSiblings,
   getAllDescendants,
-  // New search & fuzzy matching functions
+  // Advanced search & fuzzy matching functions
   fuzzySearchByName,
   searchByPartialCode,
   getSuggestions,
-  // New validation utility functions
+  // Validation utility functions
   validateParentChildRelationship,
   validateCodeFormat,
   validateHierarchyIntegrity,
@@ -34,69 +36,152 @@ import {
 
 describe('rwanda-geo helpers', () => {
   test('getAllProvinces returns all provinces', () => {
-    const result = getAllProvinces();
-    expect(result.length).toBe(5);
-    expect(result[0]).toHaveProperty('code');
-    expect(result[0]).toHaveProperty('name');
-  });
-
-  test('getDistrictsByProvince returns correct districts', () => {
     const provinces = getAllProvinces();
-    const provinceCode = provinces[0].code;
-    const result = getDistrictsByProvince(provinceCode);
-    expect(result.length).toBeGreaterThan(0);
-    result.forEach(d => expect(d.parentCode).toBe(provinceCode));
+    expect(provinces).toHaveLength(5);
+    provinces.forEach(province => {
+      expect(province).toHaveProperty('code');
+      expect(province).toHaveProperty('name');
+      expect(province).toHaveProperty('slug');
+      expect(province.code).toMatch(/^RW-\d{2}$/);
+    });
   });
 
-  test('getSectorsByDistrict returns correct sectors', () => {
+  test('getAllDistricts returns all districts', () => {
     const districts = getAllDistricts();
-    const districtCode = districts[0].code;
-    const result = getSectorsByDistrict(districtCode);
-    expect(result.length).toBeGreaterThan(0);
-    result.forEach(s => expect(s.parentCode).toBe(districtCode));
+    expect(districts).toHaveLength(30);
+    districts.forEach(district => {
+      expect(district).toHaveProperty('code');
+      expect(district).toHaveProperty('name');
+      expect(district).toHaveProperty('slug');
+      expect(district).toHaveProperty('parentCode');
+      expect(district.code).toMatch(/^RW-D-\d{2}$/);
+    });
+  });
+
+  test('getAllSectors returns all sectors', () => {
+    const sectors = getAllSectors();
+    expect(sectors).toHaveLength(416);
+    sectors.forEach(sector => {
+      expect(sector).toHaveProperty('code');
+      expect(sector).toHaveProperty('name');
+      expect(sector).toHaveProperty('slug');
+      expect(sector).toHaveProperty('parentCode');
+      expect(sector.code).toMatch(/^RW-S-\d{3}$/);
+    });
+  });
+
+  test('getAllCells returns all cells', () => {
+    const cells = getAllCells();
+    expect(cells).toHaveLength(2148);
+    cells.forEach(cell => {
+      expect(cell).toHaveProperty('code');
+      expect(cell).toHaveProperty('name');
+      expect(cell).toHaveProperty('slug');
+      expect(cell).toHaveProperty('parentCode');
+      expect(cell.code).toMatch(/^RW-C-\d{4}$/);
+    });
+  });
+
+  test('getAllVillages returns all villages', () => {
+    const villages = getAllVillages();
+    expect(villages).toHaveLength(14837);
+    villages.forEach(village => {
+      expect(village).toHaveProperty('code');
+      expect(village).toHaveProperty('name');
+      expect(village).toHaveProperty('slug');
+      expect(village).toHaveProperty('parentCode');
+      expect(village.code).toMatch(/^RW-V-\d{5}$/);
+    });
+  });
+
+  test('getDistrictsByProvince returns districts for a province', () => {
+    const provinces = getAllProvinces();
+    const firstProvince = provinces[0];
+    const districts = getDistrictsByProvince(firstProvince.code);
+    
+    expect(districts.length).toBeGreaterThan(0);
+    districts.forEach(district => {
+      expect(district.parentCode).toBe(firstProvince.code);
+    });
+  });
+
+  test('getSectorsByDistrict returns sectors for a district', () => {
+    const districts = getAllDistricts();
+    const firstDistrict = districts[0];
+    const sectors = getSectorsByDistrict(firstDistrict.code);
+    
+    expect(sectors.length).toBeGreaterThan(0);
+    sectors.forEach(sector => {
+      expect(sector.parentCode).toBe(firstDistrict.code);
+    });
+  });
+
+  test('getCellsBySector returns cells for a sector', () => {
+    const sectors = getAllSectors();
+    const firstSector = sectors[0];
+    const cells = getCellsBySector(firstSector.code);
+    
+    expect(cells.length).toBeGreaterThan(0);
+    cells.forEach(cell => {
+      expect(cell.parentCode).toBe(firstSector.code);
+    });
+  });
+
+  test('getVillagesByCell returns villages for a cell', () => {
+    const cells = getAllCells();
+    const firstCell = cells[0];
+    const villages = getVillagesByCell(firstCell.code);
+    
+    expect(villages.length).toBeGreaterThan(0);
+    villages.forEach(village => {
+      expect(village.parentCode).toBe(firstCell.code);
+    });
   });
 
   test('getByCode returns the correct unit', () => {
-    const districts = getAllDistricts();
-    const code = districts[0].code;
-    const unit = getByCode(code);
-    expect(unit).toBeDefined();
-    expect(unit?.code).toBe(code);
-  });
-
-  test('getByCode returns undefined for invalid code', () => {
-    expect(getByCode('RW-XX-YYY')).toBeUndefined();
-  });
-
-  test('getHierarchy returns the correct parent chain', () => {
-    const districts = getAllDistricts();
-    const code = districts[0].code;
-    const hierarchy = getHierarchy(code);
-    expect(hierarchy.length).toBeGreaterThan(1);
-    expect(hierarchy[0].code).toMatch(/^RW-[A-Z0-9-]+$/);
-    expect(hierarchy[hierarchy.length - 1].code).toBe(code);
-  });
-
-  test('getChildren returns correct children', () => {
     const provinces = getAllProvinces();
-    const parentCode = provinces[0].code;
-    const children = getChildren(parentCode);
+    const firstProvince = provinces[0];
+    const found = getByCode(firstProvince.code);
+    
+    expect(found).toBeDefined();
+    expect(found?.code).toBe(firstProvince.code);
+    expect(found?.name).toBe(firstProvince.name);
+  });
+
+  test('getHierarchy returns the complete hierarchy', () => {
+    const villages = getAllVillages();
+    const firstVillage = villages[0];
+    const hierarchy = getHierarchy(firstVillage.code);
+    
+    expect(hierarchy.length).toBeGreaterThan(0);
+    expect(hierarchy[hierarchy.length - 1].code).toBe(firstVillage.code);
+  });
+
+  test('getChildren returns children of a parent', () => {
+    const provinces = getAllProvinces();
+    const firstProvince = provinces[0];
+    const children = getChildren(firstProvince.code);
+    
     expect(children.length).toBeGreaterThan(0);
-    children.forEach(child => expect(child.parentCode).toBe(parentCode));
+    children.forEach(child => {
+      expect(child.parentCode).toBe(firstProvince.code);
+    });
   });
 
   test('searchByName finds units by name', () => {
-    const results = searchByName('Gasabo');
+    const results = searchByName('Kigali');
     expect(results.length).toBeGreaterThan(0);
-    expect(results[0].name.toLowerCase()).toContain('gasabo');
+    results.forEach(result => {
+      expect(result.name.toLowerCase()).toContain('kigali');
+    });
   });
 
   test('searchBySlug finds units by slug', () => {
-    const provinces = getAllProvinces();
-    const searchTerm = provinces[0].name.toLowerCase().split(' ')[0];
-    const results = searchBySlug(searchTerm);
+    const results = searchBySlug('kigali');
     expect(results.length).toBeGreaterThan(0);
-    expect(results[0].slug).toContain(searchTerm);
+    results.forEach(result => {
+      expect(result.slug.toLowerCase()).toContain('kigali');
+    });
   });
 
   test('getByLevel returns correct units', () => {
@@ -118,22 +203,21 @@ describe('rwanda-geo helpers', () => {
   });
 
   test('isValidCode validates codes correctly', () => {
-    expect(isValidCode('RW-KG')).toBe(true);
-    expect(isValidCode('RW-KG-GAS')).toBe(true);
-    expect(isValidCode('RW-KG-GAS-BUM')).toBe(true);
-    expect(isValidCode('RW-KG-GAS-BUM-BUM')).toBe(true);
-    expect(isValidCode('RW-KG-GAS-BUM-BUM-BUM')).toBe(true);
-    expect(isValidCode('RW-XX-YYY-ZZZ-AAA-BBB')).toBe(true);
+    expect(isValidCode('RW-01')).toBe(true);
+    expect(isValidCode('RW-D-01')).toBe(true);
+    expect(isValidCode('RW-S-001')).toBe(true);
+    expect(isValidCode('RW-C-0001')).toBe(true);
+    expect(isValidCode('RW-V-00001')).toBe(true);
     expect(isValidCode('INVALID')).toBe(false);
-    expect(isValidCode('RW-KG-GAS-BUM-BUM-BUM-EXTRA')).toBe(false);
+    expect(isValidCode('RW-01-EXTRA')).toBe(false);
   });
 
   test('getCodeLevel returns correct level', () => {
-    expect(getCodeLevel('RW-KG')).toBe('province');
-    expect(getCodeLevel('RW-KG-GAS')).toBe('district');
-    expect(getCodeLevel('RW-KG-GAS-BUM')).toBe('sector');
-    expect(getCodeLevel('RW-KG-GAS-BUM-BUM')).toBe('cell');
-    expect(getCodeLevel('RW-KG-GAS-BUM-BUM-BUM')).toBe('village');
+    expect(getCodeLevel('RW-01')).toBe('province');
+    expect(getCodeLevel('RW-D-01')).toBe('district');
+    expect(getCodeLevel('RW-S-001')).toBe('sector');
+    expect(getCodeLevel('RW-C-0001')).toBe('cell');
+    expect(getCodeLevel('RW-V-00001')).toBe('village');
     expect(getCodeLevel('INVALID')).toBeUndefined();
   });
 
@@ -144,7 +228,7 @@ describe('rwanda-geo helpers', () => {
       districts: 30,
       sectors: 416,
       cells: 2148,
-      villages: 14837,
+      villages: 14837
     });
   });
 
@@ -156,7 +240,7 @@ describe('rwanda-geo helpers', () => {
       const hierarchy = getFullHierarchy(village.code);
       
       expect(hierarchy.length).toBe(5); // Province -> District -> Sector -> Cell -> Village
-      expect(hierarchy[0].code).toMatch(/^RW-[A-Z0-9-]+$/); // Province
+      expect(hierarchy[0].code).toMatch(/^RW-\d{2}$/); // Province
       expect(hierarchy[hierarchy.length - 1].code).toBe(village.code); // Village
     });
 
@@ -218,10 +302,10 @@ describe('rwanda-geo helpers', () => {
     });
 
     test('searchByPartialCode finds prefix matches', () => {
-      const results = searchByPartialCode('RW-UMU', 10);
+      const results = searchByPartialCode('RW-01', 10);
       expect(results.length).toBeGreaterThan(0);
       results.forEach(result => {
-        expect(result.code.startsWith('RW-UMU')).toBe(true);
+        expect(result.code.startsWith('RW-01')).toBe(true);
       });
     });
 
@@ -247,13 +331,9 @@ describe('rwanda-geo helpers', () => {
       const sector = sectors[0];
       
       const validation = validateParentChildRelationship(district.code, sector.code);
-      // Accept either valid or invalid, but if invalid, it should be due to code uniqueness logic
-      if (!validation.isValid) {
-        expect(validation.error).toMatch(/parent|hierarchy|child/i);
-      } else {
-        expect(validation.parentLevel).toBe('district');
-        expect(validation.childLevel).toBe('sector');
-      }
+      expect(validation.isValid).toBe(true);
+      expect(validation.parentLevel).toBe('district');
+      expect(validation.childLevel).toBe('sector');
     });
 
     test('validateParentChildRelationship rejects invalid relationships', () => {
@@ -269,8 +349,7 @@ describe('rwanda-geo helpers', () => {
       const provinces = getAllProvinces();
       const validation = validateCodeFormat(provinces[0].code);
       expect(validation.isValid).toBe(true);
-      // Accept any code that starts with RW- and has at least one segment
-      expect(provinces[0].code).toMatch(/^RW(-[A-Z0-9]+)+$/);
+      expect(provinces[0].code).toMatch(/^RW-\d{2}$/);
     });
 
     test('validateCodeFormat rejects invalid formats', () => {
@@ -290,10 +369,7 @@ describe('rwanda-geo helpers', () => {
     test('validateUnitProperties validates unit structure', () => {
       const provinces = getAllProvinces();
       const validation = validateUnitProperties(provinces[0]);
-      // Accept either valid or invalid, but if invalid, it should be due to code format
-      if (!validation.isValid) {
-        expect(validation.issues.join(' ')).toMatch(/code format/i);
-      }
+      expect(validation.isValid).toBe(true);
     });
   });
 }); 

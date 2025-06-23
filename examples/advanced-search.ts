@@ -22,11 +22,11 @@ console.log(JSON.stringify(kigaliResults, null, 2));
 Output:
 [
   { 
-    "unit": { "code": "RW-UMU", "name": "Umujyi wa Kigali" }, 
+    "unit": { "code": "RW-01", "name": "Kigali City" }, 
     "score": 1.0 
   },
   { 
-    "unit": { "code": "RW-UMU-GAS", "name": "Gasabo" }, 
+    "unit": { "code": "RW-D-01", "name": "Gasabo" }, 
     "score": 0.8 
   }
 ]
@@ -43,11 +43,11 @@ console.log(JSON.stringify(gasaboResults, null, 2));
 Output:
 [
   { 
-    "unit": { "code": "RW-UMU-GAS", "name": "Gasabo" }, 
+    "unit": { "code": "RW-D-01", "name": "Gasabo" }, 
     "score": 1.0 
   },
   { 
-    "unit": { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo" }, 
+    "unit": { "code": "RW-S-001", "name": "Bumbogo" }, 
     "score": 0.6 
   }
 ]
@@ -56,34 +56,34 @@ Output:
 console.log('\n---\n');
 
 // 3. Partial code search
-console.log('3. Partial code search for "RW-UMU":');
-const umuResults = searchByPartialCode('RW-UMU', 10);
-console.log(JSON.stringify(umuResults.slice(0, 5), null, 2));
+console.log('3. Partial code search for "RW-01":');
+const rw01Results = searchByPartialCode('RW-01', 10);
+console.log(JSON.stringify(rw01Results.slice(0, 5), null, 2));
 
 /*
 Output:
 [
-  { "code": "RW-UMU", "name": "Umujyi wa Kigali", "level": "province" },
-  { "code": "RW-UMU-NYA", "name": "Nyarugenge", "level": "district" },
-  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
-  { "code": "RW-UMU-KIC", "name": "Kicukiro", "level": "district" }
+  { "code": "RW-01", "name": "Kigali City", "level": "province" },
+  { "code": "RW-D-01", "name": "Gasabo", "level": "district" },
+  { "code": "RW-D-02", "name": "Kicukiro", "level": "district" },
+  { "code": "RW-D-03", "name": "Nyarugenge", "level": "district" }
 ]
 */
 
 console.log('\n---\n');
 
 // 4. Partial code search for districts
-console.log('4. Partial code search for districts (RW-UMU-GAS):');
-const gasResults = searchByPartialCode('RW-UMU-GAS', 20);
-console.log(JSON.stringify(gasResults.slice(0, 8), null, 2));
+console.log('4. Partial code search for districts (RW-D-01):');
+const districtResults = searchByPartialCode('RW-D-01', 20);
+console.log(JSON.stringify(districtResults.slice(0, 8), null, 2));
 
 /*
 Output:
 [
-  { "code": "RW-UMU-GAS", "name": "Gasabo", "level": "district" },
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
-  { "code": "RW-UMU-GAS-GAT", "name": "Gatsata", "level": "sector" },
-  { "code": "RW-UMU-GAS-GIK", "name": "Gikomero", "level": "sector" }
+  { "code": "RW-D-01", "name": "Gasabo", "level": "district" },
+  { "code": "RW-S-001", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-S-002", "name": "Gatsata", "level": "sector" },
+  { "code": "RW-S-003", "name": "Gikomero", "level": "sector" }
   // ... more sectors
 ]
 */
@@ -98,9 +98,9 @@ console.log(JSON.stringify(suggestions, null, 2));
 /*
 Output:
 [
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
-  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo", "level": "cell" },
-  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo", "level": "village" }
+  { "code": "RW-S-001", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-C-0001", "name": "Bumbogo", "level": "cell" },
+  { "code": "RW-V-00001", "name": "Bumbogo", "level": "village" }
 ]
 */
 
@@ -122,7 +122,7 @@ console.log('\n---\n');
 console.log('7. Fuzzy search for villages with "bumbogo":');
 const bumbogoResults = fuzzySearchByName('bumbogo', 2, 10);
 const bumbogoVillages = bumbogoResults.filter(({ unit }) => 
-  unit.code.split('-').length === 6 // Village level
+  unit.code.startsWith('RW-V-') // Village level
 );
 console.log(`   Found ${bumbogoVillages.length} villages with similar names:`);
 console.log(JSON.stringify(bumbogoVillages, null, 2));
@@ -131,7 +131,7 @@ console.log(JSON.stringify(bumbogoVillages, null, 2));
 Output:
 [
   { 
-    "unit": { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo" }, 
+    "unit": { "code": "RW-V-00001", "name": "Bumbogo" }, 
     "score": 1.0 
   }
 ]
@@ -148,9 +148,9 @@ console.log(JSON.stringify(allBumbogo, null, 2));
 /*
 Output:
 [
-  { "code": "RW-UMU-GAS-BUM", "name": "Bumbogo", "level": "sector" },
-  { "code": "RW-UMU-GAS-BUM-BUM", "name": "Bumbogo", "level": "cell" },
-  { "code": "RW-UMU-GAS-BUM-BUM-BUM", "name": "Bumbogo", "level": "village" }
+  { "code": "RW-S-001", "name": "Bumbogo", "level": "sector" },
+  { "code": "RW-C-0001", "name": "Bumbogo", "level": "cell" },
+  { "code": "RW-V-00001", "name": "Bumbogo", "level": "village" }
 ]
 */
 
@@ -170,7 +170,7 @@ console.log('\n---\n');
 
 // 10. Code pattern analysis
 console.log('10. Code pattern analysis for Kigali City:');
-const kigaliUnits = searchByPartialCode('RW-UMU', 50);
+const kigaliUnits = searchByPartialCode('RW-01', 50);
 const levelCounts = kigaliUnits.reduce((acc, unit) => {
   const level = unit.code.split('-').length;
   acc[level] = (acc[level] || 0) + 1;

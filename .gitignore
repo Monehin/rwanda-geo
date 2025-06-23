@@ -12,6 +12,8 @@ build/
 
 # Data files (using gzipped versions)
 src/data/*.json
+locations.json
+locations.json.gz
 
 # Environment variables
 .env

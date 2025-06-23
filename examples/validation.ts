@@ -13,13 +13,13 @@ import {
   validateUnitProperties,
   getSummary,
   getAllProvinces
-} from 'rwanda-geo';
+} from '../dist/index.mjs';
 
 console.log('=== Validation Examples ===\n');
 
 // 1. Validate code format
 console.log('1. Code format validation:');
-const validation = validateCodeFormat('RW-UMU-GAS-BUM-BUM-BUM');
+const validation = validateCodeFormat('RW-V-00001');
 console.log(JSON.stringify(validation, null, 2));
 
 /*
@@ -27,7 +27,7 @@ Output:
 {
   "isValid": true,
   "level": "village",
-  "format": "RW-XX-YY-ZZ-AA-BB"
+  "format": "RW-V-XXXXX"
 }
 */
 
@@ -35,7 +35,7 @@ console.log('\n---\n');
 
 // 2. Validate parent-child relationship
 console.log('2. Parent-child relationship validation:');
-const relationship = validateParentChildRelationship('RW-UMU-GAS', 'RW-UMU-GAS-BUM');
+const relationship = validateParentChildRelationship('RW-D-01', 'RW-S-001');
 console.log(JSON.stringify(relationship, null, 2));
 
 /*
@@ -108,9 +108,9 @@ console.log('\n---\n');
 console.log('6. Invalid code format tests:');
 const invalidCodes = [
   'INVALID-CODE',
-  'RW-UMU-GAS-BUM-BUM-BUM-BUM', // Too many segments
-  'RW-UMU', // Too few segments for village
-  'XX-UMU-GAS-BUM-BUM-BUM' // Wrong country code
+  'RW-V-00001-BUM', // Too many segments
+  'RW-01', // Too few segments for village
+  'XX-D-01-S-001' // Wrong country code
 ];
 
 invalidCodes.forEach(code => {
@@ -121,9 +121,9 @@ invalidCodes.forEach(code => {
 /*
 Output:
 INVALID-CODE: Invalid - Unknown level
-RW-UMU-GAS-BUM-BUM-BUM-BUM: Invalid - Unknown level
-RW-UMU: Invalid - province
-XX-UMU-GAS-BUM-BUM-BUM: Invalid - Unknown level
+RW-V-00001-BUM: Invalid - Unknown level
+RW-01: Invalid - province
+XX-D-01-S-001: Invalid - Unknown level
 */
 
 console.log('\n---\n');
@@ -131,9 +131,9 @@ console.log('\n---\n');
 // 7. Test invalid parent-child relationships
 console.log('7. Invalid parent-child relationship tests:');
 const invalidRelationships = [
-  { parent: 'RW-UMU-GAS', child: 'RW-UMU-NYA-BUM' }, // Different parents
-  { parent: 'RW-UMU-GAS-BUM', child: 'RW-UMU-GAS' }, // Wrong direction
-  { parent: 'RW-UMU-GAS-BUM-BUM', child: 'RW-UMU-GAS-BUM-BUM-BUM-BUM' } // Too many levels
+  { parent: 'RW-D-01', child: 'RW-D-02-S-001' }, // Different parents
+  { parent: 'RW-S-001', child: 'RW-D-01' }, // Wrong direction
+  { parent: 'RW-C-0001', child: 'RW-V-00001-BUM' } // Too many levels
 ];
 
 invalidRelationships.forEach(({ parent, child }) => {
@@ -143,17 +143,17 @@ invalidRelationships.forEach(({ parent, child }) => {
 
 /*
 Output:
-RW-UMU-GAS -> RW-UMU-NYA-BUM: Invalid
-RW-UMU-GAS-BUM -> RW-UMU-GAS: Invalid
-RW-UMU-GAS-BUM-BUM -> RW-UMU-GAS-BUM-BUM-BUM-BUM: Invalid
+RW-D-01 -> RW-D-02-S-001: Invalid
+RW-S-001 -> RW-D-01: Invalid
+RW-C-0001 -> RW-V-00001-BUM: Invalid
 */
 
 console.log('\n---\n');
 
 // 8. Comprehensive validation report
 console.log('8. Comprehensive validation report:');
-const codeValidation = validateCodeFormat('RW-UMU-GAS-BUM-BUM-BUM');
-const relationshipValidation = validateParentChildRelationship('RW-UMU-GAS', 'RW-UMU-GAS-BUM');
+const codeValidation = validateCodeFormat('RW-V-00001');
+const relationshipValidation = validateParentChildRelationship('RW-D-01', 'RW-S-001');
 const hierarchyValidation = validateHierarchyIntegrity();
 const unitValidation2 = validateUnitProperties(sampleUnit);
 
@@ -177,7 +177,7 @@ Output:
   "codeFormat": {
     "isValid": true,
     "level": "village",
-    "format": "RW-XX-YY-ZZ-AA-BB"
+    "format": "RW-V-XXXXX"
   },
   "parentChildRelationship": {
     "isValid": true,

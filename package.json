@@ -1,7 +1,7 @@
 {
   "name": "rwanda-geo",
-  "version": "1.0.11",
-  "description": "Typed, and lightweight dataset of Rwanda's administrative divisions - Provinces, Districts, Sectors, Cells, Villages with official codes and coordinates",
+  "version": "1.0.12",
+  "description": "Complete, typed, and lightweight dataset of Rwanda's administrative divisions - 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages with simplified codes and coordinates",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -27,18 +27,18 @@
     "LICENSE"
   ],
   "scripts": {
-    "prebuild": "npm run gzip-data",
+    "generate-data": "node scripts/generate-data.js",
+    "optimize-data": "node scripts/optimize-compression.js",
+    "clean-data": "node scripts/manage-files.js data:remove",
+    "prebuild": "npm run clean-data && npm run generate-data && npm run optimize-data",
     "build": "tsup",
-    "prepostbuild": "rm -rf dist/data",
-    "postbuild": "cpx 'src/data/*.json.gz' dist/data/",
+    "postbuild": "node scripts/manage-files.js data:copy && npm run clean-data",
     "build:all": "npm run clean && npm run build",
-    "dev": "tsup --watch",
     "clean": "rm -rf dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit",
-    "gzip-data": "node scripts/gzip-data.js",
     "release:patch": "node scripts/release.js patch",
     "release:minor": "node scripts/release.js minor",
     "release:major": "node scripts/release.js major"
@@ -68,11 +68,10 @@
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^8.34.1",
     "@typescript-eslint/parser": "^8.34.1",
-    "cpx": "^1.5.0",
     "eslint": "^8.57.1",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
-    "tsup": "^7.0.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.0.0"
   },
   "engines": {
