@@ -109,15 +109,34 @@ jobs:
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
           echo "Bumped version to: $NEW_VERSION"
           
+      - name: Check if version already exists on npm
+        if: steps.check_changes.outputs.needs_bump == 'true'
+        id: check_npm_version
+        run: |
+          # Check if version already exists on npm
+          if npm view rwanda-geo@${{ env.NEW_VERSION }} version >/dev/null 2>&1; then
+            echo "Version ${{ env.NEW_VERSION }} already exists on npm"
+            echo "version_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Version ${{ env.NEW_VERSION }} is new"
+            echo "version_exists=false" >> $GITHUB_OUTPUT
+          fi
+          
       - name: Build with new version
         if: steps.check_changes.outputs.needs_bump == 'true'
         run: npm run build:all
         
       - name: Publish to NPM
-        if: steps.check_changes.outputs.needs_bump == 'true'
+        if: steps.check_changes.outputs.needs_bump == 'true' && steps.check_npm_version.outputs.version_exists == 'false'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Skip NPM publish (version already exists)
+        if: steps.check_changes.outputs.needs_bump == 'true' && steps.check_npm_version.outputs.version_exists == 'true'
+        run: |
+          echo "Version ${{ env.NEW_VERSION }} already exists on npm. Skipping publish."
+          echo "This usually happens when the workflow runs multiple times."
           
       - name: Create Git tag and push
         if: steps.check_changes.outputs.needs_bump == 'true'
