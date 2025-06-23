@@ -86,4 +86,4 @@ git push origin main
 1. **Check before pushing** - Run `npm run version:check` before pushing to main
 2. **Sync after issues** - If workflows fail, sync versions first
 3. **Let workflows handle bumps** - Don't manually bump versions
-4. **Keep git tags current** - Always have git tags matching npm versions 
+4. **Keep git tags current** - Always have git tags matching npm versions  
