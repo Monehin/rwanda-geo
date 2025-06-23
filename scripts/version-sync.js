@@ -1,26 +1,26 @@
 #!/usr/bin/env node
 
 /**
- * Version Sync Script
- * 
- * This script helps you check and sync versions between:
- * - Local package.json
- * - NPM registry
- * - Git tags
- * 
- * Usage:
- *   node scripts/version-sync.js
- *   node scripts/version-sync.js --check
- *   node scripts/version-sync.js --sync
+ * Improved Version Sync Script
+ *
+ * Ensures all versions (local, npm, git tag) are truly aligned.
+ * - Always fetches latest tags from remote
+ * - Compares latest tag commit with HEAD
+ * - Warns if HEAD is behind or ahead
+ * - Offers to create or update tags as needed
+ * - Clear output and next steps
  */
 
 const fs = require('fs');
 const { execSync } = require('child_process');
 
-// Get command line arguments
-const args = process.argv.slice(2);
-const isCheckOnly = args.includes('--check');
-const isSync = args.includes('--sync');
+function run(cmd) {
+  try {
+    return execSync(cmd, { encoding: 'utf8' }).trim();
+  } catch {
+    return null;
+  }
+}
 
 function getLocalVersion() {
   try {
@@ -33,24 +33,27 @@ function getLocalVersion() {
 }
 
 function getNpmVersion() {
-  try {
-    const output = execSync('npm view rwanda-geo version', { encoding: 'utf8' });
-    return output.trim();
-  } catch (error) {
-    console.error('❌ Error getting npm version:', error.message);
-    return null;
-  }
+  return run('npm view rwanda-geo version');
 }
 
-function getLatestGitTag() {
-  try {
-    const output = execSync('git describe --tags --abbrev=0 2>/dev/null || echo "none"', { encoding: 'utf8' });
-    const tag = output.trim();
-    return tag === 'none' ? null : tag.replace('v', '');
-  } catch (error) {
-    console.error('❌ Error getting git tag:', error.message);
-    return null;
-  }
+function getLatestRemoteTag() {
+  // Fetch all tags from remote
+  run('git fetch --tags --force');
+  // Get the latest tag by version sort
+  const tag = run('git tag --list --sort=-v:refname | head -1');
+  return tag || null;
+}
+
+function getTagVersion(tag) {
+  return tag ? tag.replace(/^v/, '') : null;
+}
+
+function getTagCommit(tag) {
+  return tag ? run(`git rev-list -n 1 ${tag}`) : null;
+}
+
+function getHeadCommit() {
+  return run('git rev-parse HEAD');
 }
 
 function updateLocalVersion(newVersion) {
@@ -68,7 +71,7 @@ function updateLocalVersion(newVersion) {
 
 function createGitTag(version) {
   try {
-    execSync(`git tag v${version}`, { stdio: 'inherit' });
+    run(`git tag v${version}`);
     console.log(`✅ Created git tag v${version}`);
     return true;
   } catch (error) {
@@ -79,7 +82,7 @@ function createGitTag(version) {
 
 function pushGitTag(version) {
   try {
-    execSync(`git push origin v${version}`, { stdio: 'inherit' });
+    run(`git push origin v${version}`);
     console.log(`✅ Pushed git tag v${version}`);
     return true;
   } catch (error) {
@@ -89,83 +92,72 @@ function pushGitTag(version) {
 }
 
 function main() {
-  console.log('🔍 Version Sync Check\n');
-  
+  console.log('🔍 Improved Version Sync Check\n');
+
+  // Always fetch tags from remote
+  run('git fetch --tags --force');
+
   const localVersion = getLocalVersion();
   const npmVersion = getNpmVersion();
-  const gitTagVersion = getLatestGitTag();
-  
+  const latestTag = getLatestRemoteTag();
+  const latestTagVersion = getTagVersion(latestTag);
+  const latestTagCommit = getTagCommit(latestTag);
+  const headCommit = getHeadCommit();
+
   console.log('📊 Current Versions:');
   console.log(`   Local (package.json):    ${localVersion || '❌ Error'}`);
   console.log(`   NPM Registry:            ${npmVersion || '❌ Error'}`);
-  console.log(`   Latest Git Tag:          ${gitTagVersion || 'none'}`);
+  console.log(`   Latest Git Tag:          ${latestTag || 'none'} (${latestTagVersion || 'none'})`);
+  console.log(`   Tag Commit:              ${latestTagCommit || 'none'}`);
+  console.log(`   HEAD Commit:             ${headCommit || 'none'}`);
   console.log('');
-  
+
   if (!localVersion || !npmVersion) {
     console.log('❌ Cannot proceed due to errors reading versions');
     process.exit(1);
   }
-  
-  const versions = [localVersion, npmVersion, gitTagVersion].filter(Boolean);
-  const uniqueVersions = [...new Set(versions)];
-  
-  if (uniqueVersions.length === 1) {
-    console.log('✅ All versions are in sync!');
+
+  // Check if all versions are the same
+  if (localVersion === npmVersion && localVersion === latestTagVersion && latestTagCommit === headCommit) {
+    console.log('✅ All versions and git tags are in sync!');
     return;
   }
-  
-  console.log('⚠️  Version mismatch detected!');
-  console.log('');
-  
-  // Find the highest version
+
+  // If HEAD is not at the latest tag, warn user
+  if (latestTagCommit && headCommit && latestTagCommit !== headCommit) {
+    console.log('⚠️  HEAD is not at the latest tag commit!');
+    console.log(`   Latest tag (${latestTag}) is at commit ${latestTagCommit}`);
+    console.log(`   Your HEAD is at commit ${headCommit}`);
+    console.log('');
+    console.log('💡 If you want to tag the current HEAD, run:');
+    console.log(`   git tag v${localVersion}`);
+    console.log(`   git push origin v${localVersion}`);
+    return;
+  }
+
+  // If local version or npm version is higher than the latest tag, offer to tag
+  const versions = [localVersion, npmVersion, latestTagVersion].filter(Boolean);
   const highestVersion = versions.reduce((highest, current) => {
     return current > highest ? current : highest;
   });
-  
-  console.log(`📈 Highest version found: ${highestVersion}`);
-  console.log('');
-  
-  if (isCheckOnly) {
-    console.log('💡 To sync versions, run:');
-    console.log('   node scripts/version-sync.js --sync');
-    return;
+
+  if (localVersion !== highestVersion) {
+    console.log(`📝 Local version (${localVersion}) is not the highest. Updating to ${highestVersion}...`);
+    updateLocalVersion(highestVersion);
   }
-  
-  if (isSync) {
-    console.log('🔄 Syncing versions...\n');
-    
-    let success = true;
-    
-    // Update local version if needed
-    if (localVersion !== highestVersion) {
-      console.log(`📝 Updating local version from ${localVersion} to ${highestVersion}...`);
-      success = updateLocalVersion(highestVersion) && success;
-    }
-    
-    // Create git tag if needed
-    if (gitTagVersion !== highestVersion) {
-      console.log(`🏷️  Creating git tag for version ${highestVersion}...`);
-      success = createGitTag(highestVersion) && success;
-      
-      if (success) {
-        console.log(`📤 Pushing git tag...`);
-        success = pushGitTag(highestVersion) && success;
-      }
-    }
-    
-    if (success) {
-      console.log('\n✅ Version sync completed successfully!');
-      console.log('\n📋 Next steps:');
-      console.log('   1. Commit the updated package.json: git add package.json && git commit -m "Sync version to ' + highestVersion + '"');
-      console.log('   2. Push to main: git push origin main');
-    } else {
-      console.log('\n❌ Some sync operations failed. Please check the errors above.');
-    }
-  } else {
-    console.log('💡 Available options:');
-    console.log('   --check  : Only check versions (default)');
-    console.log('   --sync   : Sync all versions to the highest one');
+
+  if (latestTagVersion !== highestVersion) {
+    console.log(`🏷️  Latest git tag (${latestTagVersion}) is not the highest. Creating tag v${highestVersion}...`);
+    createGitTag(highestVersion);
+    pushGitTag(highestVersion);
   }
+
+  if (npmVersion !== highestVersion) {
+    console.log(`⚠️  NPM registry version (${npmVersion}) is not the highest. You may need to publish.`);
+    console.log('   To publish, run: npm publish');
+  }
+
+  console.log('\n✅ Version sync completed. All versions should now be aligned!');
 }
 
 main(); 

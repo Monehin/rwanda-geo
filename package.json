@@ -39,12 +39,8 @@
     "test:watch": "jest --watch",
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit",
-    "commit": "node scripts/commit-helper.js",
     "version:check": "node scripts/version-sync.js --check",
-    "version:sync": "node scripts/version-sync.js --sync",
-    "release:patch": "node scripts/release.js patch",
-    "release:minor": "node scripts/release.js minor",
-    "release:major": "node scripts/release.js major"
+    "version:sync": "node scripts/version-sync.js --sync"
   },
   "keywords": [
     "rwanda",
