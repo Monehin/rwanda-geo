@@ -261,6 +261,17 @@ npm run lint
 npm test
 ```
 
+### Version Management
+```bash
+# Check version status
+npm run version:check
+
+# Sync versions across platforms
+npm run version:sync
+```
+
+For detailed information about semantic versioning and automated releases, see [Semantic Versioning Guide](docs/SEMANTIC_VERSIONING.md).
+
 ## 🚀 Automatic Publishing
 
 This project uses GitHub Actions for automatic npm publishing and version management.
@@ -277,6 +288,8 @@ This project uses GitHub Actions for automatic npm publishing and version manage
 ### Requirements
 - `NPM_TOKEN` secret must be configured in GitHub repository settings
 - Repository must have write permissions for the workflow to create tags
+
+**📖 For detailed information about semantic versioning, commit message formats, and troubleshooting, see [Semantic Versioning Guide](docs/SEMANTIC_VERSIONING.md).**
 
 ## 📂 Project Structure
 ```
