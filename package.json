@@ -23,14 +23,16 @@
   },
   "files": [
     "dist/",
+    "src/data-embedded/",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "generate-data": "node scripts/generate-data.js",
     "optimize-data": "node scripts/optimize-compression.js",
+    "embed-data": "node scripts/embed-data.js",
     "clean-data": "node scripts/manage-files.js data:remove",
-    "prebuild": "npm run clean-data && npm run generate-data && npm run optimize-data",
+    "prebuild": "npm run clean-data && npm run generate-data && npm run optimize-data && npm run embed-data",
     "build": "tsup",
     "postbuild": "node scripts/manage-files.js data:copy",
     "build:all": "npm run clean && npm run build",

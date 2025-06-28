@@ -1,4 +1,4 @@
-import { lazyLoadGzippedJson } from './utils/lazy-loader';
+import { loadEmbeddedData } from './utils/modern-loader';
 import { Province, District, Sector, Cell, Village, AdministrativeUnit } from './types';
 
 // Language mapping for province names (English to Kinyarwanda)
@@ -62,25 +62,50 @@ function getTranslatedProvinceSlug(originalName: string, language: 'en' | 'rw' =
   return mapping ? mapping[language] : originalName.toLowerCase().replace(/\s+/g, '-');
 }
 
-// Lazy-loaded data accessors
+// Data loading functions with modern compatibility
 function getProvincesData(): Province[] {
-  return lazyLoadGzippedJson<Province[]>('provinces');
+  try {
+    return loadEmbeddedData<Province[]>('provinces');
+  } catch (error) {
+    console.warn('Warning: Could not load provinces data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 function getDistrictsData(): District[] {
-  return lazyLoadGzippedJson<District[]>('districts');
+  try {
+    return loadEmbeddedData<District[]>('districts');
+  } catch (error) {
+    console.warn('Warning: Could not load districts data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 function getSectorsData(): Sector[] {
-  return lazyLoadGzippedJson<Sector[]>('sectors');
+  try {
+    return loadEmbeddedData<Sector[]>('sectors');
+  } catch (error) {
+    console.warn('Warning: Could not load sectors data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 function getCellsData(): Cell[] {
-  return lazyLoadGzippedJson<Cell[]>('cells');
+  try {
+    return loadEmbeddedData<Cell[]>('cells');
+  } catch (error) {
+    console.warn('Warning: Could not load cells data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 function getVillagesData(): Village[] {
-  return lazyLoadGzippedJson<Village[]>('villages');
+  try {
+    return loadEmbeddedData<Village[]>('villages');
+  } catch (error) {
+    console.warn('Warning: Could not load villages data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 // Lazy-loaded lookup map

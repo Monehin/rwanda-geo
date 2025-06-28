@@ -10,4 +10,8 @@ export default defineConfig({
   treeshake: true,
   external: [],
   outDir: 'dist',
+  loader: {
+    '.js': 'copy'
+  },
+  onSuccess: 'cp -r src/data-embedded dist/data-embedded 2>/dev/null || true'
 }); 
