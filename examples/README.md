@@ -53,6 +53,17 @@ Real-world use cases:
 - Address validation
 - Data enrichment
 
+### 6. Server-Side Usage (`server-side-usage.ts`)
+**⚠️ Important: Server-side only examples**
+Demonstrates how to use the package in server environments:
+- Express.js API routes
+- Next.js API handlers
+- Next.js server components
+- Data processing functions
+- Validation utilities
+- Error handling patterns
+- Client-side integration via APIs
+
 ## Bundle Size
 
 - **Current bundle size:** ~135KB
@@ -76,6 +87,9 @@ npx ts-node examples/validation.ts
 
 # Run practical applications example
 npx ts-node examples/practical-examples.ts
+
+# Run server-side usage example (server environments only)
+npx ts-node examples/server-side-usage.ts
 ```
 
 ## Example Output

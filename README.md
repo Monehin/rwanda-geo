@@ -32,6 +32,118 @@ yarn add rwanda-geo
 pnpm add rwanda-geo
 ```
 
+## ⚠️ Important: Server-Side Only
+
+**This package is designed for server-side usage only** because it uses Node.js built-in modules (`fs`, `zlib`, `path`) to load data files. It cannot be used directly in client-side applications (React, Vue, browser-based apps).
+
+### ✅ Supported Environments
+- **Node.js servers** (Express, Fastify, etc.)
+- **Next.js server components** and API routes
+- **Nuxt.js server-side** functions
+- **Deno** (with Node.js compatibility)
+- **Build-time** data generation
+
+### ❌ Not Supported
+- **React client components**
+- **Vue client components** 
+- **Browser-based applications**
+- **Static site generators** (without server-side processing)
+
+### 🔧 Usage Examples
+
+#### Next.js Server Components
+```tsx
+// app/locations/page.tsx
+import { getAllProvinces, getAllDistricts } from 'rwanda-geo';
+
+export default async function LocationsPage() {
+  // This runs on the server where Node.js modules are available
+  const provinces = getAllProvinces();
+  const districts = getAllDistricts();
+
+  return (
+    <div>
+      <h1>Rwanda Locations</h1>
+      <div>
+        <h2>Provinces ({provinces.length})</h2>
+        <ul>
+          {provinces.map(province => (
+            <li key={province.code}>{province.name}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+```
+
+#### Next.js API Routes
+```tsx
+// app/api/locations/route.ts
+import { getAllProvinces, getAllDistricts } from 'rwanda-geo';
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const provinces = getAllProvinces();
+  const districts = getAllDistricts();
+  
+  return NextResponse.json({ provinces, districts });
+}
+```
+
+#### Express.js Server
+```javascript
+const express = require('express');
+const { getAllProvinces, searchByName } = require('rwanda-geo');
+
+const app = express();
+
+app.get('/api/provinces', (req, res) => {
+  const provinces = getAllProvinces();
+  res.json(provinces);
+});
+
+app.get('/api/search/:query', (req, res) => {
+  const results = searchByName(req.params.query);
+  res.json(results);
+});
+```
+
+#### Client-Side Usage (via API)
+```tsx
+// components/LocationSelector.tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+
+export default function LocationSelector() {
+  const [provinces, setProvinces] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from your API route
+    fetch('/api/locations')
+      .then(res => res.json())
+      .then(data => setProvinces(data.provinces));
+  }, []);
+
+  return (
+    <select>
+      {provinces.map(province => (
+        <option key={province.code} value={province.code}>
+          {province.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+```
+
+### 🚀 Alternative for Client Apps
+For client-side applications, consider:
+1. **Creating API endpoints** that use this package
+2. **Pre-generating data** at build time
+3. **Using a different package** designed for client-side usage
+
 ## 🚀 Quick Start
 
 ```ts
