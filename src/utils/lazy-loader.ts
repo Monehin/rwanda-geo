@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'fs';
 import { gunzipSync, brotliDecompressSync } from 'zlib';
-import { join } from 'path';
+import { join, dirname } from 'path';
 
 // Cache for loaded data
 const dataCache = new Map<string, any>();
@@ -19,6 +19,24 @@ function decompressBuffer(buffer: Buffer): string {
 }
 
 /**
+ * Get the project root directory by traversing up from the current working directory
+ */
+function getProjectRoot(): string {
+  let currentDir = process.cwd();
+  
+  // Traverse up to find the project root (where package.json is located)
+  while (currentDir !== dirname(currentDir)) {
+    if (existsSync(join(currentDir, 'package.json'))) {
+      return currentDir;
+    }
+    currentDir = dirname(currentDir);
+  }
+  
+  // Fallback to process.cwd() if we can't find package.json
+  return process.cwd();
+}
+
+/**
  * Lazy load and cache gzipped (Brotli or gzip) JSON data
  * @param filename - The name of the JSON file (without .gz extension)
  * @returns The parsed JSON data
@@ -29,12 +47,14 @@ export function lazyLoadGzippedJson<T>(filename: string): T {
     return dataCache.get(filename);
   }
 
+  const projectRoot = getProjectRoot();
+  
   // Try multiple paths in order of preference
   const paths = [
-    join(process.cwd(), 'src/data', `${filename}.json.gz`),  // Development
-    join(process.cwd(), 'dist/data', `${filename}.json.gz`), // Production
-    join(process.cwd(), 'src/data', `${filename}.json`),     // Fallback JSON
-    join(process.cwd(), 'dist/data', `${filename}.json`)     // Production fallback
+    join(projectRoot, 'src/data', `${filename}.json.gz`),  // Development
+    join(projectRoot, 'dist/data', `${filename}.json.gz`), // Production
+    join(projectRoot, 'src/data', `${filename}.json`),     // Fallback JSON
+    join(projectRoot, 'dist/data', `${filename}.json`)     // Production fallback
   ];
 
   for (const path of paths) {
