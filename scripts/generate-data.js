@@ -129,25 +129,43 @@ async function main() {
   const sectorCodeMap = new Map();   // sectorKey -> code
   const cellCodeMap = new Map();     // cellKey -> code
 
+  // Province name mapping: Kinyarwanda -> English
+  const provinceNameMap = {
+    'Umujyi wa Kigali': 'Kigali City',
+    'Amajyepfo': 'Southern Province',
+    'Iburengerazuba': 'Western Province',
+    'Amajyaruguru': 'Northern Province',
+    'Iburasirazuba': 'Eastern Province'
+  };
+  const provinceSlugMap = {
+    'Umujyi wa Kigali': 'kigali-city',
+    'Amajyepfo': 'southern-province',
+    'Iburengerazuba': 'western-province',
+    'Amajyaruguru': 'northern-province',
+    'Iburasirazuba': 'eastern-province'
+  };
+
   // Generate provinces with new format: RW-01, RW-02, etc.
   console.log('Generating provinces...');
   let provinceId = 1;
   provinces.forEach((provinceData, provinceName) => {
     const code = `RW-${provinceId.toString().padStart(2, '0')}`;
     const shortCode = provinceId.toString();
-    const slug = generateUniqueSlug(provinceName, usedSlugs) || provinceId.toString();
+    // Use English name and slug if available
+    const englishName = provinceNameMap[provinceName] || provinceName;
+    const englishSlug = provinceSlugMap[provinceName] || generateUniqueSlug(englishName, usedSlugs) || shortCode;
     
     provincesData.push({
       id: provinceId,
       code,
-      name: provinceName,
-      slug,
+      name: englishName,
+      slug: englishSlug,
       center: { lat: 0, lng: 0 },
       shortCode
     });
     
     provinceCodeMap.set(provinceName, code);
-    usedSlugs.add(slug);
+    usedSlugs.add(englishSlug);
     provinceId++;
   });
 
