@@ -1,6 +1,66 @@
 import { lazyLoadGzippedJson } from './utils/lazy-loader';
 import { Province, District, Sector, Cell, Village, AdministrativeUnit } from './types';
 
+// Language mapping for province names (English to Kinyarwanda)
+const PROVINCE_LANGUAGE_MAP = {
+  'Kigali City': {
+    en: 'Kigali City',
+    rw: 'Umujyi wa Kigali'
+  },
+  'Southern Province': {
+    en: 'Southern Province',
+    rw: 'Amajyepfo'
+  },
+  'Western Province': {
+    en: 'Western Province',
+    rw: 'Iburengerazuba'
+  },
+  'Northern Province': {
+    en: 'Northern Province',
+    rw: 'Amajyaruguru'
+  },
+  'Eastern Province': {
+    en: 'Eastern Province',
+    rw: 'Iburasirazuba'
+  }
+};
+
+// Language mapping for province slugs
+const PROVINCE_SLUG_MAP = {
+  'Kigali City': {
+    en: 'kigali-city',
+    rw: 'umujyi-wa-kigali'
+  },
+  'Southern Province': {
+    en: 'southern-province',
+    rw: 'amajyepfo'
+  },
+  'Western Province': {
+    en: 'western-province',
+    rw: 'iburengerazuba'
+  },
+  'Northern Province': {
+    en: 'northern-province',
+    rw: 'amajyaruguru'
+  },
+  'Eastern Province': {
+    en: 'eastern-province',
+    rw: 'iburasirazuba'
+  }
+};
+
+// Helper function to get translated province name
+function getTranslatedProvinceName(originalName: string, language: 'en' | 'rw' = 'en'): string {
+  const mapping = PROVINCE_LANGUAGE_MAP[originalName as keyof typeof PROVINCE_LANGUAGE_MAP];
+  return mapping ? mapping[language] : originalName;
+}
+
+// Helper function to get translated province slug
+function getTranslatedProvinceSlug(originalName: string, language: 'en' | 'rw' = 'en'): string {
+  const mapping = PROVINCE_SLUG_MAP[originalName as keyof typeof PROVINCE_SLUG_MAP];
+  return mapping ? mapping[language] : originalName.toLowerCase().replace(/\s+/g, '-');
+}
+
 // Lazy-loaded data accessors
 function getProvincesData(): Province[] {
   return lazyLoadGzippedJson<Province[]>('provinces');
@@ -65,11 +125,29 @@ function getAllUnitsMap(): Map<string, AdministrativeUnit> {
 
 /**
  * Get all provinces in Rwanda
+ * @param options - Optional parameters including language preference
  * @returns Array of all provinces
  */
-export function getAllProvinces(): Province[] {
+export function getAllProvinces(options?: { language?: 'en' | 'rw' }): Province[] {
   try {
-    return [...getProvincesData()];
+    const provinces = getProvincesData();
+    const language = options?.language || 'en';
+    
+    // If English is requested and we have English names, return as is
+    if (language === 'en') {
+      return [...provinces];
+    }
+    
+    // If Kinyarwanda is requested, translate the names
+    if (language === 'rw') {
+      return provinces.map(province => ({
+        ...province,
+        name: getTranslatedProvinceName(province.name, 'rw'),
+        slug: getTranslatedProvinceSlug(province.name, 'rw')
+      }));
+    }
+    
+    return [...provinces];
   } catch (error) {
     console.warn('Warning: Could not load provinces data:', error instanceof Error ? error.message : 'Unknown error');
     return [];

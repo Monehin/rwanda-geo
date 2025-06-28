@@ -154,11 +154,15 @@ import {
   getHierarchy 
 } from 'rwanda-geo';
 
-// Get all provinces
+// Get all provinces (default: English)
 const provinces = getAllProvinces();
+
+// Get provinces in specific language
+const englishProvinces = getAllProvinces({ language: 'en' });
+const kinyarwandaProvinces = getAllProvinces({ language: 'rw' });
 ```
 
-**Output:**
+**Output (English - default):**
 ```json
 [
   { "code": "RW-01", "name": "Kigali City", "slug": "kigali-city" },
@@ -166,6 +170,17 @@ const provinces = getAllProvinces();
   { "code": "RW-03", "name": "Western Province", "slug": "western-province" },
   { "code": "RW-04", "name": "Northern Province", "slug": "northern-province" },
   { "code": "RW-05", "name": "Eastern Province", "slug": "eastern-province" }
+]
+```
+
+**Output (Kinyarwanda):**
+```json
+[
+  { "code": "RW-01", "name": "Umujyi wa Kigali", "slug": "umujyi-wa-kigali" },
+  { "code": "RW-02", "name": "Amajyepfo", "slug": "amajyepfo" },
+  { "code": "RW-03", "name": "Iburengerazuba", "slug": "iburengerazuba" },
+  { "code": "RW-04", "name": "Amajyaruguru", "slug": "amajyaruguru" },
+  { "code": "RW-05", "name": "Iburasirazuba", "slug": "iburasirazuba" }
 ]
 ```
 
@@ -203,8 +218,8 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 | **Provinces** | 5 | `RW-01` | Kigali City |
 | **Districts** | 30 | `RW-D-01` | Gasabo |
 | **Sectors** | 416 | `RW-S-001` | Bumbogo |
-| **Cells** | 2,148 | `RW-C-0001` | Bumbogo |
-| **Villages** | 14,837 | `RW-V-00001` | Bumbogo |
+| **Cells** | 2,148 | `RW-C-0001` | Bumbogo cell |
+| **Villages** | 14,837 | `RW-V-00001` | Bumbogo village |
 
 **Total: 17,436 administrative units**
 
@@ -215,7 +230,7 @@ This package contains the complete administrative hierarchy of Rwanda with offic
 <summary><strong>🔄 Data Retrieval Functions</strong></summary>
 
 ```ts
-getAllProvinces(): Province[]
+getAllProvinces(options?: { language?: 'en' | 'rw' }): Province[]
 getAllDistricts(): District[]
 getAllSectors(): Sector[]
 getAllCells(): Cell[]
