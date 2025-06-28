@@ -1,6 +1,6 @@
 {
   "name": "rwanda-geo",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Complete, typed, and lightweight dataset of Rwanda's administrative divisions - 5 provinces, 30 districts, 416 sectors, 2,148 cells, and 14,837 villages. Server-side only package for Node.js, Next.js, and backend applications.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
