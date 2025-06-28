@@ -13,59 +13,27 @@ const {
 
 console.log('🔧 Optimizing data compression...\n');
 
-// Function to test different compression algorithms
-function testCompressionAlgorithms(jsonPath, baseName) {
-  const algorithms = ['gzip', 'brotli', 'zstd'];
-  const results = [];
+// Function to compress with gzip (always use gzip for .json.gz files)
+function compressWithGzip(jsonPath, baseName) {
+  const outputPath = path.join(PATHS.dataDir, `${baseName}.json.gz`);
   
-  console.log(`Testing compression for ${baseName}...`);
+  console.log(`Compressing ${baseName} with gzip...`);
   
-  for (const algorithm of algorithms) {
-    const outputPath = path.join(PATHS.dataDir, `${baseName}.${algorithm}`);
+  if (compressFile(jsonPath, outputPath, 'gzip')) {
+    const stats = fs.statSync(outputPath);
+    const originalSize = fs.statSync(jsonPath).size;
+    const compressionRatio = ((originalSize - stats.size) / originalSize * 100).toFixed(1);
     
-    if (compressFile(jsonPath, outputPath, algorithm)) {
-      const stats = fs.statSync(outputPath);
-      const originalSize = fs.statSync(jsonPath).size;
-      const compressionRatio = ((originalSize - stats.size) / originalSize * 100).toFixed(1);
-      
-      results.push({
-        algorithm,
-        size: stats.size,
-        compressionRatio: parseFloat(compressionRatio)
-      });
-      
-      console.log(`  ${algorithm}: ${(stats.size / 1024).toFixed(1)}KB (${compressionRatio}% smaller)`);
-    }
+    console.log(`  gzip: ${(stats.size / 1024).toFixed(1)}KB (${compressionRatio}% smaller)\n`);
+    
+    return {
+      algorithm: 'gzip',
+      size: stats.size,
+      compressionRatio: parseFloat(compressionRatio)
+    };
   }
   
-  // Find the best compression
-  const best = results.reduce((best, current) => 
-    current.size < best.size ? current : best
-  );
-  
-  console.log(`  ✅ Best: ${best.algorithm} (${(best.size / 1024).toFixed(1)}KB)\n`);
-  
-  // Clean up test files and keep only the best
-  results.forEach(result => {
-    if (result.algorithm !== best.algorithm) {
-      const testPath = path.join(PATHS.dataDir, `${baseName}.${result.algorithm}`);
-      if (fs.existsSync(testPath)) {
-        fs.unlinkSync(testPath);
-      }
-    }
-  });
-  
-  // Rename best to .gz for compatibility
-  const bestPath = path.join(PATHS.dataDir, `${baseName}.${best.algorithm}`);
-  const finalPath = path.join(PATHS.dataDir, `${baseName}.json.gz`);
-  
-  if (fs.existsSync(finalPath)) {
-    fs.unlinkSync(finalPath);
-  }
-  
-  fs.renameSync(bestPath, finalPath);
-  
-  return best;
+  return null;
 }
 
 // Main optimization process
@@ -95,9 +63,11 @@ async function optimizeDataFiles() {
     const optimizedJsonPath = path.join(PATHS.dataDir, `${file}-optimized.json`);
     fs.writeFileSync(optimizedJsonPath, JSON.stringify(optimizedData));
     
-    // Test different compression algorithms
-    const bestResult = testCompressionAlgorithms(optimizedJsonPath, file);
-    totalOptimizedSize += bestResult.size;
+    // Compress with gzip (always use gzip for .json.gz files)
+    const result = compressWithGzip(optimizedJsonPath, file);
+    if (result) {
+      totalOptimizedSize += result.size;
+    }
     
     // Clean up temporary optimized JSON
     fs.unlinkSync(optimizedJsonPath);

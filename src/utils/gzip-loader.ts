@@ -1,6 +1,30 @@
 import { readFileSync, existsSync } from 'fs';
 import { gunzipSync } from 'zlib';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the directory of the current module
+function getModuleDir(): string {
+  if (typeof __dirname !== 'undefined') {
+    // CommonJS environment
+    return __dirname;
+  } else {
+    // ESM environment
+    return dirname(fileURLToPath(import.meta.url));
+  }
+}
+
+function getDataPaths(filename: string): string[] {
+  const moduleDir = getModuleDir();
+  return [
+    // Production: dist/data (when running from dist/index.js)
+    join(moduleDir, 'data', `${filename}.json.gz`),
+    join(moduleDir, 'data', `${filename}.json`),
+    // Development: src/data (when running from src/index.ts)
+    join(moduleDir, '../src/data', `${filename}.json.gz`),
+    join(moduleDir, '../src/data', `${filename}.json`)
+  ];
+}
 
 /**
  * Load and decompress a gzipped JSON file
@@ -8,13 +32,7 @@ import { join } from 'path';
  * @returns The parsed JSON data
  */
 export function loadGzippedJson<T>(filename: string): T {
-  // Try multiple paths in order of preference
-  const paths = [
-    join(process.cwd(), 'src/data', `${filename}.json.gz`),  // Development
-    join(process.cwd(), 'dist/data', `${filename}.json.gz`), // Production
-    join(process.cwd(), 'src/data', `${filename}.json`),     // Fallback JSON
-    join(process.cwd(), 'dist/data', `${filename}.json`)     // Production fallback
-  ];
+  const paths = getDataPaths(filename);
 
   for (const path of paths) {
     try {

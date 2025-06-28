@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 // Shared file paths
 const PATHS = {
@@ -27,22 +26,45 @@ function formatFileSize(bytes) {
   return `${(bytes / 1024).toFixed(1)}KB`;
 }
 
-// Compression utilities
-function compressFile(inputPath, outputPath, algorithm = 'gzip') {
+// Safe path validation
+function validatePath(filePath) {
+  const resolvedPath = path.resolve(filePath);
+  const projectRoot = path.resolve(PATHS.projectRoot);
+  
+  // Ensure path is within project directory
+  if (!resolvedPath.startsWith(projectRoot)) {
+    throw new Error(`Path outside project directory: ${filePath}`);
+  }
+  
+  // Check for suspicious characters
+  if (filePath.includes('..') || filePath.includes(';') || filePath.includes('|') || filePath.includes('&')) {
+    throw new Error(`Suspicious characters in path: ${filePath}`);
+  }
+  
+  return resolvedPath;
+}
+
+// Compression utilities - using Node.js built-in zlib instead of shell commands
+const zlib = require('zlib');
+const { promisify } = require('util');
+const gzip = promisify(zlib.gzip);
+
+async function compressFile(inputPath, outputPath, algorithm = 'gzip') {
   try {
-    switch (algorithm) {
-      case 'gzip':
-        execSync(`gzip -9 -c "${inputPath}" > "${outputPath}"`, { stdio: 'inherit' });
-        break;
-      case 'brotli':
-        execSync(`brotli -Z -o "${outputPath}" "${inputPath}"`, { stdio: 'inherit' });
-        break;
-      case 'zstd':
-        execSync(`zstd -19 -c "${inputPath}" > "${outputPath}"`, { stdio: 'inherit' });
-        break;
-      default:
-        execSync(`gzip -9 -c "${inputPath}" > "${outputPath}"`, { stdio: 'inherit' });
+    // Validate paths
+    const safeInputPath = validatePath(inputPath);
+    const safeOutputPath = validatePath(outputPath);
+    
+    // Only support gzip for security (no shell commands)
+    if (algorithm !== 'gzip') {
+      console.warn(`⚠️  Only gzip compression is supported for security. Requested: ${algorithm}`);
+      algorithm = 'gzip';
     }
+    
+    const inputData = fs.readFileSync(safeInputPath);
+    const compressedData = await gzip(inputData, { level: 9 });
+    fs.writeFileSync(safeOutputPath, compressedData);
+    
     return true;
   } catch (error) {
     console.warn(`⚠️  ${algorithm} compression failed: ${error.message}`);
@@ -52,32 +74,65 @@ function compressFile(inputPath, outputPath, algorithm = 'gzip') {
 
 function decompressFile(inputPath) {
   try {
-    const compressedData = fs.readFileSync(inputPath);
-    return execSync('gunzip -c', { input: compressedData, encoding: 'utf8' });
+    const safeInputPath = validatePath(inputPath);
+    const compressedData = fs.readFileSync(safeInputPath);
+    const decompressedData = zlib.gunzipSync(compressedData);
+    return decompressedData.toString('utf8');
   } catch (error) {
     throw new Error(`Failed to decompress ${inputPath}: ${error.message}`);
   }
 }
 
-// Download utilities
+// Download utilities - using Node.js built-in https instead of curl
+const https = require('https');
+
 function downloadLocationsFile() {
   console.log('📥 Downloading locations.json from source repository...');
-  try {
-    execSync('curl -H "Accept: application/vnd.github.v3.raw" -o locations.json https://api.github.com/repos/jnkindi/rwanda-locations-json/contents/locations.json', {
-      stdio: 'inherit',
-      cwd: PATHS.projectRoot
+  
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'api.github.com',
+      path: '/repos/jnkindi/rwanda-locations-json/contents/locations.json',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/vnd.github.v3.raw',
+        'User-Agent': 'rwanda-geo-package'
+      }
+    };
+    
+    const req = https.request(options, (res) => {
+      if (res.statusCode !== 200) {
+        reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`));
+        return;
+      }
+      
+      let data = '';
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      
+      res.on('end', () => {
+        try {
+          fs.writeFileSync(PATHS.locationsJson, data);
+          const size = getFileSize(PATHS.locationsJson);
+          console.log(`✅ Downloaded locations.json (${formatFileSize(size)})`);
+          resolve(true);
+        } catch (error) {
+          reject(error);
+        }
+      });
     });
-    const size = getFileSize(PATHS.locationsJson);
-    console.log(`✅ Downloaded locations.json (${formatFileSize(size)})`);
-    return true;
-  } catch (error) {
-    console.error('❌ Error downloading locations.json:', error.message);
-    return false;
-  }
+    
+    req.on('error', (error) => {
+      reject(error);
+    });
+    
+    req.end();
+  });
 }
 
 // Data loading utilities
-function loadLocationsData() {
+async function loadLocationsData() {
   console.log('Reading locations data...');
   
   // Try compressed file first
@@ -100,7 +155,7 @@ function loadLocationsData() {
       console.log('✓ Successfully parsed locations.json');
       
       // Compress for future use
-      compressFile(PATHS.locationsJson, PATHS.locationsGz);
+      await compressFile(PATHS.locationsJson, PATHS.locationsGz);
       console.log('✓ Compressed locations.json to locations.json.gz');
       
       return data;
@@ -111,20 +166,19 @@ function loadLocationsData() {
   
   // Download if neither exists
   console.log('Downloading from source repository...');
-  if (downloadLocationsFile()) {
-    try {
-      const jsonData = fs.readFileSync(PATHS.locationsJson, 'utf8');
-      const data = JSON.parse(jsonData);
-      console.log('✓ Successfully parsed locations.json');
-      
-      // Compress for future use
-      compressFile(PATHS.locationsJson, PATHS.locationsGz);
-      console.log('✓ Compressed locations.json to locations.json.gz');
-      
-      return data;
-    } catch (error) {
-      console.error('Error parsing downloaded locations.json:', error.message);
-    }
+  try {
+    await downloadLocationsFile();
+    const jsonData = fs.readFileSync(PATHS.locationsJson, 'utf8');
+    const data = JSON.parse(jsonData);
+    console.log('✓ Successfully parsed locations.json');
+    
+    // Compress for future use
+    await compressFile(PATHS.locationsJson, PATHS.locationsGz);
+    console.log('✓ Compressed locations.json to locations.json.gz');
+    
+    return data;
+  } catch (error) {
+    console.error('Error parsing downloaded locations.json:', error.message);
   }
   
   throw new Error('Failed to load locations data');
@@ -158,26 +212,24 @@ function optimizeDataArray(data) {
   return data.map(optimizeDataItem);
 }
 
-// Git utilities
-function runGitCommand(cmd) {
-  try {
-    return execSync(cmd, { encoding: 'utf8' }).trim();
-  } catch {
-    return null;
-  }
-}
-
+// Git utilities - REMOVED for security (no shell commands)
+// If git functionality is needed, use a proper git library like 'simple-git'
 function getLatestRemoteTag() {
-  runGitCommand('git fetch --tags --force');
-  return runGitCommand('git tag --list --sort=-v:refname | head -1');
+  // Removed for security - no shell commands
+  console.warn('⚠️  Git functionality removed for security');
+  return null;
 }
 
-function getTagCommit(tag) {
-  return tag ? runGitCommand(`git rev-list -n 1 ${tag}`) : null;
+function getTagCommit() {
+  // Removed for security - no shell commands
+  console.warn('⚠️  Git functionality removed for security');
+  return null;
 }
 
 function getHeadCommit() {
-  return runGitCommand('git rev-parse HEAD');
+  // Removed for security - no shell commands
+  console.warn('⚠️  Git functionality removed for security');
+  return null;
 }
 
 // Logging utilities
@@ -213,7 +265,6 @@ module.exports = {
   loadLocationsData,
   optimizeDataItem,
   optimizeDataArray,
-  runGitCommand,
   getLatestRemoteTag,
   getTagCommit,
   getHeadCommit,

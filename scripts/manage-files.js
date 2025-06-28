@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const zlib = require('zlib');
 const { 
   PATHS, 
   fileExists, 
@@ -77,10 +77,10 @@ function extractLocations() {
   }
   
   try {
-    execSync('gunzip -k locations.json.gz', {
-      stdio: 'inherit',
-      cwd: PATHS.projectRoot
-    });
+    const compressedData = fs.readFileSync(PATHS.locationsGz);
+    const decompressedData = zlib.gunzipSync(compressedData);
+    fs.writeFileSync(PATHS.locationsJson, decompressedData);
+    
     const size = getFileSize(PATHS.locationsJson);
     logSuccess(`Extracted to locations.json (${formatFileSize(size)})`);
   } catch (error) {
@@ -169,7 +169,10 @@ function extractJsonFiles() {
     const jsonPath = path.join(PATHS.dataDir, jsonFile);
     
     try {
-      execSync(`gunzip -c "${gzPath}" > "${jsonPath}"`, { maxBuffer: 50 * 1024 * 1024 });
+      const compressedData = fs.readFileSync(gzPath);
+      const decompressedData = zlib.gunzipSync(compressedData);
+      fs.writeFileSync(jsonPath, decompressedData);
+      
       console.log(`✓ Extracted ${jsonFile}`);
       successCount++;
     } catch (error) {

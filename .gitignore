@@ -12,6 +12,7 @@ build/
 
 # Data files (using gzipped versions)
 src/data/*.json
+src/data/*.json.gz
 locations.json
 locations.json.gz
 
