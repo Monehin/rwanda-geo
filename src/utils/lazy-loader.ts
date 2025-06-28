@@ -23,26 +23,27 @@ function decompressBuffer(buffer: Buffer): string {
  * This works for both ESM and CommonJS environments
  */
 function getPackageRoot(): string {
-  // For CommonJS: use __dirname (available in Jest and Node.js)
-  if (typeof __dirname !== 'undefined') {
-    // Navigate up from utils/lazy-loader.ts to the package root
-    return dirname(dirname(__dirname));
-  }
-  
-  // Fallback: try to find our package by looking for our specific data files
-  let currentDir = process.cwd();
-  while (currentDir !== dirname(currentDir)) {
-    if (existsSync(join(currentDir, 'package.json'))) {
-      // Check if this is our package by looking for our specific files
-      if (existsSync(join(currentDir, 'dist', 'data', 'provinces.json.gz'))) {
-        return currentDir;
+  try {
+    // Use require.resolve to find the package's own directory
+    // This works when the package is installed as a dependency
+    const packageJsonPath = require.resolve('rwanda-geo/package.json');
+    return dirname(packageJsonPath);
+  } catch {
+    // Fallback: try to find our package by looking for our specific data files
+    let currentDir = process.cwd();
+    while (currentDir !== dirname(currentDir)) {
+      if (existsSync(join(currentDir, 'package.json'))) {
+        // Check if this is our package by looking for our specific files
+        if (existsSync(join(currentDir, 'dist', 'data', 'provinces.json.gz'))) {
+          return currentDir;
+        }
       }
+      currentDir = dirname(currentDir);
     }
-    currentDir = dirname(currentDir);
+    
+    // Last resort: use process.cwd()
+    return process.cwd();
   }
-  
-  // Last resort: use process.cwd()
-  return process.cwd();
 }
 
 /**
