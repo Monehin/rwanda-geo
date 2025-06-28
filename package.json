@@ -39,7 +39,8 @@
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit",
     "version:check": "node scripts/version-sync.js --check",
-    "version:sync": "node scripts/version-sync.js --sync"
+    "version:sync": "node scripts/version-sync.js --sync",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "rwanda",
