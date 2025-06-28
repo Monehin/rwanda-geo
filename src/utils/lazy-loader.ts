@@ -19,20 +19,29 @@ function decompressBuffer(buffer: Buffer): string {
 }
 
 /**
- * Get the project root directory by traversing up from the current working directory
+ * Get the package's own directory (not the consumer's project directory)
+ * This works for both ESM and CommonJS environments
  */
-function getProjectRoot(): string {
-  let currentDir = process.cwd();
+function getPackageRoot(): string {
+  // For CommonJS: use __dirname (available in Jest and Node.js)
+  if (typeof __dirname !== 'undefined') {
+    // Navigate up from utils/lazy-loader.ts to the package root
+    return dirname(dirname(__dirname));
+  }
   
-  // Traverse up to find the project root (where package.json is located)
+  // Fallback: try to find our package by looking for our specific data files
+  let currentDir = process.cwd();
   while (currentDir !== dirname(currentDir)) {
     if (existsSync(join(currentDir, 'package.json'))) {
-      return currentDir;
+      // Check if this is our package by looking for our specific files
+      if (existsSync(join(currentDir, 'dist', 'data', 'provinces.json.gz'))) {
+        return currentDir;
+      }
     }
     currentDir = dirname(currentDir);
   }
   
-  // Fallback to process.cwd() if we can't find package.json
+  // Last resort: use process.cwd()
   return process.cwd();
 }
 
@@ -47,14 +56,14 @@ export function lazyLoadGzippedJson<T>(filename: string): T {
     return dataCache.get(filename);
   }
 
-  const projectRoot = getProjectRoot();
+  const packageRoot = getPackageRoot();
   
   // Try multiple paths in order of preference
   const paths = [
-    join(projectRoot, 'src/data', `${filename}.json.gz`),  // Development
-    join(projectRoot, 'dist/data', `${filename}.json.gz`), // Production
-    join(projectRoot, 'src/data', `${filename}.json`),     // Fallback JSON
-    join(projectRoot, 'dist/data', `${filename}.json`)     // Production fallback
+    join(packageRoot, 'dist/data', `${filename}.json.gz`), // Production (published package)
+    join(packageRoot, 'src/data', `${filename}.json.gz`),  // Development
+    join(packageRoot, 'dist/data', `${filename}.json`),    // Production fallback
+    join(packageRoot, 'src/data', `${filename}.json`)      // Development fallback
   ];
 
   for (const path of paths) {
