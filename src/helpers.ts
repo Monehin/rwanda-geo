@@ -29,12 +29,36 @@ function getAllUnitsMap(): Map<string, AdministrativeUnit> {
   if (!allUnitsMap) {
     allUnitsMap = new Map<string, AdministrativeUnit>();
     
-    // Load and populate the map
-    getProvincesData().forEach(province => allUnitsMap!.set(province.code, province));
-    getDistrictsData().forEach(district => allUnitsMap!.set(district.code, district));
-    getSectorsData().forEach(sector => allUnitsMap!.set(sector.code, sector));
-    getCellsData().forEach(cell => allUnitsMap!.set(cell.code, cell));
-    getVillagesData().forEach(village => allUnitsMap!.set(village.code, village));
+    // Load and populate the map - handle missing files gracefully
+    try {
+      getProvincesData().forEach(province => allUnitsMap!.set(province.code, province));
+    } catch (error) {
+      console.warn('Warning: Could not load provinces data:', error instanceof Error ? error.message : 'Unknown error');
+    }
+    
+    try {
+      getDistrictsData().forEach(district => allUnitsMap!.set(district.code, district));
+    } catch (error) {
+      console.warn('Warning: Could not load districts data:', error instanceof Error ? error.message : 'Unknown error');
+    }
+    
+    try {
+      getSectorsData().forEach(sector => allUnitsMap!.set(sector.code, sector));
+    } catch (error) {
+      console.warn('Warning: Could not load sectors data:', error instanceof Error ? error.message : 'Unknown error');
+    }
+    
+    try {
+      getCellsData().forEach(cell => allUnitsMap!.set(cell.code, cell));
+    } catch (error) {
+      console.warn('Warning: Could not load cells data:', error instanceof Error ? error.message : 'Unknown error');
+    }
+    
+    try {
+      getVillagesData().forEach(village => allUnitsMap!.set(village.code, village));
+    } catch (error) {
+      console.warn('Warning: Could not load villages data:', error instanceof Error ? error.message : 'Unknown error');
+    }
   }
   return allUnitsMap;
 }
@@ -44,7 +68,12 @@ function getAllUnitsMap(): Map<string, AdministrativeUnit> {
  * @returns Array of all provinces
  */
 export function getAllProvinces(): Province[] {
-  return [...getProvincesData()];
+  try {
+    return [...getProvincesData()];
+  } catch (error) {
+    console.warn('Warning: Could not load provinces data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 /**
@@ -52,7 +81,12 @@ export function getAllProvinces(): Province[] {
  * @returns Array of all districts
  */
 export function getAllDistricts(): District[] {
-  return [...getDistrictsData()];
+  try {
+    return [...getDistrictsData()];
+  } catch (error) {
+    console.warn('Warning: Could not load districts data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 /**
@@ -60,7 +94,12 @@ export function getAllDistricts(): District[] {
  * @returns Array of all sectors
  */
 export function getAllSectors(): Sector[] {
-  return [...getSectorsData()];
+  try {
+    return [...getSectorsData()];
+  } catch (error) {
+    console.warn('Warning: Could not load sectors data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 /**
@@ -68,7 +107,12 @@ export function getAllSectors(): Sector[] {
  * @returns Array of all cells
  */
 export function getAllCells(): Cell[] {
-  return [...getCellsData()];
+  try {
+    return [...getCellsData()];
+  } catch (error) {
+    console.warn('Warning: Could not load cells data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 /**
@@ -76,7 +120,12 @@ export function getAllCells(): Cell[] {
  * @returns Array of all villages
  */
 export function getAllVillages(): Village[] {
-  return [...getVillagesData()];
+  try {
+    return [...getVillagesData()];
+  } catch (error) {
+    console.warn('Warning: Could not load villages data:', error instanceof Error ? error.message : 'Unknown error');
+    return [];
+  }
 }
 
 /**
@@ -631,4 +680,24 @@ export function validateUnitProperties(unit: AdministrativeUnit): {
 }
 
 // Re-export utility functions for cache management
-export { preloadData, clearDataCache, getCacheStats } from './utils/lazy-loader'; 
+export { preloadData, clearDataCache, getCacheStats } from './utils/lazy-loader';
+
+/**
+ * Check which data files are available
+ * @returns Object indicating which data files are available
+ */
+export function getAvailableData(): {
+  provinces: boolean;
+  districts: boolean;
+  sectors: boolean;
+  cells: boolean;
+  villages: boolean;
+} {
+  return {
+    provinces: (() => { try { getProvincesData(); return true; } catch { return false; } })(),
+    districts: (() => { try { getDistrictsData(); return true; } catch { return false; } })(),
+    sectors: (() => { try { getSectorsData(); return true; } catch { return false; } })(),
+    cells: (() => { try { getCellsData(); return true; } catch { return false; } })(),
+    villages: (() => { try { getVillagesData(); return true; } catch { return false; } })()
+  };
+} 
