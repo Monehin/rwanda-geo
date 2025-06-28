@@ -87,10 +87,21 @@ jobs:
           git config --local user.name "GitHub Action"
           git add package.json package-lock.json
           git commit -m "Bump version to ${{ env.NEW_VERSION }} [skip ci]"
-          git tag v${{ env.NEW_VERSION }}
+          
+          # Check if tag already exists locally or remotely
+          if git tag -l "v${{ env.NEW_VERSION }}" | grep -q "v${{ env.NEW_VERSION }}"; then
+            echo "Tag v${{ env.NEW_VERSION }} already exists locally, removing it"
+            git tag -d "v${{ env.NEW_VERSION }}"
+          fi
+          
+          # Create new tag
+          git tag "v${{ env.NEW_VERSION }}"
+          
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push origin main
-          git push origin v${{ env.NEW_VERSION }}
+          
+          # Force push the tag (in case it exists remotely)
+          git push origin "v${{ env.NEW_VERSION }}" --force
           
       - name: Create GitHub Release (manual trigger)
         if: github.event_name == 'workflow_dispatch'
