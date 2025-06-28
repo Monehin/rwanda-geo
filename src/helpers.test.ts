@@ -372,4 +372,28 @@ describe('rwanda-geo helpers', () => {
       expect(validation.isValid).toBe(true);
     });
   });
+
+  test('getAllProvinces returns English names by default', () => {
+    const provinces = getAllProvinces();
+    const names = provinces.map(p => p.name);
+    expect(names).toEqual([
+      'Kigali City',
+      'Southern Province',
+      'Western Province',
+      'Northern Province',
+      'Eastern Province'
+    ]);
+  });
+
+  test('getAllProvinces returns Kinyarwanda names when language is rw', () => {
+    const provinces = getAllProvinces({ language: 'rw' });
+    const names = provinces.map(p => p.name);
+    expect(names).toEqual([
+      'Umujyi wa Kigali',
+      'Amajyepfo',
+      'Iburengerazuba',
+      'Amajyaruguru',
+      'Iburasirazuba'
+    ]);
+  });
 }); 

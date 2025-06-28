@@ -459,3 +459,15 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 ---
 
 **Made with ❤️ for Rwanda's digital transformation**
+
+## 🌍 Language Support
+
+- **Default:** All names are in English.
+- **Kinyarwanda:** Use the `language: 'rw'` option to get Kinyarwanda names for provinces.
+
+Example:
+
+```js
+const provincesEn = getAllProvinces(); // English (default)
+const provincesRw = getAllProvinces({ language: 'rw' }); // Kinyarwanda
+```
