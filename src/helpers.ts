@@ -52,7 +52,8 @@ const PROVINCE_SLUG_MAP = {
 // Helper function to get translated province name
 function getTranslatedProvinceName(originalName: string, language: 'en' | 'rw' = 'en'): string {
   const mapping = PROVINCE_LANGUAGE_MAP[originalName as keyof typeof PROVINCE_LANGUAGE_MAP];
-  return mapping ? mapping[language] : originalName;
+  const result = mapping ? mapping[language] : originalName;
+  return result;
 }
 
 // Helper function to get translated province slug

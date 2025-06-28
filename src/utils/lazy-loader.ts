@@ -28,21 +28,30 @@ function getPackageRoot(): string {
     // This works when the package is installed as a dependency
     const packageJsonPath = require.resolve('rwanda-geo/package.json');
     return dirname(packageJsonPath);
-  } catch {
-    // Fallback: try to find our package by looking for our specific data files
-    let currentDir = process.cwd();
-    while (currentDir !== dirname(currentDir)) {
-      if (existsSync(join(currentDir, 'package.json'))) {
-        // Check if this is our package by looking for our specific files
-        if (existsSync(join(currentDir, 'dist', 'data', 'provinces.json.gz'))) {
-          return currentDir;
-        }
-      }
-      currentDir = dirname(currentDir);
+  } catch (error) {
+    // If we can't resolve the package, we're likely in development mode
+    // In this case, use __dirname to get the current module's directory
+    // and navigate to the package root
+    const currentDir = __dirname;
+    const srcIndex = currentDir.indexOf('/src/');
+    if (srcIndex !== -1) {
+      return currentDir.substring(0, srcIndex);
     }
     
-    // Last resort: use process.cwd()
-    return process.cwd();
+    // Try to find the package root by looking for our specific files
+    let currentDir2 = process.cwd();
+    while (currentDir2 !== dirname(currentDir2)) {
+      if (existsSync(join(currentDir2, 'package.json'))) {
+        // Check if this is our package by looking for our specific files
+        if (existsSync(join(currentDir2, 'dist', 'data', 'provinces.json.gz'))) {
+          return currentDir2;
+        }
+      }
+      currentDir2 = dirname(currentDir2);
+    }
+    
+    // Last resort: throw an error instead of falling back to process.cwd()
+    throw new Error(`Could not determine package root. This package must be properly installed or run from its own directory. Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
 
@@ -59,7 +68,7 @@ export function lazyLoadGzippedJson<T>(filename: string): T {
 
   const packageRoot = getPackageRoot();
   
-  // Try multiple paths in order of preference
+  // Only look in the package's own directory, never in consumer project directories
   const paths = [
     join(packageRoot, 'dist/data', `${filename}.json.gz`), // Production (published package)
     join(packageRoot, 'src/data', `${filename}.json.gz`),  // Development
@@ -91,8 +100,8 @@ export function lazyLoadGzippedJson<T>(filename: string): T {
     }
   }
 
-  // If all paths fail, throw an error
-  throw new Error(`Failed to load ${filename}.json.gz or ${filename}.json from any of the expected locations: ${paths.join(', ')}`);
+  // If all paths fail, throw a clear error
+  throw new Error(`Failed to load ${filename}.json.gz or ${filename}.json from package directory: ${packageRoot}. Tried paths: ${paths.join(', ')}`);
 }
 
 /**
